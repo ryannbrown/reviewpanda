@@ -4,10 +4,13 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import HttpsRedirect from 'react-https-redirect';
+import { ThemeContextProvider } from "./utils/themeContext";
 ReactDOM.render(
   <React.StrictMode>
     <HttpsRedirect>
+    <ThemeContextProvider>
     <App />
+    </ThemeContextProvider>
     </HttpsRedirect>
    
   </React.StrictMode>,

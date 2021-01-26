@@ -1,18 +1,8 @@
 
-/* * {
-  overflow-x:hidden;
-} */
-
 * {
-  font-family: 'adelle';
+  font-family: "azo-sans-web",sans-serif;
 }
 
-
-.light {
-  font-family: 'adelle-ultrathin';
-font-weight: 100;
-font-style: normal;
-}
 
 .App {
   text-align: center;
@@ -33,15 +23,6 @@ p, li, h3, h4, h5, a, button {
   /* font-family: adelle, serif; */
   letter-spacing:.1rem
 }
-
-.libre {
-  font-family: 'Libre Baskerville', serif;
-}
-
-.rob {
-  font-family: 'Roboto', sans-serif;
-}
-
 
 /* .App {
   background-image:url(../src/media/moroccan-flower.png);

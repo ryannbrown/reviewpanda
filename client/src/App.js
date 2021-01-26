@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import { Container, Nav, Button, Col, Row, Card } from 'react-bootstrap'
+import Nav from './components/Nav/index'
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,29 +9,44 @@ import {
   Link,
   useParams
 } from "react-router-dom";
+import { ThemeContextConsumer, ThemeContextProvider } from "./utils/themeContext";
+
+// import Page from "./pages/Homepage/index"
 import Homepage from "./pages/Homepage/index"
-import Contact from "./pages/Contact/index"
 import createHistory from 'history/createBrowserHistory';
 
 
-function App() {
+class App extends Component {
+  static contextType = ThemeContextConsumer;
+  constructor(props) {
+    super(props)
+    this.state = {
+    };
+    // this.handler = this.handler.bind(this);
+  }
+  // const history = createHistory({
+  //   basename: process.env.PUBLIC_URL,
+  // });
 
-
-  const history = createHistory({
-    basename: process.env.PUBLIC_URL,
-  });
+  render () {
 
   return (
     <div className="App">
-         <Router history = {history}>
+        <ThemeContextConsumer>
+         {context => (
+         <Router>
+           <Nav></Nav>
            <Switch>
-             <Route path="/contact" component={Contact}/>
+             {/* <Route path="/" component={Page}/> */}
              <Route path="/" component={Homepage}/>
            </Switch>
          </Router>
+           )}
+           </ThemeContextConsumer>
     </div>
   
   );
+}
 }
 
 export default App;
