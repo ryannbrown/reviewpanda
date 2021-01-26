@@ -114,3 +114,32 @@ hr {
   position:absolute;
   top:50%;
 }
+
+
+.btn {
+  cursor:pointer;
+  display: inline-block;
+  font-weight: 400;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* background-color: #77E0D4; */
+  border: 1px solid transparent;
+  padding: .65rem 4rem !important;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 2rem;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.login-btn {
+  background-color: #77E0D4;
+}
+
+.login-btn:hover {
+    box-shadow: 0 0 10px #77E0D4;
+}

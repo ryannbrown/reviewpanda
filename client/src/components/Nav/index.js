@@ -276,7 +276,7 @@ export default class Nav extends Component {
                       <button
                         onClick={this.toggleModal}
                         toggleRegister={this.toggleRegister}
-                        className="login-btn"
+                        className="login-btn btn"
                       >
                         Login
                       </button>
@@ -301,7 +301,7 @@ export default class Nav extends Component {
                   {context.userLoggedIn && context.userData ? (
                     <div>
                       <p>Welcome back, {context.userData.first_name}</p>
-                      <button onClick={this.logOut} className="login-btn">
+                      <button onClick={this.logOut} className="login-btn btn">
                         Logout
                       </button>
                     </div>
@@ -311,7 +311,7 @@ export default class Nav extends Component {
                       <button
                         onClick={this.toggleModal}
                         toggleRegister={this.toggleRegister}
-                        className="login-btn"
+                        className="login-btn btn"
                       >
                         Login
                       </button>
