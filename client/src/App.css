@@ -147,3 +147,10 @@ hr {
 .login-btn:hover {
     box-shadow: 0 0 10px #77E0D4;
 }
+
+.modal-btn {
+  background-color:#123047;
+}
+.modal-btn:hover {
+  box-shadow: 0 0 10px#123047;
+}

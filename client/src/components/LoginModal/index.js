@@ -232,19 +232,19 @@ class LoginModal extends Component {
           <div className="modal-content">
             {/* Login Form */}
             {!this.state.registrationToggled ? (
-              <form onSubmit={this.handleLogin}>
+              <form className="actual-form" onSubmit={this.handleLogin}>
                      
                 <h1>Login</h1>
                 <input ref={this.email} placeholder="email" />
                 <input ref={this.password} placeholder="password" />
-                <button>Sign In</button>
+                <button className="modal-btn btn" >Sign In</button>
                 <p>First Time?</p>
-                <button type="submit" onClick={this.toggleRegister}>Register</button>
+                <button className="modal-btn btn" type="submit" onClick={this.toggleRegister}>Register</button>
               </form>
             ) :
            
              (   
-              <form onSubmit={this.handleRegistration}>
+              <form className="actual-form" onSubmit={this.handleRegistration}>
                     {/* Registration Form */} 
                 <h1>Register</h1>
                 <input ref={this.first_name} placeholder="First Name" />
@@ -252,9 +252,11 @@ class LoginModal extends Component {
                 <input ref={this.email} placeholder="Email" />
                 <input ref={this.password} placeholder="Password" />
                 <input ref={this.verPassword} placeholder="Verify Password" />
+                <div className="form-checkbox">
                 <label>Subscribe?</label>
                 <input ref={this.isSubscribed} type="checkbox"></input>
-                <button type="submit">Register</button>
+                </div>
+                <button className="modal-btn btn" type="submit">Register</button>
                 {showLoginAlert && <div>This email may already exist in our system</div>}
               </form>
             )}

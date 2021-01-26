@@ -17,7 +17,8 @@
     position:relative;
     background-color: white;
     width: 400px;
-    height: 200px;
+    /* height: 200px; */
+    max-height:100%;
     padding: 100px 25px;
     border-radius: 25px;
     display: flex;
@@ -26,7 +27,7 @@
     flex-direction:column;
 }
 
-.modal-box form {
+.modal-box .actual-form {
         display: flex;
         flex-direction: column;
     }
@@ -41,3 +42,108 @@
     .modal-exit-btn:hover {
         opacity:.5;
     }
+
+    .form-checkbox {
+        display: flex;
+        height: 40px;
+        width: 100px;
+        align-items: center;
+    }
+    .form-checkbox label {
+        /* margin-right:5px; */
+    }
+    .form-checkbox input {
+        height: auto !important;
+        margin: 0px;
+    }
+
+.actual-form * {
+    margin:5px;
+}
+
+    
+.actual-form input {
+    width: 253px;
+    height: 40px;
+    border-radius: 5px;
+    /* opacity:.3; */
+    color: black;
+    border: 0.5px solid #cccccc;
+    padding: 5px;
+  }
+  
+  .actual-form input[type="text"] {
+    padding: 15px !important;
+  }
+  
+  .actual-form textarea {
+    width: 285px;
+    height: 100px;
+    min-height: 100px;
+    max-height: 400px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+  }
+  
+  .actual-form input::placeholder {
+    color: #cccccc !important;
+    /* padding:10px; */
+  }
+  
+  .actual-form textarea::placeholder {
+    color: #cccccc !important;
+    /* padding:10px; */
+  }
+  
+  .actual-form textarea[type="text"] {
+    padding: 10px;
+  }
+  
+  .actual-form option {
+    color: black;
+    padding: 30px;
+    line-height: 1.5rem;
+  }
+  .actual-form select {
+    /* color: #CCCCCC; */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+  }
+  
+  /* .actual-form option:hover{
+      background-color:#CCCCCC !important;
+  } */
+  
+  /* .actual-form button {
+    position: absolute;
+    bottom: -100px;
+    left: 0%;
+    /* margin-left: -55px; */
+  /* } */
+  
+  button:focus {
+    outline: none;
+  }
+  
+  .down-arrow {
+    margin-top: 25px;
+    width: 100% !important;
+    position: relative;
+    opacity: 0.3;
+    font-size: 1.5rem;
+  }
+  
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0.3;
+  }
+  
+  input,
+  button,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: initial !important;
+  }
