@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom"
 
 class MostPopular extends Component {
   constructor(props) {
@@ -36,11 +37,12 @@ class MostPopular extends Component {
     if (this.state.posts.length > 0) {
       var items = this.state.posts.map((item, i) => (
         <div>
-            {/* <Link></Link> */}
+           <Link to={`/tests/${item.id}`}>
           <div
             className="pop-item"
             style={{ backgroundColor: "#123047", opacity: ".1", margin: "5px" }}
           />
+          </Link>
           <p>{item.title}</p>
         </div>
       ));

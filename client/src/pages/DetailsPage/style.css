@@ -1,0 +1,22 @@
+.details-page{
+   justify-content: center;
+   align-items:center;
+   flex-direction:column;
+   margin-top:115px;
+}
+
+.details-content {
+    display:flex;
+    max-width:980px;
+    justify-content: center;
+    align-items:center;
+}
+
+.split-left {
+    width:50%;
+    float:left;
+}
+.split-right {
+    width:50%;
+    float:right;
+}

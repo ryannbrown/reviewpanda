@@ -13,6 +13,7 @@ import { ThemeContextConsumer, ThemeContextProvider } from "./utils/themeContext
 
 // import Page from "./pages/Homepage/index"
 import Homepage from "./pages/Homepage/index"
+import DetailsPage from "./pages/DetailsPage/index"
 import createHistory from 'history/createBrowserHistory';
 
 
@@ -38,6 +39,7 @@ class App extends Component {
            <Nav></Nav>
            <Switch>
              {/* <Route path="/" component={Page}/> */}
+             <Route exact path="/tests/:id" render={(props) => <DetailsPage {...props}  />} />
              <Route path="/" component={Homepage}/>
            </Switch>
          </Router>
