@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
+import ReviewBlock from "../../components/ReviewBlock"
 
 class DetailsPage extends Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class DetailsPage extends Component {
       return (
         <div
           className="details-page"
-          style={{ display: "flex", height: "50vh", width: "100%" }}
+          style={{ display: "flex", height: "100%", width: "100%" }}
         >
           <h1>{thisPost.title}</h1>
           <div className="details-content">
@@ -66,6 +67,7 @@ class DetailsPage extends Component {
             </div>
           </div>
           {/* <div className="pop-wrapper">{items}</div> */}
+          <ReviewBlock id={this.props.match.params.id}></ReviewBlock>
         </div>
       );
     }

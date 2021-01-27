@@ -19,6 +19,8 @@
     const register = require('./controllers/register');
     const signin = require('./controllers/signin');
     const profile = require('./controllers/profile');
+    const review = require('./controllers/review');
+    const reviewList = require('./controllers/getReviews');
     // aws bucket
     // const AWS = require('aws-sdk');
     require('dotenv').config();
@@ -44,7 +46,9 @@
 
     app.post('/api/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
     app.post('/api/signin', signin.handleSignin(db, bcrypt))
+    app.post('/api/postreview', (req, res) => { review.handleReviewPost(req, res, db)})
     app.get('/api/profile/:email', (req, res) => { profile.handleProfileGet(req, res, db)})
+    app.get('/api/review/:id', (req, res) => { reviewList.handleReviewGet(req, res, db)})
     
     
     

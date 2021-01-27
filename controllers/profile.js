@@ -3,6 +3,7 @@ const handleProfileGet = (req, res, db) => {
     db.select('*').from('user_profiles').where({email})
       .then(user => {
         if (user.length) {
+          // console.log(user)
           res.json(user[0])
         } else {
           res.status(400).json('Not found')

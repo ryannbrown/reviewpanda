@@ -168,7 +168,7 @@ export default class Nav extends Component {
             <header
               id="navvy-bar"
               // class={this.state.mobileNavToggle ? "mobile-header" + (this.state.hideNav ? '-hidden' : '') : 'header' + (this.state.hideNav ? '-hidden' : '')}
-              class={this.state.mobileNavToggle ? "mobile-header" : "header"}
+              className={this.state.mobileNavToggle ? "mobile-header" : "header"}
             >
               <div className="nav-brand">
                 <Link to="/">
@@ -275,7 +275,7 @@ export default class Nav extends Component {
                       {" "}
                       <button
                         onClick={this.toggleModal}
-                        toggleRegister={this.toggleRegister}
+                        toggleregister={this.toggleRegister}
                         className="login-btn btn"
                       >
                         Login
@@ -334,13 +334,13 @@ export default class Nav extends Component {
             </header>
             <input
               type="checkbox"
-              class="menu-toggle"
+              className="menu-toggle"
               id="menu-toggle"
               onClick={this.toggleNav}
             />
             {/* <div class={this.state.hideNav ? 'mobile-bar-hidden': 'mobile-bar' }> */}
-            <div class="mobile-bar">
-              <label for="menu-toggle" class="menu-icon">
+            <div className="mobile-bar">
+              <label for="menu-toggle" className="menu-icon">
                 <span></span>
               </label>
               <div className="mobile-nav-brand">

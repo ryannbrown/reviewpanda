@@ -1,0 +1,27 @@
+.reviews-comp {
+    margin:50px;
+    display:flex;
+    flex-direction:column;
+}
+
+.reviews-comp form {
+    display:flex;
+    margin: 15px auto;
+}
+
+.reviews-wrapper {
+    margin:50px auto;
+    height:100%;
+    width:980px;
+   max-width:980px;
+    border:1px solid lightgrey;
+}
+
+
+.single-review {
+    min-height:100px;
+    max-height:100%;
+    width: 100%;
+    color: black;
+    border: 1px solid black;
+}

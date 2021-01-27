@@ -23,19 +23,7 @@ const { Provider, Consumer } = React.createContext();
 
     if ( userStorageEmail) {
     //   console.log(userStorageEmail, "get it")
-
-      fetch(`/api/profile/${userStorageEmail}`)
-      .then(res => res.json())
-      .then(json => {
-        //   console.log(json)
-        this.setState({
-          userData: json.data,
-          userLoggedIn: true,
-          userEmail: userStorageEmail
-        })
-
-      })
-
+this.activateUser(userStorageEmail)
     }
 
  
