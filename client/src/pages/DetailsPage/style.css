@@ -19,4 +19,13 @@
 .split-right {
     width:50%;
     float:right;
+    text-align: left;
+    padding: 50px;
+}
+
+.loading-block{
+    height:75vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }

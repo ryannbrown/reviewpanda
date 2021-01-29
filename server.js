@@ -21,6 +21,7 @@
     const profile = require('./controllers/profile');
     const review = require('./controllers/review');
     const reviewList = require('./controllers/getReviews');
+    const myReview = require('./controllers/getMyReview');
     // aws bucket
     // const AWS = require('aws-sdk');
     require('dotenv').config();
@@ -49,6 +50,7 @@
     app.post('/api/postreview', (req, res) => { review.handleReviewPost(req, res, db)})
     app.get('/api/profile/:email', (req, res) => { profile.handleProfileGet(req, res, db)})
     app.get('/api/review/:id', (req, res) => { reviewList.handleReviewGet(req, res, db)})
+    app.get('/api/review/:id/user/:email', (req, res) => { myReview.handleMyReview(req, res, db)})
     
     
     

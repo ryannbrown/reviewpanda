@@ -278,7 +278,7 @@ export default class Nav extends Component {
                         toggleregister={this.toggleRegister}
                         className="login-btn btn"
                       >
-                        Login
+                        Login | Register
                       </button>
                     </div>
                   )}
@@ -313,7 +313,7 @@ export default class Nav extends Component {
                         toggleRegister={this.toggleRegister}
                         className="login-btn btn"
                       >
-                        Login
+                        Login | Register
                       </button>
                     </div>
                   )}
