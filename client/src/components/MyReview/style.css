@@ -1,0 +1,10 @@
+img.review-delete-btn {
+    cursor:pointer;
+    width: 25px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+/* .reviews-comp{
+    position:relative;
+} */

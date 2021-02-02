@@ -9,9 +9,10 @@
   overflow-x: hidden !important;
 }
 
-h1, h2 {
+h1, h2, h3 {
 /* font-family: 'adelle'; */
   /* font-family: serif; */
+color:#123047;
 }
 
 h1 {

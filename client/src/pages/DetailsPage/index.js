@@ -30,6 +30,12 @@ class DetailsPage extends Component {
           isLoading:false
           // userHasReviewed: false,
         });
+      } else {
+        this.setState({
+          reviews: [],
+          truthyReviews: false,
+          isLoading:false
+        })
       }
       });
   };
@@ -77,28 +83,39 @@ class DetailsPage extends Component {
               className="details-page"
               style={{ display: "flex", height: "100%", width: "100%" }}
             >
+              <div className="details-hero">
               <h1>{thisPost.title}</h1>
+              <div className="hero-sub-info">
+              <p>Rating: ⭐⭐⭐⭐⭐ |</p>
+              <p>Author: {thisPost.author} |</p>
+              <p>Age Range: {thisPost["age range"]}</p>
+              </div>
+              </div>
               <div className="details-content">
                 <div className="split-left">
-                  <div
+                <h3>Test Description</h3>
+                <p>{thisPost.description}</p>
+                  {/* <div
                     className="pop-item"
                     style={{
                       backgroundColor: "#123047",
                       opacity: ".1",
                       margin: "5px",
                     }}
-                  />
+                  /> */}
+                    <p>Qualification Level: {thisPost["qual-level"]}</p>
+                  <p>Completion Time: {thisPost["completion time"]}</p>
                 </div>
                 <div className="split-right">
-                  <p>Title: {thisPost.title}</p>
-                  <p>Author: {thisPost.author}</p>
-                  <p>Description: {thisPost.description}</p>
-                  <p>Forms: {thisPost.forms}</p>
-                  <p>Scores/Intepretation: {thisPost.scores_interpretation}</p>
-                  <p>Age Range: {thisPost["age range"]}</p>
+                  {/* <p>Title: {thisPost.title}</p> */}
+               
+               
+                  <h3>Scores Intepretation</h3>
+                  <p> {thisPost.scores_interpretation}</p>
+                  <h3>Forms</h3>
+                  <p>{thisPost.forms}</p>
                   <p>Publication Date: {thisPost["pub-date"]}</p>
-                  <p>Qualification Level: {thisPost["qual-level"]}</p>
-                  <p>Completion Time: {thisPost["completion time"]}</p>
+                
                 </div>
               </div>
               {/* <div className="pop-wrapper">{items}</div> */}

@@ -23,9 +23,42 @@ class ReviewControls extends Component {
     this.description = React.createRef();
   }
 
- 
+ enableButton = () => {
+   this.setState({buttonDisabled:false})
+ }
+
+ fetchFromDelete = () => {
+  // this.fetchMyReview();
+  // this.fetchReviews();
+  // this.enableButton();
+  fetch(`/api/review/${this.props.id}/user/${this.props.currentUser}`)
+  .then((res) => res.json())
+  .then((json) => {
+    if (json.length > 0) {
+      this.props.fetchReviews();
+      this.setState({
+        myReview: json[0],
+        userHasReviewed: true,
+        isLoading:false
+        // truthyReviews: true
+      });
+    } else {
+      console.log("now fetching reviews")
+      this.setState({
+        userHasReviewed: false
+      })
+      this.props.fetchReviews();
+      this.enableButton();
+    }
+  });
+ }
 
   fetchMyReview = () => {
+    this.setState(
+      {myReview: [],
+       userHasReviewed:false,
+      //  reviews: []
+      })
     this.setState({isLoading:true})
     const ourContext = this.context;
     console.log(ourContext.userData.email);
@@ -48,11 +81,11 @@ class ReviewControls extends Component {
   };
   submitReview = (e) => {
 // prevent multiple clicks
-    if (this.state.disabled) {
+    if (this.state.buttonDisabled) {
       return;
     }
     this.setState({
-      disabled:true
+      buttonDisabled:true
     })
   // end prevent multiple clicks
 
@@ -98,6 +131,10 @@ class ReviewControls extends Component {
     this.fetchMyReview();
   }
 
+  componentDidUpdate() {
+    console.log('controls updated', this.state)
+  }
+
   render() {
     // console.log(this.state.reviews)
     const {
@@ -140,11 +177,11 @@ class ReviewControls extends Component {
                 ref={this.description}
                 placeholder="write description for package"
               ></textarea>
-              <button disabled={this.state.disabled}className="btn login-btn" type="submit">Submit Review</button>
+              <button disabled={this.state.buttonDisabled}className="btn login-btn" type="submit">Submit Review</button>
             </form>
           </div>
         ) : (
-          <MyReview myReview={myReview} id={this.props.id}></MyReview>
+          <MyReview fetchFromDelete={this.fetchFromDelete} enableButton={this.enableButton} fetchMyReview={this.fetchMyReview} fetchReviews={this.props.fetchReviews} myReview={myReview} id={this.props.id}></MyReview>
         )}
 
       </div>
