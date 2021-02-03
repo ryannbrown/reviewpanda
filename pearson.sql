@@ -1,0 +1,1 @@
+Create table pearson_tests (id SERIAL, title varchar(250), description varchar(10000), ageRange varchar(250), qualLevel varchar(100), compTime varchar(150), admin varchar(250), forms varchar(10000), scores_intepretation varchar(10000))

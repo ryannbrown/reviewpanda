@@ -37,6 +37,10 @@
     align-items:flex-start;
 }
 
+.details-content p {
+    color:#939393;
+}
+
 .split-left {
     display:flex;
     flex-direction:column;
@@ -60,4 +64,8 @@
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+.details-content h2 {
+    font-weight:300;
 }

@@ -93,7 +93,7 @@ class DetailsPage extends Component {
               </div>
               <div className="details-content">
                 <div className="split-left">
-                <h3>Test Description</h3>
+                <h2>Test Description</h2>
                 <p>{thisPost.description}</p>
                   {/* <div
                     className="pop-item"
@@ -110,9 +110,9 @@ class DetailsPage extends Component {
                   {/* <p>Title: {thisPost.title}</p> */}
                
                
-                  <h3>Scores Intepretation</h3>
+                  <h2>Scores Intepretation</h2>
                   <p> {thisPost.scores_interpretation}</p>
-                  <h3>Forms</h3>
+                  <h2>Forms</h2>
                   <p>{thisPost.forms}</p>
                   <p>Publication Date: {thisPost["pub-date"]}</p>
                 
