@@ -14,7 +14,7 @@ class DetailsPage extends Component {
       reviews: [],
       thisPost:[],
       truthyReviews: false,
-      isLoading:false
+      isLoading:true
     };
   }
 
@@ -42,12 +42,13 @@ class DetailsPage extends Component {
 
   fetchPosts() {
     let id = this.props.match.params.id;
-    fetch(`http://localhost:3004/posts/${id}`)
+    fetch(`/api/tests/${id}`)
       .then((res) => res.json())
       .then((json) => {
         console.log("json", json);
         this.setState({
           thisPost: json,
+          isLoading:false
         });
       });
   }
@@ -75,7 +76,22 @@ class DetailsPage extends Component {
 
     // console.log(this.state.posts)
 
-    if (thisPost) {
+
+  if (isLoading) {
+      return (
+        <div className="loading-block">
+          <ClipLoader
+            // css={override}
+            className="clippy"
+            size={35}
+            color={"#196196"}
+            // loading={this.state.loading}
+          />
+        </div>
+      );
+    }
+
+   else {
       return (
         <ThemeContextConsumer>
           {(context) => (
@@ -103,8 +119,8 @@ class DetailsPage extends Component {
                       margin: "5px",
                     }}
                   /> */}
-                    <p>Qualification Level: {thisPost["qual-level"]}</p>
-                  <p>Completion Time: {thisPost["completion time"]}</p>
+                    <p>Qualification Level: {thisPost.qual_level}</p>
+                  <p>Completion Time: {thisPost.comp_time}</p>
                 </div>
                 <div className="split-right">
                   {/* <p>Title: {thisPost.title}</p> */}
@@ -114,7 +130,7 @@ class DetailsPage extends Component {
                   <p> {thisPost.scores_interpretation}</p>
                   <h2>Forms</h2>
                   <p>{thisPost.forms}</p>
-                  <p>Publication Date: {thisPost["pub-date"]}</p>
+                  <p>Publication Date: {thisPost.pub_date}</p>
                 
                 </div>
               </div>
@@ -137,18 +153,6 @@ class DetailsPage extends Component {
             </div>
           )}
         </ThemeContextConsumer>
-      );
-    } else {
-      return (
-        <div className="loading-block">
-          <ClipLoader
-            // css={override}
-            className="clippy"
-            size={35}
-            color={"#196196"}
-            // loading={this.state.loading}
-          />
-        </div>
       );
     }
   }

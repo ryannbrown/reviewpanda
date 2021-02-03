@@ -16,7 +16,7 @@ class MostPopular extends Component {
   }
 
   fetchPosts() {
-    fetch(`http://localhost:3004/posts?&_limit=4`)
+    fetch(`/api/tests`)
       .then((res) => res.json())
       .then((json) => {
         console.log("json", json);
@@ -35,7 +35,7 @@ class MostPopular extends Component {
     const { isLoading } = this.state;
 
     if (this.state.posts.length > 0) {
-      var items = this.state.posts.map((item, i) => (
+      var items = this.state.posts.slice(0, 4).map((item, i) => (
         <div>
            <Link to={`/tests/${item.id}`}>
           <div

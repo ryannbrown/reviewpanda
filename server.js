@@ -21,6 +21,8 @@ const review = require("./controllers/review");
 const reviewList = require("./controllers/getReviews");
 const myReview = require("./controllers/getMyReview");
 const removeReview = require("./controllers/removeReview.js");
+const getTests = require("./controllers/getTests.js");
+const getTest = require("./controllers/getTest.js");
 var axios = require("axios");
 var cheerio = require("cheerio");
 // aws bucket
@@ -39,23 +41,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 var pg = require("pg");
 
-// const db = knex({
-//   client: "pg",
-//   connection: process.env.CONNSTRING,
-//   searchPath: ["knex", "public"],
-// });
-
-
 const db = knex({
   client: "pg",
-  connection: {
-    host: '127.0.0.1',
-    user: 'postgres',
-    password: 'Pass1234',
-    database: 'postgres'
-  },
+  connection: process.env.CONNSTRING,
   searchPath: ["knex", "public"],
 });
+
+
+// const db = knex({
+//   client: "pg",
+//   connection: {
+//     host: '127.0.0.1',
+//     user: 'postgres',
+//     password: 'Pass1234',
+//     database: 'postgres'
+//   },
+//   searchPath: ["knex", "public"],
+// });
 
 app.post("/api/register", (req, res) => {
   register.handleRegister(req, res, db, bcrypt);
@@ -75,6 +77,12 @@ app.get("/api/review/:id", (req, res) => {
 });
 app.get("/api/review/:id/user/:email", (req, res) => {
   myReview.handleMyReview(req, res, db);
+});
+app.get("/api/tests", (req, res) => {
+  getTests.handleTestsFetch(req, res, db);
+});
+app.get("/api/tests/:id", (req, res) => {
+  getTest.handleTestFetch(req, res, db);
 });
 
 
