@@ -78,11 +78,11 @@ app.get("/api/review/:id", (req, res) => {
 app.get("/api/review/:id/user/:email", (req, res) => {
   myReview.handleMyReview(req, res, db);
 });
-app.get("/api/tests", (req, res) => {
-  getTests.handleTestsFetch(req, res, db);
-});
 app.get("/api/tests/:id", (req, res) => {
   getTest.handleTestFetch(req, res, db);
+});
+app.get("/api/tests", (req, res) => {
+  getTests.handleTestsFetch(req, res, db);
 });
 
 
