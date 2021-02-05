@@ -7,12 +7,14 @@ class Scraper extends Component {
 
     };
     this.url = React.createRef();
+    this.cat = React.createRef();
   }
 
 
 handleSubmit = (event) => {
     event.preventDefault();
     let url = this.url.current.value
+    let cat = this.cat.current.value
     fetch('/api/scrape', {
         method: 'POST',
          headers: {
@@ -23,6 +25,7 @@ handleSubmit = (event) => {
             // first_name: first_name,
             // last_name: last_name,
             url: url,
+            cat: cat
        
           }),
       });
@@ -43,6 +46,7 @@ handleSubmit = (event) => {
               <h1>Pearson Scraper</h1>
               <form onSubmit={this.handleSubmit}>
 <input ref={this.url} placeholder="url goes here" id="url" name="url"></input>
+<input ref={this.cat} placeholder="cat" id="url" name="url"></input>
 <button type="submit">scrape</button>
               </form>
               

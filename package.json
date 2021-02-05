@@ -33,6 +33,7 @@
     "morgan": "^1.10.0",
     "pg": "^8.3.0",
     "pg-copy-streams": "^5.1.1",
+    "puppeteer": "^7.0.1",
     "query-string": "^6.12.1",
     "react-ga": "^2.7.0",
     "react-https-redirect": "^1.1.0",
