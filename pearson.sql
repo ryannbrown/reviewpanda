@@ -43,6 +43,7 @@ ORDER BY id;
 
 drop table par_tests
 
+\COPY par_tests(id, title, category, author, description,age_range,qual_level, comp_time, admin, forms, scores_interpretation, link) FROM 'C:/Users/Kathryn/Downloads/par_tests.csv' DELIMITER ',' CSV HEADER;
 
 
 ------------
@@ -65,3 +66,19 @@ drop table mhs_tests
 --------------------------
 
 
+---- WPS TESTS
+
+
+
+
+Create table wps_tests(id SERIAL, title varchar(250) UNIQUE, category varchar(250), author varchar(500), description varchar(8000), benefits varchar(5000), age_range varchar(250), qual_level varchar(100), comp_time varchar(500), admin varchar(250), forms varchar(10000), scores varchar(10000), link varchar(200), norms varchar(500), format varchar(500), publish_date varchar(100))
+
+
+select * from wps_tests
+
+drop table wps_tests
+
+update wps_tests set description = 'The TGMD-2, a major revision of the Test of Gross Motor Development, is a norm-referenced measure of common gross motor skills that can be used by kinesiologists, general and special educators, psychologists, and physical therapists.' where id = 120;
+
+
+---------------------------------------------
