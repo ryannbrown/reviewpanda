@@ -97,153 +97,104 @@ app.get("/api/cats", (req, res) => {
   getCats.handleCatsFetch(req, res, db);
 });
 
+
 app.post("/api/scrape", function (req, res) {
-    // console.log("scraping", req.body.url);
-    console.log("scraping");
-    // let url = "https://www.parinc.com/Products/ACHIEVEMENT-DEVELOPMENT";
-    let url = req.body.url
-    // let url = 'https://www.proedinc.com/'
-    let cat = req.body.cat
-    async function scrapePage(url) {
-      process.setMaxListeners(Infinity);
-      console.log("here at", url);
-      const browser = await puppeteer.launch();
-      let page = await browser.newPage();
-      await page.goto(url);
-      await page.screenshot({ path: "1.png" });
-    //   await page.waitForSelector("div.treenav-menu", {
-    //     visible: true,
-    //   });
-    //   await page.select('#telCountryInput', 'my-value')
-var lastPageNumber = 3
-// const results = []
-await page.waitForSelector("select#ctl00_MPContentAll_MPContent_vProductList_ddlPageSize", {
-  visible: true,
-});
-await page.select('select#ctl00_MPContentAll_MPContent_vProductList_ddlPageSize', '50')
-await page.waitForSelector(".list-item-title a", {
-  visible: true,
-});
+  // console.log("scraping", req.body.url);
+  // let url = req.body.url;
+  // let index = 6;
+  for (var i = 1; i < 6; i++) {
+      let url = `https://www.wpspublish.com/profession-speech-language-pathology-slp?pagenumber=${i}`
+      // let url = `https://www.wpspublish.com/profession-school-child-clinical-psychology?pagenumber=${i}`
+      // let url = `https://www.wpspublish.com/profession-occupational-therapy-ot?pagenumber=${i}`
+      // let url = `https://www.wpspublish.com/profession-neuropsychology?pagenumber=${i}`
+      // let url = `https://www.wpspublish.com/profession-adult-clinical-psychology?pagenumber=${i}`
+      // let category = 'Adult Clinical Psychology'
+      let category = 'Speech-Language Pathology (SLP)'
+      // let category = 'Occupational Therapy'
+      // let category = 'Adult Clinical Psychology'
+      // let category = 'Adult Clinical Psychology'
+  axios.get(url).then(function (response) {
+//         console.log("RUN ---------------------", i)
+// console.log("search url", url)
 
-    for (let index = 0; index < lastPageNumber; index++) {
-      console.log("lets go")
-      await page.screenshot({ path: `${index}.png` });
-      // await page.waitForSelector("input#ctl00_MPContentAll_MPContent_vProductList_ctrPaging1_imgNext", {
-      //   visible: true,
-      // });
-      await page.waitForSelector(".list-item-title a", {
-        visible: true,
-      });
-    
-      let data = await page.evaluate(() => {
-        const elements = document.querySelectorAll(".list-item-title a");
-        const urls = Array.from(elements).map((v) => v.href);
-        return urls;
-      });
-      // console.log(results, "data", index)
-      console.log("time to click")
-      scrapeSinglePage(data, cat);
-      // if ($('#ctl00_MPContentAll_MPContent_vProductList_ctrPaging1_imgNext').length) {
-        await page.click('#ctl00_MPContentAll_MPContent_vProductList_ctrPaging1_imgNext');
-      // }
-    }      
+    var $ = cheerio.load(response.data);
   
-      // const data = await page.evaluate(() => {
-      //   const elements = document.querySelectorAll(".list-item-title a");
-      //   const urls = Array.from(elements).map((v) => v.href);
-      //   return urls;
-      // });
-   
-      // console.log(data, "data")
-    }
-    scrapePage(url);
-    // scrapeSinglePage()
-  
-    async function scrapeSinglePage(data, cat) {
-        console.log('single page')
-      // let link = 'https://www.parinc.com/Products/Pkey/516';
-      // const selector = "#dnn_ctr1373_ProductDisplay_lblPurpose";
-      data.forEach( (link) => {
-        axios.get(link).then(function (response) {
+// let types = []
+      // console.log(category)
+      $(".product-item__link").each(function(i, value) {
+      // let category = $(this).parents('.collection-details').siblings().text().trim();
+      let link = $(value).attr('href')
+      let searchUrl = `https://www.wpspublish.com${link}`
+  //    console.log(searchUrl, i)
+
+      getDetails = (searchUrl) => {
+        axios.get(searchUrl).then(function (response) {
+          // console.log(searchUrl)
           var $ = cheerio.load(response.data);
-            let title = $('#product-title').text()
-            let author =$('#product-byline').text()
-            let category = cat;
-            // let comp_time = ''
-            // let admin = ''
-            // ------------- just adding everything in these 3 columns -------
-            var age_range = $(`#product-content-description strong:contains("Ages") + em`).text()
-            if (!age_range.length > 0) {
-              var age_range = $(`#product-content-description p:contains("Ages")`).text()
-              // var description = $('#product-content-description p:nth-of-type(2)').text()
-              // age_range = age_range.split(':')
-            }
-            var comp_time = $(`#product-content-description strong:contains("Testing Time") + em`).text()
-            if (!comp_time.length > 0) {
-              var comp_time = $(`#product-content-description p:contains("Testing Time")`).text()
-              // var description = $('#product-content-description p:nth-of-type(2)').text()
-              // age_range = age_range.split(':')
-            }
-            var admin = $(`#product-content-description strong:contains("Administration") + em`).text()
-            if (!admin.length > 0) {
-              var admin = $(`#product-content-description p:contains("Administration")`).text()
-              // var description = $('#product-content-description p:nth-of-type(2)').text()
-              // age_range = age_range.split(':')
-            }
+      // let titleCode = $('.header-info > h1').text()
+    //  console.log(category)
 
-               // ------------- end of section -------
+      let title = $('.product-card__info h1').text().trim();
+      let abbrev =title.match(/\(([^)]+)\)/)[1];
+      let author = $('.product-card__author span').text().trim();
+      var description = $('.about__content .cbody').first().text().trim();
+      if (!description.length) {
+          var description = $('.about__content .body').first().text().trim();
+          if (!description.length) {
+              var description = $('.about__content h2 + p').first().text().trim(); 
+          }
+      }
+      let benefits = $(`td.product-card__table-item-title:contains("Benefits") + td`).text().trim()
+      let age_range = $(`td.product-card__table-item-title:contains("Ages") + td`).text().trim()
+      let comp_time = $(`td.product-card__table-item-title:contains("Admin time") + td`).text().trim()
+      let format = $(`td.product-card__table-item-title:contains("Format") + td`).text().trim()
+      let scores = $(`td.product-card__table-item-title:contains("Scores") + td`).text().trim()
+      let norms = $(`td.product-card__table-item-title:contains("Norms") + td`).text().trim()
+      let publish_date = $(`td.product-card__table-item-title:contains("Publish Date") + td`).text().trim()
+      let qual_level = $(`td.product-card__table-item-title:contains("Qualifications") + td`).contents().filter( function() {
+          return this.nodeType==3;
+      }).text().trim();
+      let link = searchUrl;
+console.log(category, abbrev)
+
+     db('wps_tests')
+          .insert([
+            {
+            title,
+            category,
+            abbrev,
+            benefits,
+            author,
+            format,
+            scores,
+            norms,
+            publish_date,
+         description,
+            age_range,
+            qual_level,
+            comp_time,
+          //   admin,
+            // forms,
+            // scores_interpretation,
+            link
+          }
+             ])
+          // .then(res.send("POST request to the homepage"))
+          .catch(err => console.log("err: ", err))
 
 
-            var description = $('#product-content-description p:nth-of-type(3)').text()
-            if (description.length < 100) {
-              var description = $('#product-content-description p:nth-of-type(2)').text()
+     
+      // console.log(qual_level)
 
-              if (description.length < 100) {
-                var description = ''
-              }
-            }
-            let qual_level = $(`#product-fields label:contains("Test Level") + span`).text()
-            // console.log(description.length)
-            //   var age_range = $(`#product-content-description strong:contains("Ages") + em`).contents().filter( function() {
-            //     return this.nodeType==3;
-            //   }).text().trim();
-            // }
-           
-            console.log(title)
-            //   let description = $('#details > p').text()
-            //   let category = cat
-            //   let author = $('#dnn_ctr1373_ProductDisplay_lblProductAuthors').text()
-            //   let age_range = $('#dnn_ctr1373_ProductDisplay_lblAgeRange').text()
-            //   let comp_time = $('#dnn_ctr1373_ProductDisplay_lblHAdminTime').text()
-            //  let qual_level =$('.qualLevel').text() 
-            //  let admin = $('#dnn_ctr1373_ProductDisplay_lblFormat').text()  
-  
-          //         var $ = cheerio.load(response.data);
-          
-          //     let title = $('.program-details__name').text()
-  
-          db('pro_tests')
-                  .insert([
-                    {
-                    title,
-                    author,
-                    category,
-                    description,
-                    age_range,
-                    qual_level,
-                    comp_time,
-                    admin,
-                    // forms,
-                    // scores_interpretation,
-                    link
-                  }
-                     ])
-                  // .then(res.send("POST request to the homepage"))
-                  .catch(err => console.log("err: ", err))
-                    })
-                    })
-                  }
-                })
+ 
+            })
+
+          }
+          getDetails(searchUrl, category)
+          })
+  })
+}
+    })
 
 
 

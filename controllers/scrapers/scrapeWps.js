@@ -6,8 +6,9 @@ app.post("/api/scrape", function (req, res) {
         // let url = `https://www.wpspublish.com/profession-speech-language-pathology-slp?pagenumber=${i}`
         // let url = `https://www.wpspublish.com/profession-school-child-clinical-psychology?pagenumber=${i}`
         // let url = `https://www.wpspublish.com/profession-occupational-therapy-ot?pagenumber=${i}`
-        let url = `https://www.wpspublish.com/profession-neuropsychology?pagenumber=${i}`
-        // let url = `https://www.wpspublish.com/profession-adult-clinical-psychology?pagenumber=${i}`
+        // let url = `https://www.wpspublish.com/profession-neuropsychology?pagenumber=${i}`
+        let url = `https://www.wpspublish.com/profession-adult-clinical-psychology?pagenumber=${i}`
+        let category = 'Adult Clinical Psychology'
     axios.get(url).then(function (response) {
 //         console.log("RUN ---------------------", i)
 // console.log("search url", url)
@@ -30,6 +31,7 @@ app.post("/api/scrape", function (req, res) {
       //  console.log(category)
 
         let title = $('.product-card__info h1').text().trim();
+        let abbrev =title.match(/\(([^)]+)\)/)[1]
         let author = $('.product-card__author span').text().trim();
         var description = $('.about__content .cbody').first().text().trim();
         if (!description.length) {
@@ -49,30 +51,31 @@ app.post("/api/scrape", function (req, res) {
             return this.nodeType==3;
         }).text().trim();
         let link = searchUrl;
-console.log(title)
+console.log(abbrev)
 
-       db('wps_tests')
-            .insert([
-              {
-              title,
-              benefits,
-              author,
-              format,
-              scores,
-              norms,
-              publish_date,
-           description,
-              age_range,
-              qual_level,
-              comp_time,
-            //   admin,
-              // forms,
-              // scores_interpretation,
-              link
-            }
-               ])
+      //  db('wps_tests')
+      //       .insert([
+      //         {
+      //         title,
+      //         category,
+      //         benefits,
+      //         author,
+      //         format,
+      //         scores,
+      //         norms,
+      //         publish_date,
+      //      description,
+      //         age_range,
+      //         qual_level,
+      //         comp_time,
+      //       //   admin,
+      //         // forms,
+      //         // scores_interpretation,
+      //         link
+      //       }
+      //          ])
             // .then(res.send("POST request to the homepage"))
-            .catch(err => console.log("err: ", err))
+            // .catch(err => console.log("err: ", err))
 
 
        
@@ -82,7 +85,7 @@ console.log(title)
               })
   
             }
-            getDetails(searchUrl)
+            getDetails(searchUrl, category)
             })
     })
 }

@@ -6,14 +6,16 @@ app.post("/api/scrape", function (req, res) {
     var $ = cheerio.load(response.data);
 
     $(".content-tile-text a").each(function(i, value) {
-      let link = $(value).attr('href')
-      let searchUrl = 'https://www.pearsonassessments.com' + link
-      console.log(searchUrl)
-      axios.get(searchUrl).then(function (response) {
+      let l = $(value).attr('href')
+      let link = 'https://www.pearsonassessments.com' + l
+      // console.log(searchUrl)
+      axios.get(link).then(function (response) {
 
         var $ = cheerio.load(response.data);
 
     let title = $('.program-details__name').text()
+    let category = $('.c-breadcrumb__container li:last-of-type').prev().text().trim()
+    let abbrev = $('.program-details__acronym').text()
     let description = $('.program-details__def').first().text()
     let age_range = $(`dt.program-details__term.term\\=AGE_RANGE`).next('dd').text().trim()
     let qual_level = $(`.quals-badge`).text().trim()
@@ -23,10 +25,14 @@ app.post("/api/scrape", function (req, res) {
     let forms = $(`dt.program-details__term.term\\=FORMS`).next('dd').text().trim()
     let scores_interpretation = $(`dt.program-details__term.term\\=SCORES_INTERPRETATION`).next('dd').children().text().trim()
 
+console.log(title)
+
       db('pearson_tests')
         .insert([
           {
           title,
+          category,
+          abbrev,
           description,
           age_range,
           qual_level,
