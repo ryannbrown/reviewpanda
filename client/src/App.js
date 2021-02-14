@@ -45,7 +45,7 @@ class App extends Component {
              <Route exact path="/categories/:cat" render={(props) => <CategorySrp {...props}  />} />
              <Route path="/categories" component={ListingPage}/>
              <Route path="/scrape" component={Scraper}/>
-             <Route exact path="/tests/:id" render={(props) => <DetailsPage {...props}  />} />
+             <Route exact path="/tests/:uuid" render={(props) => <DetailsPage {...props}  />} />
              <Route path="/" component={Homepage}/>
            </Switch>
          </Router>

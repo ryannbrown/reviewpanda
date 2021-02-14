@@ -1,8 +1,8 @@
 const handleReviewRemove = (req, res, db) => {
-    const { review_id } = req.body
+    const { review_uuid } = req.body
     console.log(req.body)
-    console.log(review_id)
-    db('reviews').where({review_id}).del()
+    console.log(review_uuid)
+    db('reviews').where({review_uuid}).del()
     .then(user => {
         res.json('deleted');
       })

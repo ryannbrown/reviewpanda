@@ -106,7 +106,7 @@ export default class Nav extends Component {
 
   componentDidMount() {
     var ourContext = this.context;
-    console.log(ourContext);
+    // console.log(ourContext);
     // console.log("HEY!")
     this.prev = window.scrollY;
     window.addEventListener("scroll", (e) => this.handleNavigation(e));
@@ -123,7 +123,7 @@ export default class Nav extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.state.modalOpened);
+    // console.log(this.state.modalOpened);
     // if (this.state.lastPosition > 0) {
     //   console.log("here boy")
     //       if (position < this.state.lastPosition) {

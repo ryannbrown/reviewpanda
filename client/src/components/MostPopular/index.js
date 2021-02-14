@@ -37,7 +37,7 @@ class MostPopular extends Component {
     if (this.state.posts.length > 0) {
       var items = this.state.posts.slice(0, 4).map((item, i) => (
         <div>
-           <Link to={`/tests/${item.id}`}>
+           <Link to={`/tests/${item.title}`}>
           <div
             className="pop-item"
             style={{ backgroundColor: "#123047", opacity: ".1", margin: "5px" }}

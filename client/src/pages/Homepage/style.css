@@ -18,15 +18,15 @@
 .cat-wrapper {
     display: flex;
     width: 100%;
-    flex-direction: column;
+    /* flex-direction: column; might need changed back */
     flex-wrap: wrap;
     max-height: 200px;
-    max-width: 980px;
+    max-width: 1200px;
     margin: 50px auto;
 }
 
-.cat-wrapper div {
-    flex: 0 0 23%;
+.cat-wrapper a {
+    flex: 0 0 28%;
     padding: 25px;
 }
 

@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './style.css';
 import Navbar from "../../components/Nav"
 import MostPopular from "../../components/MostPopular/index"
+import {Link} from "react-router-dom"
 
 export default class Homepage extends Component {
 
@@ -12,15 +13,55 @@ export default class Homepage extends Component {
 
         this.listener = null;
         this.state = {
+            cats: []
         };
     }
 
+    getCats = () => {
+            fetch(`/api/cats`)
+              .then((res) => res.json())
+              .then((json) => {
+                console.log(json);
+                if (json.length > 0) {
+                  // console.log("we have length")
+                  this.setState({
+                    cats: json,
+                    isLoading: false,
+                    truthyCats: true,
+                    // userHasReviewed: false,
+                  });
+                } else {
+                  // console.log("we have else")
+                  this.setState({
+                    cats: [],
+                    truthyReviews: false,
+                    isLoading: false,
+                    truthyCats: false,
+                  });
+                }
+              });
+    }
+
     componentDidMount() {
+        this.getCats()
     }
 
 
 
     render() {
+
+        const {truthyCats, cats} = this.state;
+
+        if (truthyCats) {
+            // console.log(truthyReviews, reviews)
+            var items = cats.slice(0,8).map((item, i) => (
+                <Link to={`/categories/${item.category}`}>
+                {item.category}
+                  </Link>
+          
+            ));
+          }
+
         return (
             <div className="homepage-content" style={{
             }}>
@@ -30,14 +71,7 @@ export default class Homepage extends Component {
                    <div className="category-block">
                        <h1>Browse By Category</h1>
                        <div className="cat-wrapper">
-                           <div>All Tests</div>
-                           <div>Academic</div>
-                           <div>Development</div>
-                           <div>Cognitive</div>
-                           <div>Social | Emotional</div>
-                           <div>Interventions</div>
-                           <div>Occupational | Physical</div>
-                           <div>Speech | Language</div>
+                        {items}
                        </div>
                    </div>
                </div>

@@ -30,25 +30,17 @@ class MyReview extends Component {
               'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-              review_id: this.props.myReview.review_id,
+              review_uuid: this.props.myReview.review_uuid,
           })
       })
       .then((res) => {
         console.log(res)
       if (res.status == '200') {
-        console.log("WE GOT HERE")
+   
         this.props.fetchFromDelete();
+      } else {
       }
     })
-      // console.log("json for delte", json)
-      // this.setState({
-      //     itemDeleted: true,
-      // })
-      // })
-  }
-
-  componentDidUpdate() {
-    //   console.log(this.state)
   }
 
   componentDidMount() {

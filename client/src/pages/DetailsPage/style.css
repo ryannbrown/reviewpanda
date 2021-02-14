@@ -15,9 +15,14 @@
     justify-content: center;
 }
 
-.details-hero h1 {
+.details-hero h1, .details-hero h2 {
     /* overrrides h1 colors in app.css file */
     color:white !important;
+}
+
+
+.details-hero button {
+    margin:25px 0px;
 }
 
 .hero-sub-info {
@@ -68,4 +73,13 @@
 
 .details-content h2 {
     font-weight:300;
+}
+
+.back-link {
+    text-align: left;
+    max-width: 980px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 25px 0px 0px 50px;
 }

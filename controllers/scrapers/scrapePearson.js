@@ -14,6 +14,11 @@ app.post("/api/scrape", function (req, res) {
         var $ = cheerio.load(response.data);
 
     let title = $('.program-details__name').text()
+    var author = $('.author-data__name').map(function(){ 
+      return $(this).text(); 
+  }).get().join(', ');
+  
+console.log(author)
     let category = $('.c-breadcrumb__container li:last-of-type').prev().text().trim()
     let abbrev = $('.program-details__acronym').text()
     let description = $('.program-details__def').first().text()
@@ -25,26 +30,37 @@ app.post("/api/scrape", function (req, res) {
     let forms = $(`dt.program-details__term.term\\=FORMS`).next('dd').text().trim()
     let scores_interpretation = $(`dt.program-details__term.term\\=SCORES_INTERPRETATION`).next('dd').children().text().trim()
 
-console.log(title)
+// console.log(author)
 
-      db('pearson_tests')
-        .insert([
-          {
-          title,
-          category,
-          abbrev,
-          description,
-          age_range,
-          qual_level,
-          comp_time,
-          admin,
-          forms,
-          scores_interpretation,
-          link
-        }
-           ])
+
+
+// UPDATE TABLE
+      // db('pearson_tests')
+      // .where('title' , title)
+      //   .update('author', author)
+      //   // .then(res.send("POST request to the homepage"))
+      //   .catch(err => console.log("err: ", err))
+
+
+
+      // db('pearson_tests')
+      //   .insert([
+      //     {
+      //     title,
+      //     category,
+      //     abbrev,
+      //     description,
+      //     age_range,
+      //     qual_level,
+      //     comp_time,
+      //     admin,
+      //     forms,
+      //     scores_interpretation,
+      //     link
+      //   }
+      //      ])
         // .then(res.send("POST request to the homepage"))
-        .catch(err => console.log("err: ", err))
+        // .catch(err => console.log("err: ", err))
           })
           })
 

@@ -50,7 +50,7 @@ class ListingPage extends Component {
     this.fetchCats();
   }
   componentDidUpdate() {
-    console.log(this.state);
+    // console.log(this.state);
   }
 
   render() {

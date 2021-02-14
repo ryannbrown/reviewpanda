@@ -1,7 +1,9 @@
 const handleReviewGet = (req, res, db) => {
-    const {id } = req.params;
-    db('reviews').where({id: id})
+    const {test_uuid } = req.params;
+    console.log(test_uuid)
+    db('reviews').where({test_uuid})
       .then(review => {
+        // console.log(review, "review")
         if (review.length) {
           // console.log(review)
           res.json(review)

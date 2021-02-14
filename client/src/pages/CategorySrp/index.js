@@ -66,7 +66,7 @@ class CategorySrp extends Component {
       // console.log(truthyReviews, reviews)
       var items = reviews.map((item, i) => (
         <div key={i} className="single-cat">
-          <Link to={`/categories/${item.category}`}>
+          <Link to={`/tests/${item.uuid}`}>
             <div style={{display:'flex'}}>
           {/* <img className="category-icon" src={sunImg}></img> */}
             <p>{item.title}</p>
