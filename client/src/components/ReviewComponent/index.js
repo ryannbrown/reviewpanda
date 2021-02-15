@@ -9,7 +9,7 @@ import {
 } from "../../utils/themeContext";
 import "./style.css";
 
-class ReviewControls extends Component {
+class ReviewComponent extends Component {
   static contextType = ThemeContextConsumer;
   constructor(props) {
     super(props);
@@ -137,91 +137,103 @@ class ReviewControls extends Component {
   }
 
   render() {
-    // console.log(this.state.reviews)
-    const {
-      isLoading,
-      reviews,
-      truthyReviews,
-      userHasReviewed,
-      myReview,
-    } = this.state;
 
-    if (isLoading) {
-      return (
-        <div className="loading-block">
-          <ClipLoader
-            // css={override}
-            className="clippy"
-            size={35}
-            color={"#196196"}
-            // loading={this.state.loading}
-          />
-        </div>
-      );
-    } else
-      return (
-        <div className="reviews-comp">
-          {!userHasReviewed ? (
-            <div>
-              {" "}
-              <h2>Leave a review, get rewarded!</h2>
-              <p>Leave a review and you’ll get entered to win one of the prizes below.</p>
-              <h3>Rating</h3>
-                  <StarRatings
-              rating={this.state.rating}
+
+
+
+    const {
+        reviews,
+        isLoading
+      } =  
+      this.props;
+
+ if (reviews) {
+     let sum = []
+     reviews.forEach(function(review) {
+         sum.push(review.rating)
+       console.log(review.rating)
+     })
+     var total = 0
+     for(var i = 0; i < sum.length; i++) {
+        total += sum[i];
+        console.log(total)
+    }
+    console.log(total, sum.length)
+    var numReviews = sum.length;
+    var avg = total / sum.length;
+    //  console.log(avg)
+ }
+
+
+
+    if (reviews) {
+        // console.log(truthyReviews, reviews)
+        var items = reviews.map((item, i) => (
+          <div key={i} className="single-review">
+           <div className="review-avatar" style={{backgroundImage:`url(${item.avatar}`}}></div>
+           <div className="single-review-content">
+               <div className="single-review-heading">
+                   <a>{item.full_name}</a>
+                   <p>January 2021</p>
+                   <StarRatings
+              rating={item.rating}
               starRatedColor="#77E0D4"
-              changeRating={this.changeRating}
+            //   changeRating={this.changeRating}
               numberOfStars={5}
-              name='rating'
-              starDimension = '25px'
-              starEmptyColor='rgba(119,224,212, .25)'
-              starHoverColor='rgba(119,224,212)'
+              name='updated-rating'
+              starDimension = '11px'
+              starSpacing='1px'
+              starEmptyColor='rgba(142,142,142, .25)'
+              starHoverColor='rgba(142,142,142)'
+              starRatedColor='#8E8E8E'
             />
-              <form className="actual-form" onSubmit={this.submitReview}>
-                {/* <input
-                  ref={this.rating}
-                  placeholder="rating 1-5"
-                  type="number"
-                ></input> */}
-                <h3>Description</h3>
-                <textarea
-                  ref={this.description}
-                  placeholder="write description for this solution"
-                ></textarea>
-                <div>
-                <button
-                  disabled={this.state.buttonDisabled}
-                  className="btn login-btn"
-                  type="submit"
-                >
-                  Submit Review
-                </button>
-                <i class="lni lni-heart review-heart"></i>
+               </div>
+               <div className="single-review-description">
+                   {item.description}
+               </div>
+           </div>
+          </div>
+        ));
+      }
+
+
+
+    // if (isLoading) {
+    //   return (
+    //     <div className="loading-block">
+    //       <ClipLoader
+    //         // css={override}
+    //         className="clippy"
+    //         size={35}
+    //         color={"#196196"}
+    //         // loading={this.state.loading}
+    //       />
+    //     </div>
+    //   );
+    // } else
+      return (
+        <div className="reviews-wrapper">
+       {reviews.length > 0 ? (
+            <div>
+                <div className="reviews-header">
+                <h1>Reviews</h1>
+                <p>{avg} ({numReviews} Reviews)</p>
                 </div>
-                <p className="under-text"><i>Don’t have time to leave a review? Save to submit later!</i></p>
-              </form>
-                <h2>Our Prizes</h2>
-              <div className="prize-box">
-                <div className="prize-item"> <span>Apple</span> <span>EarBuds</span></div>
-                <div className="prize-item"><span>Airbnb</span>Gift Card</div>
-                <div className="prize-item"><span>Visa</span> Gift Card</div>
-              </div>
+                {items}
+            
+            
+            
             </div>
+
+
+
+
+
           ) : (
-            <MyReview
-            // myRating = {this.state.rating}
-            fetchMyReview= {this.fetchMyReview}
-            thisTest={this.props.thisTest}
-              fetchFromDelete={this.fetchFromDelete}
-              enableButton={this.enableButton}
-              fetchMyReview={this.fetchMyReview}
-              fetchReviews={this.props.fetchReviews}
-              myReview={myReview}
-              id={this.props.id}
-            ></MyReview>
+            <h1>There are no reviews yet. Be the first!</h1>
           )}
-        </div>
+          </div>
       );
   }
 }
-export default ReviewControls;
+export default ReviewComponent;

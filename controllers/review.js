@@ -1,7 +1,7 @@
 
 const uuid = require('uuid').v4
 const handleReviewPost = (req, res, db, uuidv4) => {
-    const { title, test_uuid, rating, email, description } = req.body;
+    const { avatar, title, test_uuid, rating, email, description, full_name } = req.body;
     let test_title = title;
     if (!test_uuid || !rating || !email || !description, !title) {
       console.log("we have a problem")
@@ -21,6 +21,8 @@ const handleReviewPost = (req, res, db, uuidv4) => {
       rating: rating,
       email: email,
       description: description,
+      full_name,
+      avatar,
       review_uuid:  uuid()
     }
        ])

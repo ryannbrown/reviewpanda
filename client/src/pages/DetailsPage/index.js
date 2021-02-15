@@ -3,6 +3,7 @@ import "./style.css";
 import ReviewControls from "../../components/ReviewControls";
 import ClipLoader from "react-spinners/ClipLoader";
 import {Link} from "react-router-dom"
+import ReviewComponent from "../../components/ReviewComponent"
 
 import {
   ThemeContextConsumer,
@@ -75,16 +76,7 @@ class DetailsPage extends Component {
     const {reviewIsLoading, testIsLoading, thisPost, reviews, truthyReviews, pageReady } = this.state;
 
 
-    if (truthyReviews) {
-      // console.log(truthyReviews, reviews)
-      var items = reviews.map((item, i) => (
-        <div key={i} className="single-review">
-          <p>
-            {item.email}: {item.rating}: {item.description}
-          </p>
-        </div>
-      ));
-    }
+ 
 
     // console.log(this.state.posts)
 
@@ -146,7 +138,7 @@ class DetailsPage extends Component {
                       {thisPost.age_range &&  <p><i class="lni lni-user"></i> {thisPost.age_range}</p> }
                         {thisPost.comp_time  && <p><i class="lni lni-alarm-clock"></i> {thisPost.comp_time}</p> }
                         {/* TODO: add conditional */}
-                      <p><i class="lni lni-bubble"></i> 28 Reviews</p>
+                      <p><i class="lni lni-bubble"></i> {reviews.length} Reviews</p>
                       {thisPost.comp_time  && <p><i class="lni lni-bar-chart"></i> {thisPost.qual_level}</p> }
                       </div>
                 
@@ -166,19 +158,12 @@ class DetailsPage extends Component {
                   // id={this.props.match.params.id}
                 ></ReviewControls>
               )}
-                
                 </div>
               </div>
-              {/* <div className="pop-wrapper">{items}</div> */}
-           
-              {/* REVIEWS COMPONENT */}
-              <div className="reviews-wrapper">
-          {reviews.length > 0 ? (
-            <div><h1>Reviews</h1>{items}</div>
-          ) : (
-            <h1>There are no reviews yet. Be the first!</h1>
-          )}
-        </div>
+                <ReviewComponent
+                //  isLoading={isLoading} 
+                 reviews={reviews}></ReviewComponent>
+  
             </div>
           )}
         </ThemeContextConsumer>

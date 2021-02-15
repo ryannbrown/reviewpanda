@@ -41,6 +41,7 @@
     max-width:980px;
     justify-content: center;
     align-items:flex-start;
+    border-bottom:2px solid #BEBCBC78;
 }
 
 .details-content p {
