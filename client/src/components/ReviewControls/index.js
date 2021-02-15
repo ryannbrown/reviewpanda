@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import MyReview from "../../components/MyReview/index";
+import StarRatings from 'react-star-ratings';
 import ClipLoader from "react-spinners/ClipLoader";
 import {
   ThemeContextConsumer,
@@ -18,9 +19,17 @@ class ReviewControls extends Component {
       truthyReviews: false,
       userHasReviewed: false,
       buttonDisabled: false,
+      rating: 0
     };
     this.rating = React.createRef();
     this.description = React.createRef();
+  }
+
+
+  changeRating = ( newRating, name ) => {
+    this.setState({
+      rating: newRating
+    });
   }
 
   enableButton = () => {
@@ -153,17 +162,31 @@ class ReviewControls extends Component {
           {!userHasReviewed ? (
             <div>
               {" "}
-              <h1>Leave a Review!</h1>
+              <h2>Leave a review, get rewarded!</h2>
+              <p>Leave a review and you’ll get entered to win one of the prizes below.</p>
+              <h3>Rating</h3>
+              <StarRatings
+          rating={this.state.rating}
+          starRatedColor="#77E0D4"
+          changeRating={this.changeRating}
+          numberOfStars={5}
+          name='rating'
+          starDimension = '25px'
+          starEmptyColor='rgba(119,224,212, .25)'
+          starHoverColor='rgba(119,224,212)'
+        />
               <form className="actual-form" onSubmit={this.submitReview}>
-                <input
+                {/* <input
                   ref={this.rating}
                   placeholder="rating 1-5"
                   type="number"
-                ></input>
+                ></input> */}
+                <h3>Description</h3>
                 <textarea
                   ref={this.description}
-                  placeholder="write description for package"
+                  placeholder="write description for this solution"
                 ></textarea>
+                <div>
                 <button
                   disabled={this.state.buttonDisabled}
                   className="btn login-btn"
@@ -171,7 +194,16 @@ class ReviewControls extends Component {
                 >
                   Submit Review
                 </button>
+                <i class="lni lni-heart review-heart"></i>
+                </div>
+                <p className="under-text"><i>Don’t have time to leave a review? Save to submit later!</i></p>
               </form>
+                <h2>Our Prizes</h2>
+              <div className="prize-box">
+                <div className="prize-item"> <span>Apple</span> <span>EarBuds</span></div>
+                <div className="prize-item"><span>Airbnb</span>Gift Card</div>
+                <div className="prize-item"><span>Visa</span> Gift Card</div>
+              </div>
             </div>
           ) : (
             <MyReview

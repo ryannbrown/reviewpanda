@@ -1,9 +1,9 @@
 .reviews-comp {
-    margin: 50px auto;
+    /* margin: 25px auto; */
     display: flex;
     flex-direction: column;
     position: relative;
-    width: 50%;
+    width: 100%;
 }
 
 .reviews-comp form {
@@ -11,7 +11,11 @@
     margin: 15px auto;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
+}
+
+ .reviews-comp h3 {
+    color:#8E8E8E;
 }
 
 .reviews-wrapper {
@@ -29,4 +33,40 @@
     width: 100%;
     color: black;
     border: 1px solid black;
+}
+
+.reviews-comp .actual-form textarea {
+    width:100%;
+}
+
+.reviews-comp .actual-form button {
+    width:60%;
+    font-size:.9rem;
+}
+
+.review-heart {
+    color:#77E0D4;
+    margin-left:50px;
+}
+
+.under-text{
+    margin:25px 0px;
+}
+
+.prize-box {
+    display:flex;
+    justify-content: space-between;
+}
+
+.prize-item {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:125px;
+    height:89px;
+    border: 2px solid #77E0D4;
+    border-radius:15px;
+    margin: 25px 0px;
+    
 }
