@@ -91,9 +91,9 @@ class CategorySrp extends Component {
               <div className="srp-page-content">
                 <h1>{this.state.currentCat || Error}</h1>
                 <div className="srp-action-btns">
-                  <button className="btn">All</button>
-                  <button className="btn">⭐</button>
-                  <button className="btn">Popular</button>
+                  <a href="/categories"><button className="btn">All</button></a>
+                  <a href="/"><button className="btn">⭐</button></a>
+                  <a href="/"><button className="btn">Popular</button></a>
                 </div>
                 <div className="srp-row-header">
                   <p>Test Name</p>
