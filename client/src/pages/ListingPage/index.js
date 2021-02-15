@@ -83,6 +83,11 @@ class ListingPage extends Component {
             >
               <div className="listing-page-content">
                 <h1>Categories</h1>
+                <div className="srp-action-btns">
+                  <Link to="/categories"><button className="btn">All</button></Link>
+                  <Link to="/"><button className="btn">⭐</button></Link>
+                  <Link to="/"><button className="btn">Popular</button></Link>
+                </div>
                 <div className="cats">{items}</div>
               </div>
             </div>

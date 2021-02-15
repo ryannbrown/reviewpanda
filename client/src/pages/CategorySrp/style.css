@@ -8,7 +8,7 @@
 .srp-page-content{
     display:flex;
     flex-direction:column;
-    justify-content: center;
+    /* justify-content: center; */
     /* align-items: center; */
     margin:0px auto;
     text-align:left;
@@ -16,6 +16,7 @@
     height:100%;
     max-width:800px;
     /* width:100%; */
+    margin-top: 115px;
 }
 
 .srp-page-content h1 {
@@ -48,6 +49,10 @@
 
 .single-cat p {
     text-transform:lowercase;
+}
+
+.listing-page-content .cats {
+    margin-top:35px;
 }
 
 
@@ -92,4 +97,38 @@ background-color:transparent;
 border: 1px solid rgba(190, 188, 188, 0.5);
 margin-right:5px;
 padding: 1rem 2rem !important;
+}
+
+
+@media(max-width:850px) {
+    .srp-page-content {
+        padding:25px;
+    }
+    .srp-page-content h1 {
+        font-size:30px;
+    }
+    .srp-page .single-test {
+        max-width:400px;
+        margin:10px auto;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+    .single-test p {
+        max-width:400px;
+        overflow:hidden;
+        white-space:nowrap;
+    }
+    .srp-action-btns button {
+        padding:.5rem 2rem !important;
+    }
+    .single-test-text {
+        font-size:.75rem;
+    }
+    .single-cat {
+        max-width:400px;
+        margin:10px auto;
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+
 }
