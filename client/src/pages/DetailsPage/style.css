@@ -6,6 +6,7 @@
 }
 
 .details-hero {
+    position:relative;
     display:flex;
     flex-direction: column;
     background-image: linear-gradient(to right bottom, #123047, #133854, #144062, #154970, #17517E);
@@ -82,4 +83,35 @@
     justify-content: flex-start;
     width: 100%;
     margin: 25px 0px 0px 50px;
+}
+
+.hero-heart {
+    position:absolute;
+    top:15px;
+    right:15px;
+}
+
+.spec-icons {
+    display:flex;
+    flex-wrap:wrap;
+    max-width:300px;
+    /* justify-content: center; */
+}
+
+.spec-icons p {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: .75rem;
+    width:100px;
+    justify-content: center;
+    margin: 25px 35px 25px 0px;
+
+}
+
+.spec-icons i{
+    /* display:flex; */
+    font-size:42px;
+    color:#77E0D4;
+    margin:10px 0px;
 }

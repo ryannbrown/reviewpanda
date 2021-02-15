@@ -3,6 +3,7 @@ import "./style.css";
 import ReviewControls from "../../components/ReviewControls";
 import ClipLoader from "react-spinners/ClipLoader";
 import {Link} from "react-router-dom"
+
 import {
   ThemeContextConsumer,
   ThemeContextProvider,
@@ -124,12 +125,13 @@ class DetailsPage extends Component {
               style={{ display: "flex", height: "100%", width: "100%" }}
             >
               <div className="details-hero">
+              <i class="lni lni-heart hero-heart"></i>
               <h1>{thisPost.title}</h1>
               {thisPost.abbrev && <h2>{thisPost.abbrev}</h2>}
               <div className="hero-sub-info">
               <p>Rating: ⭐⭐⭐⭐⭐ |</p>
               <p>Author: {thisPost.author} |</p>
-              <p>Age Range: {thisPost["age range"]}</p>
+            
               </div>
               <a target ="_blank" href={thisPost.link}><button className="login-btn btn">Learn More</button></a>
               </div>
@@ -138,19 +140,24 @@ class DetailsPage extends Component {
                 <div className="split-left">
                   {thisPost.description && <div> <h2>Test Description</h2>
                 <p>{thisPost.description}</p> </div> }
-                  {thisPost.qual_level  && <p>Qualification Level: {thisPost.qual_level}</p> }
-                  {thisPost.comp_time  && <p>Qualification Level: {thisPost.comp_time}</p> }
+                {thisPost.scores_interpretation &&  <div> <h2>Scores Intepretation</h2> <p> {thisPost.scores_interpretation}</p> </div>}
+                      <div className="spec-icons">
+
+                      {thisPost.age_range &&  <p><i class="lni lni-user"></i> {thisPost.age_range}</p> }
+                        {thisPost.comp_time  && <p><i class="lni lni-alarm-clock"></i> {thisPost.comp_time}</p> }
+                        {/* TODO: add conditional */}
+                      <p><i class="lni lni-bubble"></i> 28 Reviews</p>
+                      {thisPost.comp_time  && <p><i class="lni lni-bar-chart"></i> {thisPost.qual_level}</p> }
+                      </div>
+                
                 </div>
                 <div className="split-right">
-                  {thisPost.scores_interpretation &&  <div> <h2>Scores Intepretation</h2> <p> {thisPost.scores_interpretation}</p> </div>}
+                
                   {thisPost.forms && <div> <h2>Forms</h2><p>{thisPost.forms}</p> </div>}
 
                   {thisPost.pub_date  && <p>Publication Date: {thisPost.pub_date}</p> }
-                
-                </div>
-              </div>
-              {/* <div className="pop-wrapper">{items}</div> */}
-              {context.userData.email && pageReady && (
+
+                     {context.userData.email && pageReady && (
                 <ReviewControls
                 thisTest={thisPost}
                 test_uuid= {this.props.match.params.uuid}
@@ -159,6 +166,11 @@ class DetailsPage extends Component {
                   // id={this.props.match.params.id}
                 ></ReviewControls>
               )}
+                
+                </div>
+              </div>
+              {/* <div className="pop-wrapper">{items}</div> */}
+           
               {/* REVIEWS COMPONENT */}
               <div className="reviews-wrapper">
           {reviews.length > 0 ? (
