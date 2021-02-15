@@ -21,12 +21,12 @@ class ReviewControls extends Component {
       buttonDisabled: false,
       rating: 0
     };
-    this.rating = React.createRef();
     this.description = React.createRef();
   }
 
 
   changeRating = ( newRating, name ) => {
+    console.log(newRating, "for the win")
     this.setState({
       rating: newRating
     });
@@ -91,7 +91,7 @@ class ReviewControls extends Component {
     let ourContext = this.context;
     e.preventDefault();
     // let id = this.props.id;
-    let rating = this.rating.current.value;
+    let rating = this.state.rating
     let description = this.description.current.value;
     let email = ourContext.userData.email;
     fetch("/api/postreview", {
@@ -165,16 +165,16 @@ class ReviewControls extends Component {
               <h2>Leave a review, get rewarded!</h2>
               <p>Leave a review and you’ll get entered to win one of the prizes below.</p>
               <h3>Rating</h3>
-              <StarRatings
-          rating={this.state.rating}
-          starRatedColor="#77E0D4"
-          changeRating={this.changeRating}
-          numberOfStars={5}
-          name='rating'
-          starDimension = '25px'
-          starEmptyColor='rgba(119,224,212, .25)'
-          starHoverColor='rgba(119,224,212)'
-        />
+                  <StarRatings
+              rating={this.state.rating}
+              starRatedColor="#77E0D4"
+              changeRating={this.changeRating}
+              numberOfStars={5}
+              name='rating'
+              starDimension = '25px'
+              starEmptyColor='rgba(119,224,212, .25)'
+              starHoverColor='rgba(119,224,212)'
+            />
               <form className="actual-form" onSubmit={this.submitReview}>
                 {/* <input
                   ref={this.rating}
@@ -207,6 +207,9 @@ class ReviewControls extends Component {
             </div>
           ) : (
             <MyReview
+            // myRating = {this.state.rating}
+            fetchMyReview= {this.fetchMyReview}
+            thisTest={this.props.thisTest}
               fetchFromDelete={this.fetchFromDelete}
               enableButton={this.enableButton}
               fetchMyReview={this.fetchMyReview}

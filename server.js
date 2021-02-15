@@ -19,6 +19,7 @@ const register = require("./controllers/register");
 const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const review = require("./controllers/review");
+const updateReview = require("./controllers/updateReview");
 const reviewList = require("./controllers/getReviews");
 const myReview = require("./controllers/getMyReview");
 const removeReview = require("./controllers/removeReview.js");
@@ -71,6 +72,9 @@ app.post("/api/register", (req, res) => {
 app.post("/api/signin", signin.handleSignin(db, bcrypt));
 app.post("/api/postreview", (req, res) => {
   review.handleReviewPost(req, res, db);
+});
+app.post("/api/updatereview", (req, res) => {
+  updateReview.handleUpdateReviewPost(req, res, db, knex);
 });
 app.delete("/api/remove_review", (req, res) => {
   removeReview.handleReviewRemove(req, res, db);

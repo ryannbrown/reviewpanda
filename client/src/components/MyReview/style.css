@@ -1,10 +1,20 @@
-img.review-delete-btn {
+.review-delete-btn {
     cursor:pointer;
-    width: 25px;
+    font-size:25px;
     position: absolute;
     top: 0px;
-    left: 0px;
+    right: 0px;
+    transition:.3s;
 }
+
+.review-delete-btn:hover{
+    transition:.3s;
+    transform:scale(1.25);
+}
+
+
+
+
 /* .reviews-comp{
     position:relative;
 } */

@@ -8,7 +8,7 @@
 
 .reviews-comp form {
     display: flex;
-    margin: 15px auto;
+    /* margin: 15px auto; */
     justify-content: center;
     flex-direction: column;
     /* align-items: center; */
@@ -45,8 +45,16 @@
 }
 
 .review-heart {
+    cursor:pointer;
     color:#77E0D4;
     margin-left:50px;
+    font-size:25px;
+    transition:.3s;
+}
+
+.review-heart:hover {
+    transition:.3s;
+    transform:scale(1.25);
 }
 
 .under-text{
@@ -68,5 +76,10 @@
     border: 2px solid #77E0D4;
     border-radius:15px;
     margin: 25px 0px;
-    
+}
+
+.prize-item:hover {
+    cursor:pointer;
+    color:white;
+    background-image: linear-gradient(to right bottom, #77E0D4, #2ECEE2, #00B9EF, #309FF1, #777FE0);
 }
