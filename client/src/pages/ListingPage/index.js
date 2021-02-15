@@ -96,7 +96,7 @@ class ListingPage extends Component {
       );
     } else {
       return (
-        <div className="loading-block">
+        <div className="loading-block-srp">
           <ClipLoader
             // css={override}
             className="clippy"

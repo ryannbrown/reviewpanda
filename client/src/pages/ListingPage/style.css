@@ -14,7 +14,7 @@
     text-align:left;
     min-height:75vh;
     height:100%;
-    max-width:800px;
+    width:800px;
     margin-top:115px;
     /* width:100%; */
 }
@@ -55,7 +55,8 @@
 
 .loading-block-srp{
     background-image:linear-gradient(to right bottom, #123047, #133854, #144062, #154970, #8f8f8f);
-    height:75vh;
+    height:100vh;
+    /* margin-top:115px; */
     display:flex;
     justify-content: center;
     align-items: center;
@@ -66,6 +67,7 @@
 @media(max-width:850px) {
     .listing-page-content {
         padding:25px;
+        width:unset;
     }
     .listing-page-content h1 {
         font-size:30px;
