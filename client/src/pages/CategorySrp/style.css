@@ -49,3 +49,47 @@
 .single-cat p {
     text-transform:lowercase;
 }
+
+
+.single-test h2 {
+    color:white;
+}
+
+
+.srp-page .single-test {
+    background-color:rgba(248, 248, 248, .1);
+    border-radius:15px;
+    margin:10px 0px;
+    padding:15px;
+}
+
+.srp-page .single-test a{
+    /* padding:10px 25px; */
+    display:flex;
+    color:white;
+    width:100%;
+    justify-content:space-between;
+    min-width:750px;
+    border-bottom:none ;
+}
+
+.single-test p {
+    text-transform:capitalize;
+    color:#BEBCBC;
+    text-overflow:ellipsis;
+}
+
+
+.srp-row-header {
+    color:#BEBCBC;
+    border-bottom:1px solid rgba(190, 188, 188, 0.12);
+    margin:25px 0px;
+}
+
+
+.srp-action-btns button {
+background-color:transparent;
+border: 1px solid rgba(190, 188, 188, 0.5);
+margin-right:5px;
+padding: 1rem 2rem !important;
+}

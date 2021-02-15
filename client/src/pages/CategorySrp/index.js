@@ -65,10 +65,11 @@ class CategorySrp extends Component {
     if (truthyReviews) {
       // console.log(truthyReviews, reviews)
       var items = reviews.map((item, i) => (
-        <div key={i} className="single-cat">
+        <div key={i} className="single-test">
           <Link to={`/tests/${item.uuid}`}>
-            <div style={{display:'flex'}}>
+            <div className="single-test-text">
           {/* <img className="category-icon" src={sunImg}></img> */}
+          <h2>{item.abbrev}</h2>
             <p>{item.title}</p>
             </div>
             <img className="chevron" src={chevRight}></img>
@@ -89,6 +90,14 @@ class CategorySrp extends Component {
             >
               <div className="srp-page-content">
                 <h1>{this.state.currentCat || Error}</h1>
+                <div className="srp-action-btns">
+                  <button className="btn">All</button>
+                  <button className="btn">⭐</button>
+                  <button className="btn">Popular</button>
+                </div>
+                <div className="srp-row-header">
+                  <p>Test Name</p>
+                </div>
                 <div className="cats">{items}</div>
               </div>
             </div>

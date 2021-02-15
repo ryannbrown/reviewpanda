@@ -142,7 +142,6 @@ set uuid = uuid_generate_v4();
 
 ---------------------- 2/11
 
-
 select * from pearson_tests
 
 drop table pearson_tests
@@ -175,11 +174,16 @@ update hmh_tests
 set uuid = uuid_generate_v4();
 
 
-ALTER TABLE riverside_tests
-add column category varchar(250);
+ALTER TABLE wps_tests
+add column provider varchar(250);
+update wps_tests
+set provider = 'wps';
 
 update mhs_tests
 set uuid = uuid_generate_v4();
+
+
+
 
 
 ALTER TABLE par_tests
@@ -189,36 +193,41 @@ update par_tests
 set uuid = uuid_generate_v4();
 
 
-
-ALTER TABLE pro_tests
-add column uuid uuid;
+select * from pearson_tests
+ALTER TABLE pearson_tests
+add column author varchar(500);
 
 update pro_tests
 set uuid = uuid_generate_v4();
 
 
   DROP TABLE IF EXISTS all_tests; Create TABLE all_tests as
-SELECT C.title, C.abbrev, C.category, C.description, C.uuid, C.link
+SELECT C.title,C.author, C.qual_level, C.comp_time, C.age_range, C.abbrev, C.category, C.description, C.uuid, C.link, C.provider
 FROM   mhs_tests AS C
 UNION ALL
-SELECT P.title, P.abbrev, P.category,P.description, P.uuid, P.link
+SELECT P.title, P.author, P.qual_level, P.comp_time, P.age_range, P.abbrev, P.category,P.description, P.uuid, P.link, P.provider
 FROM   par_tests AS P
 UNION ALL
-SELECT R.title, R.abbrev, R.category,R.description, R.uuid, R.link
+SELECT R.title, R.author, R.qual_level, R.comp_time, R.age_range, R.abbrev, R.category,R.description, R.uuid, R.link, R.provider
 FROM   pearson_tests AS R
 UNION ALL
-SELECT E.title, E.abbrev, E.category,E.description, E.uuid, E.link
+SELECT E.title, E.author, E.qual_level, E.comp_time, E.age_range, E.abbrev, E.category,E.description, E.uuid, E.link, E.provider
 FROM   pro_tests AS E
 UNION ALL
-SELECT W.title, W.abbrev, W.category,W.description, W.uuid, W.link
+SELECT W.title, W.author, W.qual_level, W.comp_time, W.age_range, W.abbrev, W.category,W.description, W.uuid, W.link, W.provider
 FROM   wps_tests AS W
 UNION ALL
-SELECT H.title, H.abbrev, H.category,H.description, H.uuid, H.link
+SELECT H.title, H.author, H.qual_level, H.comp_time, H.age_range, H.abbrev, H.category,H.description, H.uuid, H.link, H.provider
 FROM   hmh_tests AS H
 UNION ALL
-SELECT I.title, I.abbrev, I.category,I.description, I.uuid, I.link
+SELECT I.title, I.author, I.qual_level, I.comp_time, I.age_range, I.abbrev, I.category,I.description, I.uuid, I.link, I.provider
 FROM   riverside_tests AS I;
 
+
+update all_tests
+set title = TRIM(title)
+
+select * from all_tests
 
 select * from panda_categories
 
@@ -231,8 +240,38 @@ select DISTINCT ON (title) * from all_tests
 
 
 
+
 Create TABLE panda_categories as
 select DISTINCT category from all_tests
+
+select * from panda_categories
+
+
+select * from pearson_tests
+where title = 'Wechsler Intelligence Scale for Children | Fifth Edition '
+where category = 'Gifted & Talented'
+
+Wechsler Intelligence Scale for Children | Fifth Edition 
+
+
+select * from all_tests where title = 'PITRW for Students with Disruptive, Defiant, or Difficult Behaviors (Grades 5-12) Manual --Second Edition'
+
+
+
+alter table reviews
+add column test_uuid uuid;
+select * from reviews;
+
+ALTER TABLE reviews
+RENAME COLUMN review_id TO review_uuid;
+
+
+DROP TABLE IF EXISTS reviews; Create TABLE reviews(id SERIAL, test_title varchar(500), email varchar(100), rating integer, description varchar(8000), review_uuid uuid, test_uuid uuid)
+
+
+
+
+ select distinct on (email) * from reviews where test_uuid = '7de009d3-43ec-45ec-849b-1783b25409ab' and email = 'sally@gmail.com'
 
 
 
