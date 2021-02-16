@@ -45,7 +45,7 @@ class App extends Component {
              {/* <Route path="/" component={Page}/> */}
              {/* <Route exact path="/profile/:uuid" render={(props) => <CategorySrp {...props}  />} /> */}
              {/* <Route path="/myprofile" component={MyProfile}/> */}
-             <Route exact path="/myprofile" render={(props) => <MyProfile {...props} email={context.userData.email}  />} />
+             <Route exact path="/myprofile" render={(props) => <MyProfile {...props} context={context} email={context.userData.email}  />} />
              <Route exact path="/categories/:cat" render={(props) => <CategorySrp {...props}  />} />
              <Route path="/categories" component={ListingPage}/>
              <Route path="/scrape" component={Scraper}/>

@@ -4,7 +4,7 @@ import ReviewControls from "../../components/ReviewControls";
 import StarRatings from "react-star-ratings";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
-import ReviewComponent from "../../components/ReviewComponent";
+import SavedTests from "../../components/SavedTests/index"
 
 import {
   ThemeContextConsumer,
@@ -13,10 +13,12 @@ import {
 var format = require("date-fns/format");
 
 class MyProfile extends Component {
+    static contextType = ThemeContextConsumer;
   constructor(props) {
     super(props);
     this.state = {
       reviews: [],
+      numOfReviews: null,
       thisPost: [],
       truthyReviews: false,
       reviewIsLoading: true,
@@ -36,19 +38,80 @@ class MyProfile extends Component {
         if (json == "error getting review") {
           this.setState({
             reviews: [],
-            truthyReviews: false,
-            reviewIsLoading: false,
+      
           });
         } else {
           this.setState({
             reviews: json,
-            truthyReviews: true,
-            isLoading: false,
+            numOfReviews: json.length
             // userHasReviewed: false,
           });
         }
       });
   };
+
+
+  removeTest = (test) => {
+if (test) {
+
+    let ourContext = this.context;
+    let email = ourContext.userData.email
+    // console.log('clicked')
+      fetch('/api/removetest', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          test_uuid: test,
+          email: email,
+        })
+      }).then(response => {
+        console.log("hey i did it")
+        console.log(response)
+        if (response.status == '200') {
+          this.setState({
+            saveTest: true
+          })
+
+        } else if (response.status == '400') {
+          console.log("failed")
+        }
+      })
+    } else {
+      this.setState({
+        loginAlert: true
+      })
+    }
+
+  }
+
+
+//   fetchSavedTests = (email) => {
+//     //   if (!uuid) {
+//     //     uuid = this.props.match.params.uuid
+//     //   }
+//     fetch(`/api/my_saved_tests/${email}`)
+//       .then((res) => res.json())
+//       .then((json) => {
+//         console.log("review", json);
+//         if (json == "error getting review") {
+//           this.setState({
+//             reviews: [],
+      
+//           });
+//         } else {
+//           this.setState({
+//             reviews: json,
+//             numOfReviews: json.length
+  
+//             // userHasReviewed: false,
+//           });
+//         }
+//       });
+//   };
+
 
   //   fetchPosts() {
   //     let uuid = this.props.match.params.uuid;
@@ -72,14 +135,19 @@ class MyProfile extends Component {
   }
 
   componentDidUpdate(prevProps) {
+
+
     //Typical usage, don't forget to compare the props
     if (this.props.email !== prevProps.email) {
       this.fetchMyReviews(this.props.email);
+      this.setState({
+          savedTests:this.props.context.userData.saved
+      })
     }
   }
 
   render() {
-    const { pageReady, reviews } = this.state;
+    const { pageReady, reviews, numOfReviews, savedTests } = this.state;
 
     if (reviews) {
       // console.log(truthyReviews, reviews)
@@ -114,6 +182,15 @@ class MyProfile extends Component {
         </div>
       ));
     }
+
+if (savedTests) {
+    var tests = savedTests.map((item, i) => (
+        <div>
+            <p>{item}</p>
+            <div onClick={() => {this.removeTest({item})}}>X</div>
+        </div>
+      ));
+}
 
     // console.log(this.state.posts)
 
@@ -163,9 +240,17 @@ class MyProfile extends Component {
                   </div>
                   <div>
                     <h1>Welcome Back, {context.userData.first_name}</h1>
-                    <p>You've submitted 6 reviews, great work!</p>
+                    <p>You've submitted {numOfReviews} reviews, great work!</p>
                   </div>
                 </div>
+                <div className="saved-tests">
+              <h1>Saved Tests</h1>
+{tests}
+
+{/* <SavedTests></SavedTests> */}
+</div>
+
+
                 <div className="reviews-wrapper">
                   {reviews.length > 0 ? (
                     <div>
@@ -178,6 +263,7 @@ class MyProfile extends Component {
                     <h1>There are no reviews yet. Be the first!</h1>
                   )}
                 </div>
+               
               </div>
             </div>
           )}

@@ -19,6 +19,8 @@ const register = require("./controllers/register");
 const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const review = require("./controllers/review");
+const saveTest = require("./controllers/savetest.js");
+const removeTest = require("./controllers/removeSavedTest.js");
 const updateReview = require("./controllers/updateReview");
 const reviewList = require("./controllers/getReviews");
 const myReview = require("./controllers/getMyReview");
@@ -73,6 +75,12 @@ app.post("/api/register", (req, res) => {
 app.post("/api/signin", signin.handleSignin(db, bcrypt));
 app.post("/api/postreview", (req, res) => {
   review.handleReviewPost(req, res, db);
+});
+app.post("/api/savetest", (req, res) => {
+  saveTest.handleSaveTest(req, res, db);
+});
+app.post("/api/removetest", (req, res) => {
+removeTest.handleRemoveSavedTest(req, res, db);
 });
 app.post("/api/updatereview", (req, res) => {
   updateReview.handleUpdateReviewPost(req, res, db, knex);

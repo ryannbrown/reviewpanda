@@ -11,6 +11,7 @@ import {
 } from "../../utils/themeContext";
 
 class DetailsPage extends Component {
+  static contextType = ThemeContextConsumer;
   constructor(props) {
     super(props);
     this.state = {
@@ -19,9 +20,49 @@ class DetailsPage extends Component {
       truthyReviews: false,
       reviewIsLoading:true,
       testIsLoading:true,
-      pageReady: true
+      pageReady: true,
+      saveTest: false
     };
   }
+
+
+  saveTest = () => {
+
+    // console.log('clicked')
+    const ourContext = this.context;
+    console.log(ourContext);
+let email = ourContext.userData.email
+    if (email) {
+      fetch('/api/savetest', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          test_uuid: this.props.match.params.uuid,
+          email: email,
+        })
+      }).then(response => {
+        console.log("hey i did it")
+        console.log(response)
+        if (response.status == '200') {
+          this.setState({
+            saveTest: true
+          })
+
+        } else if (response.status == '400') {
+          console.log("failed")
+        }
+      })
+    } else {
+      this.setState({
+        loginAlert: true
+      })
+    }
+
+  }
+
 
 
   fetchReviews = (uuid) => {
@@ -117,7 +158,9 @@ class DetailsPage extends Component {
               style={{ display: "flex", height: "100%", width: "100%" }}
             >
               <div className="details-hero">
-              <i class="lni lni-heart hero-heart"></i>
+{!this.state.saveTest ?   <i onClick={this.saveTest} class="lni lni-heart hero-heart"></i> :  <i class="lni lni-checkmark-circle hero-heart"></i> }
+            
+             
               <h1>{thisPost.title}</h1>
               {thisPost.abbrev && <h2>{thisPost.abbrev}</h2>}
               <div className="hero-sub-info">
@@ -151,6 +194,9 @@ class DetailsPage extends Component {
 
                      { pageReady && (
                 <ReviewControls
+              
+                testSaved={this.state.saveTest}
+                saveTest={this.saveTest}
                 thisTest={thisPost}
                 test_uuid= {this.props.match.params.uuid}
                 fetchReviews={this.fetchReviews}

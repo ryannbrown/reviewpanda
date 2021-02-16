@@ -35,9 +35,20 @@
 }
 
 
+.profile-page .reviews-wrapper{
+    width: unset;
+    max-width:unset;
+}
+
+
 .my-review-chevron {
     position:absolute;
     right:25px;
     color:#BEBCBC;
     font-weight:bold;
+}
+
+.saved-tests{
+    margin:50px 0px;
+    text-align: left;
 }

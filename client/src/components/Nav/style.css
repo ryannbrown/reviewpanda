@@ -446,3 +446,10 @@ input#nav-toggle {
     visibility: visible;
     transition: visiblity 300ms ease-in;
 }
+
+
+.user-nav-options hr {
+  border-color: #F5F5F5;
+  border-width: 2px;
+  margin: 0px 10px;
+}

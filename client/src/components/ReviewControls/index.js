@@ -150,7 +150,7 @@ class ReviewControls extends Component {
       truthyReviews,
       userHasReviewed,
       myReview,
-      showLoginAlert
+      showLoginAlert,
     } = this.state;
 
     if (isLoading) {
@@ -206,7 +206,8 @@ class ReviewControls extends Component {
                 >
                   Submit Review
                 </button>
-                <i class="lni lni-heart review-heart"></i>
+                {!this.props.testSaved ?   <i onClick={this.props.saveTest} className="lni lni-heart review-heart"></i> : <i class="lni lni-checkmark-circle review-heart"></i> }
+                {/* <i class="lni lni-heart review-heart"></i> */}
                 </div>
                 <p className="under-text"><i>Don’t have time to leave a review? Save to submit later!</i></p>
               </form>
