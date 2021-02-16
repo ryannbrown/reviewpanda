@@ -18,6 +18,7 @@ import ListingPage from "./pages/ListingPage/index"
 import createHistory from 'history/createBrowserHistory';
 import Scraper from './pages/tools/pearsonscrape/index';
 import CategorySrp from './pages/CategorySrp';
+import MyProfile from './pages/MyProfile/index';
 
 
 class App extends Component {
@@ -42,6 +43,9 @@ class App extends Component {
            <Nav></Nav>
            <Switch>
              {/* <Route path="/" component={Page}/> */}
+             {/* <Route exact path="/profile/:uuid" render={(props) => <CategorySrp {...props}  />} /> */}
+             {/* <Route path="/myprofile" component={MyProfile}/> */}
+             <Route exact path="/myprofile" render={(props) => <MyProfile {...props} email={context.userData.email}  />} />
              <Route exact path="/categories/:cat" render={(props) => <CategorySrp {...props}  />} />
              <Route path="/categories" component={ListingPage}/>
              <Route path="/scrape" component={Scraper}/>

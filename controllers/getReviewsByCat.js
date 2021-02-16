@@ -1,3 +1,5 @@
+
+// TODO: change the name of this to tests not reviews
 handleFetchByCat = (req, res, db) => {
     const {cat} = req.params;
     db.select('*').from('all_tests').where('category', cat)

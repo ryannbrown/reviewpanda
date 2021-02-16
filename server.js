@@ -22,6 +22,7 @@ const review = require("./controllers/review");
 const updateReview = require("./controllers/updateReview");
 const reviewList = require("./controllers/getReviews");
 const myReview = require("./controllers/getMyReview");
+const allMyReviews = require("./controllers/getAllMyReviews.js");
 const removeReview = require("./controllers/removeReview.js");
 const getTests = require("./controllers/getTests.js");
 const getTest = require("./controllers/getTest.js");
@@ -87,6 +88,9 @@ app.get("/api/review/:test_uuid", (req, res) => {
 });
 app.get("/api/review/:test_uuid/user/:email", (req, res) => {
   myReview.handleMyReview(req, res, db);
+});
+app.get("/api/my_reviews/:email", (req, res) => {
+  allMyReviews.handleGetMyReviews(req, res, db);
 });
 app.get("/api/tests/:uuid", (req, res) => {
   getTest.handleTestFetch(req, res, db);

@@ -1,0 +1,43 @@
+.profile-page{
+    margin-top:115px;
+    /* padding:50px; */
+}
+
+.profile-welcome img {
+    width:115px;
+    margin:0px 25px;
+    border-radius:15px;
+}
+
+.profile-welcome {
+    display:flex;
+    /* justify-content: center; */
+}
+
+.my-profile-content {
+    width:100%;
+    max-width:1200px;
+    margin:0px auto;
+}
+
+
+.profile-page  .single-review {
+   background-color:#F8F8F8;
+   border-radius:15px;
+   padding:25px;
+   display:flex;
+   align-items: center;
+}
+
+
+.profile-page .single-review-content {
+    margin-left:0px;
+}
+
+
+.my-review-chevron {
+    position:absolute;
+    right:25px;
+    color:#BEBCBC;
+    font-weight:bold;
+}
