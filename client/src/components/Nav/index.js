@@ -274,7 +274,7 @@ export default class Nav extends Component {
                       <Link to="/myprofile">Profile</Link>
                       <hr></hr>
                       <Link>Support</Link>
-                      <Link>Log Out</Link>
+                      <Link onClick={this.logOut}>Log Out</Link>
                       </div>
                     </div>
                   ) : (
@@ -285,7 +285,7 @@ export default class Nav extends Component {
                         toggleregister={this.toggleRegister}
                         className="login-btn btn"
                       >
-                        Login | Register
+                        Login
                       </button>
                     
                     </div>
