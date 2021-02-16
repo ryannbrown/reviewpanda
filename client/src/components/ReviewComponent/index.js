@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import MyReview from "../../components/MyReview/index";
 import StarRatings from 'react-star-ratings';
 import ClipLoader from "react-spinners/ClipLoader";
+
 import {
   ThemeContextConsumer,
   ThemeContextProvider,
 } from "../../utils/themeContext";
 import "./style.css";
-
+var format = require('date-fns/format')
 class ReviewComponent extends Component {
   static contextType = ThemeContextConsumer;
   constructor(props) {
@@ -161,6 +162,8 @@ class ReviewComponent extends Component {
     console.log(total, sum.length)
     var numReviews = sum.length;
     var avg = total / sum.length;
+    var theAvg = (Math.round(avg * 100) / 100).toFixed(2);
+    console.log(theAvg)
     //  console.log(avg)
  }
 
@@ -174,7 +177,7 @@ class ReviewComponent extends Component {
            <div className="single-review-content">
                <div className="single-review-heading">
                    <a>{item.full_name}</a>
-                   <p>January 2021</p>
+                   <p>|  {format(new Date(item.date_posted), "eeee, MMM i yyyy")}  |</p>
                    <StarRatings
               rating={item.rating}
               starRatedColor="#77E0D4"
@@ -217,7 +220,7 @@ class ReviewComponent extends Component {
             <div>
                 <div className="reviews-header">
                 <h1>Reviews</h1>
-                <p>{avg} ({numReviews} Reviews)</p>
+                <p>{theAvg} ({numReviews} Reviews)</p>
                 </div>
                 {items}
             

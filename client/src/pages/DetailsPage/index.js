@@ -138,7 +138,7 @@ class DetailsPage extends Component {
                       {thisPost.age_range &&  <p><i class="lni lni-user"></i> {thisPost.age_range}</p> }
                         {thisPost.comp_time  && <p><i class="lni lni-alarm-clock"></i> {thisPost.comp_time}</p> }
                         {/* TODO: add conditional */}
-                      <p><i class="lni lni-bubble"></i> {reviews.length} Reviews</p>
+                      {thisPost.description && <p><i class="lni lni-bubble"></i> {reviews.length} Reviews</p> }
                       {thisPost.comp_time  && <p><i class="lni lni-bar-chart"></i> {thisPost.qual_level}</p> }
                       </div>
                 
@@ -149,7 +149,7 @@ class DetailsPage extends Component {
 
                   {thisPost.pub_date  && <p>Publication Date: {thisPost.pub_date}</p> }
 
-                     {context.userData.email && pageReady && (
+                     { pageReady && (
                 <ReviewControls
                 thisTest={thisPost}
                 test_uuid= {this.props.match.params.uuid}

@@ -5,7 +5,9 @@
 
 /**---- Fade-In/Out Effect ----**/
 .nav-right img {
-  width: 17px;
+  width: 55px;
+  border-radius:15px;
+  margin:15px;
 }
 .nav-brand img {
   padding:15px;
@@ -399,6 +401,9 @@ input#nav-toggle {
     transition: visiblity 300ms ease-in;
 }
 
+
+
+
 .nav-down{
     display:none;
 }
@@ -414,4 +419,30 @@ input#nav-toggle {
 .login-btn {
   padding:10px 40px;
   /* border-radius:50px; */
+}
+
+.user-nav {
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+  position:relative;
+  width:400px;
+}
+
+
+.user-nav-options {
+  margin-top:-5px;
+  width: 200px;
+  background-color: #F4F4F4;
+  visibility: hidden;
+  position: fixed;
+  top: 125px;
+  right: 129px;
+  border-radius:15px;
+}
+
+.user-nav:hover .user-nav-options {
+  background-color: #F5F5F5;
+    visibility: visible;
+    transition: visiblity 300ms ease-in;
 }

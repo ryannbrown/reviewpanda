@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import MyReview from "../../components/MyReview/index";
+import LoginModal from "../LoginModal/index"
 import StarRatings from 'react-star-ratings';
 import ClipLoader from "react-spinners/ClipLoader";
 import {
@@ -19,6 +20,7 @@ class ReviewControls extends Component {
       truthyReviews: false,
       userHasReviewed: false,
       buttonDisabled: false,
+      showLoginAlert: false,
       rating: 0
     };
     this.description = React.createRef();
@@ -53,8 +55,8 @@ class ReviewControls extends Component {
       //  reviews: []
     });
     this.setState({ isLoading: true });
-    const ourContext = this.context;
-    console.log(ourContext.userData.email);
+    // const ourContext = this.context;
+    // console.log(ourContext.userData.email);
     fetch(
       `/api/review/${this.props.test_uuid}/user/${this.props.currentUser}`
     )
@@ -112,7 +114,7 @@ class ReviewControls extends Component {
     }).then((response) => {
       this.props.fetchReviews();
       // console.log("hey i did it")
-      console.log(response);
+      console.log("review response", response);
       if (response.status == "200") {
         this.setState({
           userHasReviewed: true,
@@ -121,22 +123,26 @@ class ReviewControls extends Component {
         this.fetchMyReview();
         // this.fetchReviews();
         // alert("success")
-      } else if (response.status == !"200") {
-        alert("there was an error");
+      } else if (response.status !== "200") {
+        this.setState({showLoginAlert: true})
       }
     });
   };
 
   componentDidMount() {
-    // this.fetchReviews();
-    this.fetchMyReview();
+    
   }
 
-  componentDidUpdate() {
-    console.log("controls updated", this.state);
-  }
+  componentDidUpdate(prevProps) {
+    //Typical usage, don't forget to compare the props
+    if (this.props.currentUser !== prevProps.currentUser) {
+       this.fetchMyReview(this.props.currentUser);
+    }
+   }
 
   render() {
+
+
     // console.log(this.state.reviews)
     const {
       isLoading,
@@ -144,6 +150,7 @@ class ReviewControls extends Component {
       truthyReviews,
       userHasReviewed,
       myReview,
+      showLoginAlert
     } = this.state;
 
     if (isLoading) {
@@ -160,6 +167,8 @@ class ReviewControls extends Component {
       );
     } else
       return (
+        <ThemeContextConsumer>
+        {(context) => (
         <div className="reviews-comp">
           {!userHasReviewed ? (
             <div>
@@ -189,6 +198,7 @@ class ReviewControls extends Component {
                   placeholder="write description for this solution"
                 ></textarea>
                 <div>
+                  {showLoginAlert && !context.userData.email && <p style={{color: '#ff5959'}}>Please login/register to contribute on Review Panda!</p>}
                 <button
                   disabled={this.state.buttonDisabled}
                   className="btn login-btn"
@@ -220,7 +230,10 @@ class ReviewControls extends Component {
               id={this.props.id}
             ></MyReview>
           )}
+          
         </div>
+              )}
+              </ThemeContextConsumer>
       );
   }
 }

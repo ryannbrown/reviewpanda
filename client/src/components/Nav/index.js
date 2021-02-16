@@ -264,11 +264,18 @@ export default class Nav extends Component {
               {!this.state.isMobile ? (
                 <div className="nav-right">
                   {context.userLoggedIn && context.userData ? (
-                    <div>
-                      <p>Welcome back, {context.userData.first_name}</p>
-                      <button onClick={this.logOut} className="login-btn btn">
+                    <div className="user-nav">
+                      {/* <p>Welcome back, {context.userData.first_name}</p> */}
+                      {/* <button onClick={this.logOut} className="login-btn btn">
                         Logout
-                      </button>
+                      </button> */}
+                      <img src={context.userData.avatar}/>
+                      <div className="user-nav-options">
+                      <a>Profile</a>
+                      <hr></hr>
+                      <p>Support</p>
+                      <a>Log Out</a>
+                      </div>
                     </div>
                   ) : (
                     <div>
@@ -280,6 +287,7 @@ export default class Nav extends Component {
                       >
                         Login | Register
                       </button>
+                    
                     </div>
                   )}
                   {/* <a href="https://www.instagram.com/Carolyn9787/">
