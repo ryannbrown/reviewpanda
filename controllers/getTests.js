@@ -1,6 +1,7 @@
 const handleTestsFetch = (req, res, db) => {
     // const {id } = req.params;
-    db.select().from('all_tests')
+    // db.select().distinctOn('title').from('all_tests')
+    db.select().distinctOn('abbrev').from('all_tests')
       .then(test => {
         if (test.length) {
           // console.log(test)
