@@ -3,15 +3,9 @@
     align-items:center;
     justify-content: center;
     width:100%;
-    height:100vh;
+    /* height:100vh; */
     margin-top:-115px;  /* to makeup for nav bar */
 } 
-.search-block{
-    display:flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-}
 
 .category-block {
     display:flex;
@@ -61,3 +55,4 @@
     height:372px;
     min-width:296px;
 }
+
