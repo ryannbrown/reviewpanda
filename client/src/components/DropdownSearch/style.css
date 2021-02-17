@@ -1,0 +1,16 @@
+ /* {
+    max-height: 400px !important;
+    width:400px;
+    overflow-y: scroll;
+    position: absolute;
+    margin-top: 115px;
+} */
+
+.search-block div[aria-expanded="true"] ul {
+    max-height: 400px;
+    overflow: scroll;
+    max-width: 300px;
+    position: absolute;
+    left: 50%;
+    margin-left: -170px;
+}

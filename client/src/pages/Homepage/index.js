@@ -5,6 +5,7 @@ import './style.css';
 import Navbar from "../../components/Nav"
 import MostPopular from "../../components/MostPopular/index"
 import {Link} from "react-router-dom"
+import DropdownSearch from "../../components/DropdownSearch/index"
 
 export default class Homepage extends Component {
 
@@ -66,7 +67,10 @@ export default class Homepage extends Component {
             <div className="homepage-content" style={{
             }}>
                 {/* <Navbar></Navbar> */}
-               <div className="search-block" style={{backgroundColor:'grey', height:'50vh', width: '100%'}}></div>
+               <div className="search-block" style={{backgroundColor:'grey', height:'50vh', width: '100%'}}>
+                 <h1>Find your next text here</h1>
+                <DropdownSearch></DropdownSearch>
+               </div>
                <div style={{display:'flex', height:'50vh', width: '100%'}}>
                    <div className="category-block">
                        <h1>Browse By Category</h1>

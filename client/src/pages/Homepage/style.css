@@ -6,6 +6,12 @@
     height:100vh;
     margin-top:-115px;  /* to makeup for nav bar */
 } 
+.search-block{
+    display:flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
 
 .category-block {
     display:flex;

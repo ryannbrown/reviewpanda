@@ -1,6 +1,6 @@
 const handleTestsFetch = (req, res, db) => {
     // const {id } = req.params;
-    db.select().from('pearson_tests')
+    db.select().from('all_tests')
       .then(test => {
         if (test.length) {
           // console.log(test)
