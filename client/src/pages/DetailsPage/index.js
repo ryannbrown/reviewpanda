@@ -26,8 +26,8 @@ class DetailsPage extends Component {
   }
 
 
-  saveTest = () => {
-
+  saveTest = (test) => {
+console.log(test)
     // console.log('clicked')
     const ourContext = this.context;
     console.log(ourContext);
@@ -42,6 +42,8 @@ let email = ourContext.userData.email
         body: JSON.stringify({
           test_uuid: this.props.match.params.uuid,
           email: email,
+          title: test
+
         })
       }).then(response => {
         console.log("hey i did it")
@@ -158,7 +160,7 @@ let email = ourContext.userData.email
               style={{ display: "flex", height: "100%", width: "100%" }}
             >
               <div className="details-hero">
-{!this.state.saveTest ?   <i onClick={this.saveTest} class="lni lni-heart hero-heart"></i> :  <i class="lni lni-checkmark-circle hero-heart"></i> }
+{!this.state.saveTest ?   <i onClick={() => {this.saveTest(thisPost.title)}} class="lni lni-heart hero-heart"></i> :  <i class="lni lni-checkmark-circle hero-heart"></i> }
             
              
               <h1>{thisPost.title}</h1>

@@ -79,7 +79,9 @@ if (items) {
             <ul {...getMenuProps()}>
               {isOpen
                 ? items
-                    .filter(item => !inputValue || item.abbrev !== null && item.abbrev.toLowerCase().includes(inputValue.toLowerCase()) || item.title.toLowerCase().includes(inputValue.toLowerCase()))
+                    .filter(item => !inputValue || item.abbrev !== null && item.abbrev.toLowerCase().includes(inputValue.toLowerCase()) 
+                    // || item.title.toLowerCase().includes(inputValue.toLowerCase())
+                    )
                     .map((item, index) => (
                         <div>
                       <Link to={`/tests/${item.uuid}`}>

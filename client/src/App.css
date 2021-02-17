@@ -3,6 +3,10 @@
   font-family: "azo-sans-web",sans-serif;
 }
 
+input:focus {
+  outline:none;
+}
+
 
 .App {
   text-align: center;

@@ -22,7 +22,7 @@ export default class Homepage extends Component {
             fetch(`/api/cats`)
               .then((res) => res.json())
               .then((json) => {
-                console.log(json);
+                // console.log(json);
                 if (json.length > 0) {
                   // console.log("we have length")
                   this.setState({

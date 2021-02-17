@@ -24,6 +24,7 @@ class MyProfile extends Component {
       reviewIsLoading: true,
       testIsLoading: true,
       pageReady: true,
+    //   savedTests: []
     };
   }
 
@@ -71,9 +72,8 @@ if (test) {
         console.log("hey i did it")
         console.log(response)
         if (response.status == '200') {
-          this.setState({
-            saveTest: true
-          })
+            this.formatSavedTests(this.props.context.userData.saved)
+            ourContext.fetchUserData(email)
 
         } else if (response.status == '400') {
           console.log("failed")
@@ -87,50 +87,61 @@ if (test) {
 
   }
 
+  formatSavedTests = (savedTest) => {
+console.log(savedTest)
 
-//   fetchSavedTests = (email) => {
-//     //   if (!uuid) {
-//     //     uuid = this.props.match.params.uuid
-//     //   }
-//     fetch(`/api/my_saved_tests/${email}`)
-//       .then((res) => res.json())
-//       .then((json) => {
-//         console.log("review", json);
-//         if (json == "error getting review") {
-//           this.setState({
-//             reviews: [],
-      
-//           });
-//         } else {
-//           this.setState({
-//             reviews: json,
-//             numOfReviews: json.length
-  
-//             // userHasReviewed: false,
-//           });
-//         }
-//       });
-//   };
+const allSaved = []
+
+savedTest.forEach(test => {
+    // function extractFirstText(str){
+    //     const matches = str.match(/"(.*?)"/);
+    //     console.log(matches)
+
+    //     // return matches
+    //     //   ? matches[1]
+    //     //   : str;
+    //   }
+    //   extractFirstText(test)
+
+    // console.log(test.match(/\(([^)]+)\)/)[1])
 
 
-  //   fetchPosts() {
-  //     let uuid = this.props.match.params.uuid;
-  //     fetch(`/api/tests/${uuid}`)
-  //       .then((res) => res.json())
-  //       .then((json) => {
-  //         console.log("json", json);
-  //         this.setState({
-  //           thisPost: json,
-  //           testIsLoading:false
-  //         });
-  //         this.fetchReviews(json.uuid);
-  //       });
+function extractAllText(str){
+    const re = /"(.*?)"/g;
+    const result = [];
+    let current;
+    while (current = re.exec(str)) {
+      result.push(current.pop());
+    }
+    allSaved.push(result)
+  }
+  extractAllText(test)
+})
 
-  //   }
+console.log(allSaved)
+
+this.setState({
+    savedTests: allSaved
+})
+
+
+  }
+
+  fetchUserData = (email) => {
+      let ourContext = this.context;
+    ourContext.fetchUserData()
+  }
+
+
 
   componentDidMount() {
+      console.log('profile did mount')
       if (this.props.email) {
           this.fetchMyReviews(this.props.email)
+      }
+      if (this.props.context.userData.email) {
+        console.log('mounted', this.props.context.userData.saved)
+          this.fetchUserData()
       }
   }
 
@@ -138,12 +149,18 @@ if (test) {
 
 
     //Typical usage, don't forget to compare the props
+    // makes sure the email isn't null by pulling and comparing props
     if (this.props.email !== prevProps.email) {
       this.fetchMyReviews(this.props.email);
-      this.setState({
-          savedTests:this.props.context.userData.saved
-      })
+      this.formatSavedTests(this.props.context.userData.saved)
     }
+    // when component is remounting, this ensures that an update is made if context was changed
+    if (this.props.context.userData.saved !== prevProps.context.userData.saved) {
+      this.fetchMyReviews(this.props.email);
+      this.formatSavedTests(this.props.context.userData.saved)
+    
+    }
+   
   }
 
   render() {
@@ -185,9 +202,10 @@ if (test) {
 
 if (savedTests) {
     var tests = savedTests.map((item, i) => (
-        <div>
-            <p>{item}</p>
-            <div onClick={() => {this.removeTest({item})}}>X</div>
+        <div className="single-review">
+            <Link to={`/tests/${item[0]}`}><p>{item[1]}</p></Link>
+            <div onClick={() => {this.removeTest({item})}}><i class="lni lni-close delete-icon"></i></div>
+            <Link to={`/tests/${item[0]}`}><i class="lni lni-chevron-right my-review-chevron"></i></Link>
         </div>
       ));
 }

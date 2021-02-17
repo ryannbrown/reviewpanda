@@ -52,6 +52,22 @@ console.log('updated context', this.state)
 
       })
   }
+  fetchUserData = () => {
+
+    let email = this.state.userData.email
+// console.log(email, "email in backend")
+
+ fetch(`/api/profile/${email}`)
+      .then(res => res.json())
+      .then(json => {
+          console.log('fetched update', json)
+        this.setState({
+          userData: json,
+        })
+   
+
+      })
+  }
 
   logoutUser = () => {
     this.setState({userLoggedIn: false,
@@ -70,7 +86,8 @@ console.log('updated context', this.state)
             userEmail: this.state.userEmail,
             userLoggedIn: this.state.userLoggedIn,
             userData: this.state.userData,
-            logoutUser: this.logoutUser
+            logoutUser: this.logoutUser,
+            fetchUserData: this.fetchUserData
            }}
       >
         {this.props.children}
