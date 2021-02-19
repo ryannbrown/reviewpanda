@@ -18,6 +18,9 @@ import {
   ThemeContextProvider,
 } from "../../utils/themeContext";
 import "./style.css";
+import {
+  Tooltip,
+} from 'react-tippy';
 // import {circle} from "../../../node_modules/feather-"
 
 import exitBtn from "../../media/x.svg"
@@ -46,6 +49,8 @@ class LoginModal extends Component {
     this.password = React.createRef();
     this.verPassword = React.createRef();
     this.isSubscribed = React.createRef();
+    this.prof_title = React.createRef();
+    this.license = React.createRef();
   }
 
    toggleRegister = () => {
@@ -147,6 +152,8 @@ class LoginModal extends Component {
         let password = this.password.current.value
         let verPassword = this.verPassword.current.value
         let isSubscribed = this.isSubscribed.current.checked
+        let prof_title = this.prof_title.current.value
+        let license = this.license.current.value
 
     // console.log(email, password)
 
@@ -169,7 +176,9 @@ class LoginModal extends Component {
           last_name: last_name,
           email: email,
           password: password,
-          subscribed: isSubscribed
+          subscribed: isSubscribed,
+          prof_title: prof_title,
+          license: license
         }),
       }).then((response) => {
         // console.log("hey i did it")
@@ -250,11 +259,28 @@ class LoginModal extends Component {
               <form className="actual-form registration" onSubmit={this.handleRegistration}>
                     {/* Registration Form */} 
                 <h1>Register</h1>
-                <input ref={this.first_name} name="first" placeholder="First Name" />
-                <input ref={this.last_name} name="last" placeholder="Last Name" />
                 <input ref={this.email} name="email" placeholder="Email" />
                 <input type="password" ref={this.password} placeholder="Password" />
                 <input type="password" ref={this.verPassword} placeholder="Verify Password" />
+                <input ref={this.first_name} name="first" placeholder="First Name" />
+                <input ref={this.last_name} name="last" placeholder="Last Name" />
+                <div style={{position:'relative', width:'253px', margin:'0px 0px'}}>
+                <Tooltip
+                className="tooltip"
+                  // options
+                  title = 'We ask for this information to ensure that members in our community practice in the field and have experience with these tests'
+                  // html={(
+                  //   <div className="tooltip-content">
+                  //     <p>This is our tip and why we do it</p></div>
+                  // )}
+                  position="top"
+                  trigger="click"
+                >
+                 <i className="lni lni-question-circle why-title"></i>
+                </Tooltip>
+                <input ref={this.prof_title} name="title" placeholder="Professional Title" />
+                <input ref={this.license} name="license_number" placeholder="Clinical License #" />
+                </div>
                 <div className="form-checkbox">
                 <label>Subscribe?</label>
                 <input ref={this.isSubscribed} type="checkbox"></input>

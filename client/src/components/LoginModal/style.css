@@ -20,7 +20,7 @@
     width: 400px;
     /* height: 200px; */
     max-height:100%;
-    padding: 100px 25px;
+    padding: 50px 25px;
     border-radius: 25px;
     display: flex;
     align-items: center;
@@ -153,4 +153,32 @@
 
   .actual-form.registration .alert {
     width:243px;
+  }
+
+  .why-title{
+    position:absolute;
+    /* top:5px; */
+    right:5px;
+    height:50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .tooltip{
+    position:absolute;
+    margin:0px;
+    top:40px;
+    height:50px;
+    /* height:100%; */
+  
+
+  }
+.tippy-tooltip-content {
+    background-color:#77E0D4;
+    padding:10px;
+    position:absolute;
+    width:250px;
+    left:50%;
+    top:25%;
   }

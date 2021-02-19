@@ -164,6 +164,7 @@ this.fetchMyReviews();
                   </div>
                   <div>
                     {/* Using the first review to grab all of the clients information */}
+                    {/* <Link to={`/tests/${item.test_uuid}`}>{item.test_title.slice(0,25)}...</Link> */}
                     <h1>{this.state.userData.first_name} {this.state.userData.last_name}</h1>
                     <p>{this.state.userData.title}Title </p>
                   </div>
