@@ -10,7 +10,7 @@ import {
   useParams
 } from "react-router-dom";
 import { ThemeContextConsumer, ThemeContextProvider } from "./utils/themeContext";
-
+import ScrollToTop from "./utils/scrollToTop.js"
 // import Page from "./pages/Homepage/index"
 import Homepage from "./pages/Homepage/index"
 import DetailsPage from "./pages/DetailsPage/index"
@@ -41,6 +41,7 @@ class App extends Component {
          {context => (
          <Router>
            <Nav></Nav>
+           <ScrollToTop/>
            <Switch>
              {/* <Route path="/" component={Page}/> */}
              {/* <Route exact path="/profile/:uuid" render={(props) => <CategorySrp {...props}  />} /> */}

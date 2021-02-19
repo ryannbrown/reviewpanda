@@ -185,7 +185,7 @@ let email = ourContext.userData.email
               {thisPost.abbrev && <h2>{thisPost.abbrev}</h2>}
               <div className="hero-sub-info">
               <p>Rating: ⭐⭐⭐⭐⭐ |</p>
-              <p>Author: {thisPost.author} |</p>
+              <p>Author: {thisPost.author}</p>
             
               </div>
               <a target ="_blank" href={thisPost.link}><button className="login-btn btn">Learn More</button></a>
