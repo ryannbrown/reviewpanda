@@ -434,12 +434,21 @@ input#nav-toggle {
   box-shadow:0 2px 4px 0 rgb(0 0 0 / 13%);
   margin-top:-50px;
   width: 200px;
-  background-color: #F4F4F4;
+  background-color: #BEBCBC;
   visibility: hidden;
   position: fixed;
   top: 125px;
   right: 129px;
   border-radius:15px;
+}
+
+.user-nav-options > a:first-of-type {
+  border-bottom:2px solid rgba(190,188,188, .4);
+}
+
+.user-nav-options > a:first-of-type:hover {
+  /* TODO make it so that it does have opacity on hover */
+  opacity:unset;
 }
 
 .user-nav:hover .user-nav-options {

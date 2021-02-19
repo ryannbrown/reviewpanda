@@ -1,8 +1,9 @@
 
 const uuid = require('uuid').v4
 const handleReviewPost = (req, res, db, uuidv4) => {
-    const { avatar, title, test_uuid, rating, email, description, full_name, date_posted } = req.body;
+    const { avatar, title, test_uuid, rating, email, description, full_name, date_posted, user_uuid } = req.body;
     let test_title = title;
+    console.log("user uuid", user_uuid)
 
 
     if (!test_uuid || !rating || !email || !description  || !title || email == 'undefined') {
@@ -19,6 +20,7 @@ const handleReviewPost = (req, res, db, uuidv4) => {
     .insert([
       {
           // TODO ADD LINK ON SITE WHERE TEST IS
+          user_uuid,
       test_title: test_title,
       test_uuid: test_uuid,
       rating: rating,

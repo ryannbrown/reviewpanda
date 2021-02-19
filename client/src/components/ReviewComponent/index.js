@@ -79,63 +79,13 @@ class ReviewComponent extends Component {
         }
       });
   };
-  submitReview = (e) => {
-    // prevent multiple clicks
-    if (this.state.buttonDisabled) {
-      return;
-    }
-    this.setState({
-      buttonDisabled: true,
-    });
-    // end prevent multiple clicks
 
-    let ourContext = this.context;
-    e.preventDefault();
-    // let id = this.props.id;
-    let rating = this.state.rating
-    let description = this.description.current.value;
-    let email = ourContext.userData.email;
-    fetch("/api/postreview", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        full_name:ourContext.userData.first_name + " " +ourContext.userData.last_name,
-        title: this.props.thisTest.title,
-        email: ourContext.userData.email,
-        test_uuid: this.props.thisTest.uuid,
-        avatar: ourContext.userData.avatar,
-        rating: rating,
-        description: description,
-      }),
-    }).then((response) => {
-      this.props.fetchReviews();
-      // console.log("hey i did it")
-      // console.log(response);
-      if (response.status == "200") {
-        this.setState({
-          userHasReviewed: true,
-          isLoading: false,
-        });
-        this.fetchMyReview();
-        // this.fetchReviews();
-        // alert("success")
-      } else if (response.status == !"200") {
-        alert("there was an error");
-      }
-    });
-  };
 
   componentDidMount() {
-    // this.fetchReviews();
+   
     this.fetchMyReview();
   }
 
-  componentDidUpdate() {
-    // console.log("controls updated", this.state);
-  }
 
   render() {
 
@@ -173,7 +123,7 @@ class ReviewComponent extends Component {
         // console.log(truthyReviews, reviews)
         var items = reviews.map((item, i) => (
           <div key={i} className="single-review">
-           <div className="review-avatar" style={{backgroundImage:`url(${item.avatar}`}}></div>
+           <Link to={`/profile/${item.user_uuid}`}><div className="review-avatar" style={{backgroundImage:`url(${item.avatar}`}}></div></Link>
            <div className="single-review-content">
                <div className="single-review-heading">
                    <a>{item.full_name}</a>

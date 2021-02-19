@@ -164,6 +164,7 @@ class MyProfile extends Component {
     if (reviews) {
       // console.log(truthyReviews, reviews)
       var items = reviews.map((item, i) => (
+        <Link to={`/tests/${item.test_uuid}`}>
         <div key={i} className="single-review">
           {/* <div
             className="review-avatar"
@@ -194,15 +195,17 @@ class MyProfile extends Component {
             <i className="lni lni-chevron-right my-review-chevron"></i>
           </Link>
         </div>
+        </Link>
       ));
     }
 
     if (savedTests) {
       var tests = savedTests.map((item, i) => (
+        <Link to={`/tests/${item[0]}`}>
         <div className="single-review">
-          <Link to={`/tests/${item[0]}`}>
+         
             <p>{item[1]}</p>
-          </Link>
+         
           <div
             onClick={() => {
               this.removeTest({ item });
@@ -214,6 +217,7 @@ class MyProfile extends Component {
             <i className="lni lni-chevron-right my-review-chevron"></i>
           </Link>
         </div>
+        </Link>
       ));
     }
 

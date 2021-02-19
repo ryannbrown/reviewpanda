@@ -104,6 +104,7 @@ class ReviewControls extends Component {
       },
       body: JSON.stringify({
         full_name:ourContext.userData.first_name + " " +ourContext.userData.last_name,
+        user_uuid: ourContext.userData.uuid,
         title: this.props.thisTest.title,
         email: ourContext.userData.email,
         test_uuid: this.props.thisTest.uuid,

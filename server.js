@@ -25,6 +25,7 @@ const updateReview = require("./controllers/updateReview");
 const reviewList = require("./controllers/getReviews");
 const myReview = require("./controllers/getMyReview");
 const allMyReviews = require("./controllers/getAllMyReviews.js");
+const usersReviews = require("./controllers/getUsersReviews.js");
 const removeReview = require("./controllers/removeReview.js");
 const getTests = require("./controllers/getTests.js");
 const getTest = require("./controllers/getTest.js");
@@ -103,6 +104,9 @@ app.get("/api/review/:test_uuid/user/:email", (req, res) => {
 });
 app.get("/api/my_reviews/:email", (req, res) => {
   allMyReviews.handleGetMyReviews(req, res, db);
+});
+app.get("/api/users_reviews/:uuid", (req, res) => {
+  usersReviews.handleGetUsersReviews(req, res, db);
 });
 app.get("/api/tests/:uuid", (req, res) => {
   getTest.handleTestFetch(req, res, db);

@@ -1,5 +1,6 @@
 .reviews-header {
     display:flex;
+    justify-content: space-between;
 }
 
 .reviews-header h1 {
@@ -47,7 +48,7 @@
 .single-review-content {
     display: flex;
     flex-direction: column;
-    width: 75%;
+    width: 100%;
     text-align: left;
     margin-left: 50px;
 }

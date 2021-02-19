@@ -272,7 +272,7 @@ export default class Nav extends Component {
                       <img src={context.userData.avatar}/>
                       <div className="user-nav-options">
                       <Link to="/myprofile">Profile</Link>
-                      <hr></hr>
+                      {/* <hr></hr> */}
                       <Link>Support</Link>
                       <Link onClick={this.logOut}>Log Out</Link>
                       </div>

@@ -11,12 +11,13 @@
 
 .profile-welcome {
     display:flex;
+    text-align:left;
     /* justify-content: center; */
 }
 
 .my-profile-content {
     width:100%;
-    max-width:1200px;
+    max-width:980px;
     margin:0px auto;
 }
 
@@ -30,15 +31,17 @@
 }
 
 
-.profile-page .single-review-content {
+
+.profile-page .single-review-content, .public-profile-page .single-review-content {
     margin-left:0px;
 }
 
 
-.profile-page .reviews-wrapper{
+.profile-page .reviews-wrapper, .public-profile-page .reviews-wrapper {
     width: unset;
     max-width:unset;
 }
+
 
 
 .my-review-chevron {

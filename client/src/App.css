@@ -11,6 +11,8 @@ input:focus {
 .App {
   text-align: center;
   overflow-x: hidden !important;
+  /* TODO make sure this isn't a bad choice */
+  overflow-y: hidden;
 }
 
 h1, h2, h3 {
