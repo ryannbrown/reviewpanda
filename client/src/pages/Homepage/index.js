@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './style.css';
 import Navbar from "../../components/Nav"
 import MostPopular from "../../components/MostPopular/index"
+import RecentlyReviewed from "../../components/RecentlyReviewed/index"
 import {Link} from "react-router-dom"
 import DropdownSearch from "../../components/DropdownSearch/index"
 
@@ -83,6 +84,7 @@ export default class Homepage extends Component {
                    </div>
                </div>
                <MostPopular></MostPopular>
+               <RecentlyReviewed></RecentlyReviewed>
             </div>
         )
     }

@@ -150,7 +150,7 @@ class MyReview extends Component {
                 >
                   Update Review
                 </button>
-                <i class="lni lni-heart review-heart"></i>
+                {!this.props.testSaved && this.props.thisTest ?   <i onClick={() => {this.props.saveTest(this.props.thisTest.title)}} className="lni lni-heart review-heart"></i> : <i class="lni lni-checkmark-circle review-heart"></i> }
                 </div>
                 <p className="under-text"><i>Feel free to edit your review above!</i></p>
               </form>

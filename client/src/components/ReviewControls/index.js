@@ -130,6 +130,9 @@ class ReviewControls extends Component {
   };
 
   componentDidMount() {
+    if (this.props.currentUser) {
+      this.fetchMyReview(this.props.currentUser);
+    }
     
   }
 
@@ -198,7 +201,7 @@ class ReviewControls extends Component {
                   placeholder="write description for this solution"
                 ></textarea>
                 <div>
-                  {showLoginAlert && !context.userData.email && <p style={{color: '#ff5959'}}>Please login/register to contribute on Review Panda!</p>}
+                  {showLoginAlert && !context.userData.email && <p className="alert alert-danger">Please login/register to contribute on Review Panda!</p>}
                 <button
                   disabled={this.state.buttonDisabled}
                   className="btn login-btn"
@@ -206,7 +209,7 @@ class ReviewControls extends Component {
                 >
                   Submit Review
                 </button>
-                {!this.props.testSaved ?   <i onClick={this.props.saveTest} className="lni lni-heart review-heart"></i> : <i class="lni lni-checkmark-circle review-heart"></i> }
+                {!this.props.testSaved && this.props.thisTest ?   <i onClick={() => {this.props.saveTest(this.props.thisTest.title)}} className="lni lni-heart review-heart"></i> : <i class="lni lni-checkmark-circle review-heart"></i> }
                 {/* <i class="lni lni-heart review-heart"></i> */}
                 </div>
                 <p className="under-text"><i>Don’t have time to leave a review? Save to submit later!</i></p>
@@ -221,6 +224,8 @@ class ReviewControls extends Component {
           ) : (
             <MyReview
             // myRating = {this.state.rating}
+            testSaved={this.props.testSaved}
+            saveTest={this.props.saveTest}
             fetchMyReview= {this.fetchMyReview}
             thisTest={this.props.thisTest}
               fetchFromDelete={this.fetchFromDelete}

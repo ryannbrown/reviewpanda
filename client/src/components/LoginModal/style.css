@@ -31,6 +31,7 @@
 .modal-box .actual-form {
         display: flex;
         flex-direction: column;
+        /* align-items:center; */
     }
 
 
@@ -147,4 +148,9 @@
     font-family: inherit;
     font-size: inherit;
     line-height: initial !important;
+  }
+
+
+  .actual-form.registration .alert {
+    width:243px;
   }

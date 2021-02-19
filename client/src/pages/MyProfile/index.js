@@ -4,7 +4,9 @@ import ReviewControls from "../../components/ReviewControls";
 import StarRatings from "react-star-ratings";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
-import SavedTests from "../../components/SavedTests/index"
+import SavedTests from "../../components/SavedTests/index";
+import uniq from 'lodash/uniq';
+import _ from 'lodash'
 
 import {
   ThemeContextConsumer,
@@ -13,7 +15,7 @@ import {
 var format = require("date-fns/format");
 
 class MyProfile extends Component {
-    static contextType = ThemeContextConsumer;
+  static contextType = ThemeContextConsumer;
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +26,7 @@ class MyProfile extends Component {
       reviewIsLoading: true,
       testIsLoading: true,
       pageReady: true,
-    //   savedTests: []
+      //   savedTests: []
     };
   }
 
@@ -39,128 +41,121 @@ class MyProfile extends Component {
         if (json == "error getting review") {
           this.setState({
             reviews: [],
-      
           });
         } else {
           this.setState({
             reviews: json,
-            numOfReviews: json.length
+            numOfReviews: json.length,
             // userHasReviewed: false,
           });
         }
       });
   };
 
-
   removeTest = (test) => {
-if (test) {
-
-    let ourContext = this.context;
-    let email = ourContext.userData.email
-    // console.log('clicked')
-      fetch('/api/removetest', {
-        method: 'POST',
+    if (test) {
+      let ourContext = this.context;
+      let email = ourContext.userData.email;
+      // console.log('clicked')
+      fetch("/api/removetest", {
+        method: "POST",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           test_uuid: test,
           email: email,
-        })
-      }).then(response => {
-        console.log("hey i did it")
-        console.log(response)
-        if (response.status == '200') {
-            this.formatSavedTests(this.props.context.userData.saved)
-            ourContext.fetchUserData(email)
-
-        } else if (response.status == '400') {
-          console.log("failed")
+        }),
+      }).then((response) => {
+        console.log("hey i did it");
+        console.log(response);
+        if (response.status == "200") {
+          this.formatSavedTests(this.props.context.userData.saved);
+          ourContext.fetchUserData(email);
+        } else if (response.status == "400") {
+          console.log("failed");
         }
-      })
+      });
     } else {
       this.setState({
-        loginAlert: true
-      })
+        loginAlert: true,
+      });
     }
-
-  }
+  };
 
   formatSavedTests = (savedTest) => {
-console.log(savedTest)
-
-const allSaved = []
-
-savedTest.forEach(test => {
-    // function extractFirstText(str){
-    //     const matches = str.match(/"(.*?)"/);
-    //     console.log(matches)
-
-    //     // return matches
-    //     //   ? matches[1]
-    //     //   : str;
-    //   }
-    //   extractFirstText(test)
-
-    // console.log(test.match(/\(([^)]+)\)/)[1])
 
 
-function extractAllText(str){
-    const re = /"(.*?)"/g;
-    const result = [];
-    let current;
-    while (current = re.exec(str)) {
-      result.push(current.pop());
+
+    let uniqueTests = _.uniq(savedTest)
+
+
+    const allSaved = [];
+    if (savedTest) {
+     uniqueTests.forEach((test) => {
+        // function extractFirstText(str){
+        //     const matches = str.match(/"(.*?)"/);
+        //     console.log(matches)
+
+        //     // return matches
+        //     //   ? matches[1]
+        //     //   : str;
+        //   }
+        //   extractFirstText(test)
+
+        // console.log(test.match(/\(([^)]+)\)/)[1])
+
+        function extractAllText(str) {
+          const re = /"(.*?)"/g;
+          const result = [];
+          let current;
+          while ((current = re.exec(str))) {
+            result.push(current.pop());
+          }
+          allSaved.push(result);
+        }
+        extractAllText(test);
+      });
+
+      
+
+      this.setState({
+        savedTests: allSaved,
+      });
     }
-    allSaved.push(result)
-  }
-  extractAllText(test)
-})
-
-console.log(allSaved)
-
-this.setState({
-    savedTests: allSaved
-})
-
-
-  }
+  };
 
   fetchUserData = (email) => {
-      let ourContext = this.context;
-    ourContext.fetchUserData()
-  }
-
-
+    let ourContext = this.context;
+    ourContext.fetchUserData();
+  };
 
   componentDidMount() {
-      console.log('profile did mount')
-      if (this.props.email) {
-          this.fetchMyReviews(this.props.email)
-      }
-      if (this.props.context.userData.email) {
-        console.log('mounted', this.props.context.userData.saved)
-          this.fetchUserData()
-      }
+
+    if (this.props.email) {
+      this.fetchMyReviews(this.props.email);
+    }
+    if (this.props.context.userData.email) {
+    
+      this.fetchUserData();
+    }
   }
 
   componentDidUpdate(prevProps) {
-
-
     //Typical usage, don't forget to compare the props
     // makes sure the email isn't null by pulling and comparing props
     if (this.props.email !== prevProps.email) {
       this.fetchMyReviews(this.props.email);
-      this.formatSavedTests(this.props.context.userData.saved)
+      this.formatSavedTests(this.props.context.userData.saved);
     }
     // when component is remounting, this ensures that an update is made if context was changed
-    if (this.props.context.userData.saved !== prevProps.context.userData.saved) {
+    if (
+      this.props.context.userData.saved !== prevProps.context.userData.saved
+    ) {
       this.fetchMyReviews(this.props.email);
-      this.formatSavedTests(this.props.context.userData.saved)
-    
+      this.formatSavedTests(this.props.context.userData.saved);
     }
-   
   }
 
   render() {
@@ -195,20 +190,32 @@ this.setState({
             </div>
             <div className="single-review-description">{item.description}</div>
           </div>
-          <Link to={`/tests/${item.test_uuid}`}><i class="lni lni-chevron-right my-review-chevron"></i></Link>
+          <Link to={`/tests/${item.test_uuid}`}>
+            <i className="lni lni-chevron-right my-review-chevron"></i>
+          </Link>
         </div>
       ));
     }
 
-if (savedTests) {
-    var tests = savedTests.map((item, i) => (
+    if (savedTests) {
+      var tests = savedTests.map((item, i) => (
         <div className="single-review">
-            <Link to={`/tests/${item[0]}`}><p>{item[1]}</p></Link>
-            <div onClick={() => {this.removeTest({item})}}><i class="lni lni-close delete-icon"></i></div>
-            <Link to={`/tests/${item[0]}`}><i class="lni lni-chevron-right my-review-chevron"></i></Link>
+          <Link to={`/tests/${item[0]}`}>
+            <p>{item[1]}</p>
+          </Link>
+          <div
+            onClick={() => {
+              this.removeTest({ item });
+            }}
+          >
+            <i className="lni lni-close delete-icon"></i>
+          </div>
+          <Link to={`/tests/${item[0]}`}>
+            <i className="lni lni-chevron-right my-review-chevron"></i>
+          </Link>
         </div>
       ));
-}
+    }
 
     // console.log(this.state.posts)
 
@@ -262,12 +269,11 @@ if (savedTests) {
                   </div>
                 </div>
                 <div className="saved-tests">
-              <h1>Saved Tests</h1>
-{tests}
+                  <h1>Saved Tests</h1>
+                  {tests}
 
-{/* <SavedTests></SavedTests> */}
-</div>
-
+                  {/* <SavedTests></SavedTests> */}
+                </div>
 
                 <div className="reviews-wrapper">
                   {reviews.length > 0 ? (
@@ -281,7 +287,6 @@ if (savedTests) {
                     <h1>There are no reviews yet. Be the first!</h1>
                   )}
                 </div>
-               
               </div>
             </div>
           )}

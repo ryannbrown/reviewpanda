@@ -281,3 +281,86 @@ DROP TABLE IF EXISTS reviews; Create TABLE reviews(id SERIAL, test_title varchar
        .update('author', author)
      .then(res.send("POST request to the homepage"))
         .catch(err => console.log("err: ", err))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        --- REVIEWS
+
+        select * from reviews
+
+delete from reviews
+where id ='3'
+
+
+update reviews
+set description = 'hey!'
+where review_uuid = '307c5aca-29b3-4a5e-a875-5388a3f0eaa4'
+
+select * from user_profiles
+
+SELECT *
+FROM information_schema.columns
+
+select * from user_profiles
+
+
+
+alter table reviews
+add column date_posted date;
+
+select * from user_profiles
+
+update user_profiles
+set avatar = 'https://upload.wikimedia.org/wikipedia/en/0/01/Nathan_Drake_Uc4_full_body_shot.png'
+where id = 3
+
+
+
+alter table user_profiles
+add column saved_tests text[][]
+
+UPDATE user_profiles SET saved_tests[4]= 'yo mamma'
+    WHERE email = 'rb054549@gmail.com';
+	
+UPDATE user_profiles SET saved = saved || '[{"weight": 55, "date": "1996-03-02"}]'' WHERE email = 'rb054549@gmail.com'
+  set weitghtsovertime = weightsovertime||'[{"weight": 55, "date": "1996-03-02"}]
+
+update dummy set list = list || ARRAY[2, 3] where id = 1;
+
+alter table reviews
+drop column saved_tests
+
+select * from reviews
+
+delete from reviews
+where full_name = 'undefined undefined'
+
+drop table sal_emp
+
+CREATE TABLE sal_emp (
+    name            text,
+    pay_by_quarter  integer[],
+    schedule        text[][]
+);
+
+select * from sal_emp
+
+
+INSERT INTO sal_emp
+    VALUES ('Bill',
+    '{10000, 10000, 10000, 10000}',
+    '{{"meeting", "lunch"}, {"training", "presentation"}}');

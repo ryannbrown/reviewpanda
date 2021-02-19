@@ -21,7 +21,8 @@ class DetailsPage extends Component {
       reviewIsLoading:true,
       testIsLoading:true,
       pageReady: true,
-      saveTest: false
+      isTestSaved: false,
+      attempt: 0
     };
   }
 
@@ -50,7 +51,7 @@ let email = ourContext.userData.email
         console.log(response)
         if (response.status == '200') {
           this.setState({
-            saveTest: true
+            isTestSaved: true
           })
 
         } else if (response.status == '400') {
@@ -110,9 +111,39 @@ let email = ourContext.userData.email
   
   }
 
+  checkIfTestIsSaved = (savedTests, thisPost) => {
+    console.log(this.state.testSaved)
+   let currentTest = thisPost
+   console.log(savedTests)
+   console.log(currentTest)
+    let saved = JSON.stringify(savedTests)
+      if (saved.includes(currentTest)){
+        console.log("it includes it")
+        this.setState({
+          isTestSaved: true,
+          attempt: this.state.attempt + 1
+        })
+      }
+  }
+
 
   componentDidMount() {
     this.fetchPosts();
+
+
+    // console.log(ourContext)
+
+  
+  }
+
+
+  componentDidUpdate(prevState) {
+    let ourContext = this.context;
+    // make sure to not have continuous loop when checking if this current test has been saved by a user
+    // for some reason my original conditional wasn't working so I incremeneted 'attempt' to ensure there was no loop.
+    if (this.state.thisPost !== prevState.thisPost && ourContext.userData.saved && this.state.attempt <= 1) {
+        this.checkIfTestIsSaved(this.context.userData.saved, this.state.thisPost.uuid)
+    }
   }
 
   render() {
@@ -137,19 +168,6 @@ let email = ourContext.userData.email
         </div>
       );
     }
-  // if (thisPost.length > 0 && truthyReviews) {
-  //     return (
-  //       <div className="loading-block">
-  //         <ClipLoader
-  //           // css={override}
-  //           className="clippy"
-  //           size={35}
-  //           color={"#196196"}
-  //           // loading={this.state.loading}
-  //         />
-  //       </div>
-  //     );
-  //   }
 
    else {
       return (
@@ -160,7 +178,7 @@ let email = ourContext.userData.email
               style={{ display: "flex", height: "100%", width: "100%" }}
             >
               <div className="details-hero">
-{!this.state.saveTest ?   <i onClick={() => {this.saveTest(thisPost.title)}} class="lni lni-heart hero-heart"></i> :  <i class="lni lni-checkmark-circle hero-heart"></i> }
+{!this.state.isTestSaved ?   <i onClick={() => {this.saveTest(thisPost.title)}} class="lni lni-heart hero-heart"></i> :  <i class="lni lni-checkmark-circle hero-heart"></i> }
             
              
               <h1>{thisPost.title}</h1>
@@ -196,8 +214,8 @@ let email = ourContext.userData.email
 
                      { pageReady && (
                 <ReviewControls
-              
-                testSaved={this.state.saveTest}
+              // TODO make saveTest the name of the saveTest variable in state
+                testSaved={this.state.isTestSaved}
                 saveTest={this.saveTest}
                 thisTest={thisPost}
                 test_uuid= {this.props.match.params.uuid}

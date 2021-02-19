@@ -164,3 +164,18 @@ p, li, h3, h4, h5, a, button {
 .modal-btn:hover {
   box-shadow: 0 0 10px#77E0D4;
 }
+
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  /* border-radius: .25rem; */
+}

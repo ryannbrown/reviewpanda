@@ -431,7 +431,8 @@ input#nav-toggle {
 
 
 .user-nav-options {
-  margin-top:-5px;
+  box-shadow:0 2px 4px 0 rgb(0 0 0 / 13%);
+  margin-top:-50px;
   width: 200px;
   background-color: #F4F4F4;
   visibility: hidden;

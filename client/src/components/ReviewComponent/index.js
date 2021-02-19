@@ -27,7 +27,7 @@ class ReviewComponent extends Component {
 
 
   changeRating = ( newRating, name ) => {
-    console.log(newRating, "for the win")
+    // console.log(newRating, "for the win")
     this.setState({
       rating: newRating
     });
@@ -55,7 +55,7 @@ class ReviewComponent extends Component {
     });
     this.setState({ isLoading: true });
     const ourContext = this.context;
-    console.log(ourContext.userData.email);
+    // console.log(ourContext.userData.email);
     fetch(
       `/api/review/${this.props.test_uuid}/user/${this.props.currentUser}`
     )
@@ -69,7 +69,7 @@ class ReviewComponent extends Component {
             userHasReviewed: false,
           });
         } else {
-          console.log("this is my review", json);
+          // console.log("this is my review", json);
           this.setState({
             myReview: json[0],
             userHasReviewed: true,
@@ -113,7 +113,7 @@ class ReviewComponent extends Component {
     }).then((response) => {
       this.props.fetchReviews();
       // console.log("hey i did it")
-      console.log(response);
+      // console.log(response);
       if (response.status == "200") {
         this.setState({
           userHasReviewed: true,
@@ -134,7 +134,7 @@ class ReviewComponent extends Component {
   }
 
   componentDidUpdate() {
-    console.log("controls updated", this.state);
+    // console.log("controls updated", this.state);
   }
 
   render() {
@@ -152,18 +152,18 @@ class ReviewComponent extends Component {
      let sum = []
      reviews.forEach(function(review) {
          sum.push(review.rating)
-       console.log(review.rating)
+      //  console.log(review.rating)
      })
      var total = 0
      for(var i = 0; i < sum.length; i++) {
         total += sum[i];
-        console.log(total)
+        // console.log(total)
     }
-    console.log(total, sum.length)
+    // console.log(total, sum.length)
     var numReviews = sum.length;
     var avg = total / sum.length;
     var theAvg = (Math.round(avg * 100) / 100).toFixed(2);
-    console.log(theAvg)
+    // console.log(theAvg)
     //  console.log(avg)
  }
 

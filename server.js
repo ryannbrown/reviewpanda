@@ -30,6 +30,7 @@ const getTests = require("./controllers/getTests.js");
 const getTest = require("./controllers/getTest.js");
 const getCats = require("./controllers/getCats.js");
 const getReviewsByCat = require("./controllers/getReviewsByCat.js");
+const recentReviews = require("./controllers/getRecentReviews.js");
 var axios = require("axios");
 var cheerio = require("cheerio");
 var puppeteer = require("puppeteer");
@@ -93,6 +94,9 @@ app.get("/api/profile/:email", (req, res) => {
 });
 app.get("/api/review/:test_uuid", (req, res) => {
   reviewList.handleReviewGet(req, res, db);
+});
+app.get("/api/recentreviews", (req, res) => {
+  recentReviews.handleRecentReviewGet(req, res, db);
 });
 app.get("/api/review/:test_uuid/user/:email", (req, res) => {
   myReview.handleMyReview(req, res, db);

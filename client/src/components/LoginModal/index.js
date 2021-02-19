@@ -29,7 +29,9 @@ class LoginModal extends Component {
     this.state = {
       state: "hello I am Home's state",
       modalOpened: false,
-      registrationToggled: false
+      registrationToggled: false,
+      showLoginAlert: false,
+      showRegisterAlert:false
       //   loggedInState: this.props.loggedInState,
       //   user: null,
       //   userLoggedIn: this.props.userLoggedIn
@@ -114,7 +116,7 @@ class LoginModal extends Component {
         //     // user: email,
         //     show: false,
         //     setShow: false,
-        //     showLoginAlert: false,
+        //     showRegisterAlert: false,
         //   });
           // }
           // console.log(email);
@@ -183,7 +185,7 @@ class LoginModal extends Component {
             // user: email,
             show: false,
             setShow: false,
-            showLoginAlert: false,
+            showRegisterAlert: false,
           });
           // }
           // console.log(email);
@@ -196,7 +198,7 @@ class LoginModal extends Component {
           // alert("success")
         } else if (response.status == "400") {
           this.setState({
-            showLoginAlert: true,
+            showRegisterAlert: true,
           });
         }
       });
@@ -224,7 +226,7 @@ class LoginModal extends Component {
 
   render() {
 
-    const {showLoginAlert} = this.state;
+    const {showRegisterAlert, showLoginAlert} = this.state;
     return (
       <div className="modal-background">
         <div className="modal-box">
@@ -236,28 +238,29 @@ class LoginModal extends Component {
                      
                 <h1>Login</h1>
                 <input ref={this.email} placeholder="email" />
-                <input ref={this.password} placeholder="password" />
+                <input type="password" ref={this.password} placeholder="password" />
                 <button className="modal-btn btn" >Sign In</button>
+                {showLoginAlert && <div className="alert alert-danger">Incorrect email or password</div>}
                 <p>First Time?</p>
                 <button className="modal-btn btn" type="submit" onClick={this.toggleRegister}>Register</button>
               </form>
             ) :
            
              (   
-              <form className="actual-form" onSubmit={this.handleRegistration}>
+              <form className="actual-form registration" onSubmit={this.handleRegistration}>
                     {/* Registration Form */} 
                 <h1>Register</h1>
-                <input ref={this.first_name} placeholder="First Name" />
-                <input ref={this.last_name} placeholder="Last Name" />
-                <input ref={this.email} placeholder="Email" />
-                <input ref={this.password} placeholder="Password" />
-                <input ref={this.verPassword} placeholder="Verify Password" />
+                <input ref={this.first_name} name="first" placeholder="First Name" />
+                <input ref={this.last_name} name="last" placeholder="Last Name" />
+                <input ref={this.email} name="email" placeholder="Email" />
+                <input type="password" ref={this.password} placeholder="Password" />
+                <input type="password" ref={this.verPassword} placeholder="Verify Password" />
                 <div className="form-checkbox">
                 <label>Subscribe?</label>
                 <input ref={this.isSubscribed} type="checkbox"></input>
                 </div>
                 <button className="modal-btn btn" type="submit">Register</button>
-                {showLoginAlert && <div>This email may already exist in our system</div>}
+                {showRegisterAlert && <div className="alert alert-danger">This email may already exist in our system</div>}
               </form>
             )}
            
