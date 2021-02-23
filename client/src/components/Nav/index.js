@@ -269,7 +269,8 @@ export default class Nav extends Component {
                       {/* <button onClick={this.logOut} className="login-btn btn">
                         Logout
                       </button> */}
-                      <img src={context.userData.avatar}/>
+                      {/* style={{backgroundImage: context.userData.has_uploaded_img ? `url('https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}')` : `backgroundImage:'url(${context.userData.avatar})'` , */}
+                      {context.userData.has_uploaded_img ?  <img src={`https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}`}/> :  <img src={context.userData.avatar}/> }
                       <div className="user-nav-options">
                       <Link to="/myprofile">Profile</Link>
                       {/* <hr></hr> */}

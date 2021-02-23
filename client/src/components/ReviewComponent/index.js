@@ -123,7 +123,7 @@ class ReviewComponent extends Component {
         // console.log(truthyReviews, reviews)
         var items = reviews.map((item, i) => (
           <div key={i} className="single-review">
-           <Link to={`/profile/${item.user_uuid}`}><div className="review-avatar" style={{backgroundImage:`url(${item.avatar}`}}></div></Link>
+           <Link to={`/profile/${item.user_uuid}`}><div className="review-avatar" style={{backgroundImage:`url('${item.avatar}')`}}></div></Link>
            <div className="single-review-content">
                <div className="single-review-heading">
                    <a>{item.full_name}</a>

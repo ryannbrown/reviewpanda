@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import SavedTests from "../../components/SavedTests/index";
 import uniq from 'lodash/uniq';
 import _ from 'lodash'
-
+import CropperTool from "../../components/CropperTool"
 import {
   ThemeContextConsumer,
   ThemeContextProvider,
@@ -26,8 +26,12 @@ class MyProfile extends Component {
       reviewIsLoading: true,
       testIsLoading: true,
       pageReady: true,
+     showCropModal:false
       //   savedTests: []
     };
+
+      // this.fileChanged = this.fileChanged.bind(this);
+      // this.img = React.createRef();
   }
 
   fetchMyReviews = (email) => {
@@ -131,6 +135,73 @@ class MyProfile extends Component {
     ourContext.fetchUserData();
   };
 
+
+//   fileChanged(event) {
+//     console.log(event)
+//     var f = event.target.files;
+//     console.log(f)
+//     this.setState({
+//         file: f
+//     }, function () { console.log(this.state) });
+//     // console.log("state",this.state.file)
+
+//     // this.handleImage()
+// }
+
+  uploadAvatar = () => {
+
+    // let img = this.img.current.value
+
+   const filename = this.state.file[0].name
+        console.log(this.state.file)
+
+        const thisFormData = new FormData();
+        thisFormData.append('element1', this.state.file[0]);
+        var requestOptions = {
+            method: 'POST',
+            body: thisFormData,
+            redirect: 'follow'
+        };
+
+        fetch("/api/upload/", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+
+        const postItem = () => {
+          // console.log("posting to DB")
+          // POST TO DB
+          fetch('/api/addPost', {
+              method: 'POST',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  image: filename
+              })
+          }).then(response => {
+              // console.log("hey i did it")
+              // console.log(response)
+              if (response.status == '200') {
+                  this.setState({
+                      itemPosted: true
+                  })
+              }
+          })
+
+      }
+      postItem()
+
+
+  }
+
+  toggleCropModal = () => {
+    this.setState({
+      showCropModal: !this.state.showCropModal
+    })
+  }
+
   componentDidMount() {
 
     if (this.props.email) {
@@ -140,6 +211,8 @@ class MyProfile extends Component {
     
       this.fetchUserData();
     }
+
+   
   }
 
   componentDidUpdate(prevProps) {
@@ -156,6 +229,10 @@ class MyProfile extends Component {
       this.fetchMyReviews(this.props.email);
       this.formatSavedTests(this.props.context.userData.saved);
     }
+// this should work but current it requires a refresh for new avatar to be seen
+    // if (this.props.context.userData !== prevProps.context.userData) {
+    //   this.fetchUserData();
+    // }
   }
 
   render() {
@@ -236,19 +313,7 @@ class MyProfile extends Component {
         </div>
       );
     }
-    // if (thisPost.length > 0 && truthyReviews) {
-    //     return (
-    //       <div className="loading-block">
-    //         <ClipLoader
-    //           // css={override}
-    //           className="clippy"
-    //           size={35}
-    //           color={"#196196"}
-    //           // loading={this.state.loading}
-    //         />
-    //       </div>
-    //     );
-    //   }
+
     else {
       return (
         <ThemeContextConsumer>
@@ -264,8 +329,27 @@ class MyProfile extends Component {
             >
               <div className="my-profile-content">
                 <div className="profile-welcome">
+                    
                   <div>
-                    <img src={context.userData.avatar} />
+                 
+                   <div onClick={this.toggleCropModal} className="avatar-profile-page"
+                    // style={{backgroundImage:`url(${context.userData.avatar})`,
+                    style={{backgroundImage: context.userData.has_uploaded_img ? `url('https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}')` : `url('${context.userData.avatar}')` ,
+                     backgroundSize: 'cover', width: '115px', margin: '0px 25px', borderRadius: '15px'}}>
+                     <div>
+                     <i                    // onClick={this.uploadAvatar}
+                       class="lni lni-upload upload-avatar-icon"></i>
+                     </div>
+                       {/* <label for="file-input">
+                  
+                         </label> */}
+                         {/* <input
+                         id="file-input"
+                         className="upload-file"
+                            onChange={this.fileChanged.bind(this)}
+                            ref={this.img}
+                            type="file" required placeholder="Upload File" /> */}
+                       </div>
                   </div>
                   <div>
                     <h1>Welcome Back, {context.userData.first_name}</h1>
@@ -292,6 +376,10 @@ class MyProfile extends Component {
                   )}
                 </div>
               </div>
+              {this.state.showCropModal && context.userData.uuid && 
+              <div className="cropper-modal-background">
+                <CropperTool currentUser={context.userData.uuid} toggleCropModal={this.toggleCropModal}></CropperTool>
+              </div>}
             </div>
           )}
         </ThemeContextConsumer>

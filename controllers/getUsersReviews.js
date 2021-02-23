@@ -10,7 +10,7 @@ const handleGetUsersReviews = (req, res, db) => {
         .where('uuid', uuid )
         .returning('email')
         .then(user => {
-            console.log(user[0].email)
+            // console.log(user[0].email)
           return trx('reviews')
             .returning('*')
             .where('email', user[0].email)

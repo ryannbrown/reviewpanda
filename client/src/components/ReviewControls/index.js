@@ -109,6 +109,7 @@ class ReviewControls extends Component {
         email: ourContext.userData.email,
         test_uuid: this.props.thisTest.uuid,
         avatar: ourContext.userData.avatar,
+        has_uploaded_img: ourContext.userData.has_uploaded_img,
         rating: rating,
         description: description,
       }),

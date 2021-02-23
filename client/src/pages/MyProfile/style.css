@@ -63,3 +63,60 @@
     top:15px;
     left:15px;
 }
+.avatar-profile-page{
+    position:relative;
+    cursor:pointer;
+width: 115px;
+margin: 0px 25px;
+border-radius: 15px;
+background-size: contain;
+height: 100%;
+/* z-index:-10; */
+display:flex;
+flex-direction: center;
+align-items: center;
+}
+
+.upload-avatar-icon {
+display:none;
+color:#77e0d4;
+position:absolute;
+left:50%;
+top:50%;
+margin-left:-8px;
+margin-top:-8px;
+cursor:pointer;
+/* z-index:-5 */
+}
+
+.avatar-profile-page:hover {
+    /* filter:brightness(25%) */
+}
+
+.avatar-profile-page:hover .upload-avatar-icon{
+display:block;
+transition:.3s;
+}
+
+.upload-file {
+    /* visibility:hidden; */
+    /* display:none; */
+    /* opacity:0; */
+    cursor:pointer;
+    display:none;
+}
+
+.cropper-modal-background {
+    z-index: 9999;
+    /* height: 100%; */
+    width: 100%;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 13%);
+}
+
+.crop-back {
+    cursor:pointer;
+}
+
+
