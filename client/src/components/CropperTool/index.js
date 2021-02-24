@@ -23,7 +23,7 @@ export default class CropperTool extends Component {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
         this.setState({ src: reader.result })
-        console.log(reader.result)
+        // console.log(reader.result)
         this.dataURLtoFile(reader.result, `${this.props.currentUser}.jpg`)
       }
       );
@@ -41,7 +41,7 @@ export default class CropperTool extends Component {
   };
 
   onCropChange = (crop, percentCrop) => {
-      console.log("the crop", crop)
+    //   console.log("the crop", crop)
     // You could also use percentCrop:
     // this.setState({ crop: percentCrop });
     this.setState({ crop });
@@ -49,8 +49,8 @@ export default class CropperTool extends Component {
 
 
   dataURLtoFile(dataurl, filename) {
-      console.log("url", dataurl)
-        console.log("filename", filename);
+    //   console.log("url", dataurl)
+    //     console.log("filename", filename);
     let arr = dataurl.split(','),
         mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), 
@@ -62,7 +62,7 @@ export default class CropperTool extends Component {
     }
     let croppedImage = new File([u8arr], filename, {type:mime})
     // this.setState({filename: filename });
-    console.log("cropped Image", croppedImage)
+    // console.log("cropped Image", croppedImage)
     this.setState({croppedImage: croppedImage }) 
 }
   
@@ -75,7 +75,7 @@ export default class CropperTool extends Component {
         `cropped.jpeg`
       );
       this.setState({ croppedImageUrl });
-      console.log("the new url", croppedImageUrl)
+    //   console.log("the new url", croppedImageUrl)
     }
   }
 
@@ -118,12 +118,12 @@ export default class CropperTool extends Component {
         }
 
 
-        console.log("blob", blob)
+        // console.log("blob", blob)
         blob.name = fileName;
         window.URL.revokeObjectURL(this.fileUrl);
         this.fileUrl = window.URL.createObjectURL(blob);
         resolve(this.fileUrl);
-        console.log(this.fileUrl)
+        // console.log(this.fileUrl)
     }
       , 'image/jpeg');
 
@@ -158,7 +158,7 @@ export default class CropperTool extends Component {
         .catch(error => console.log('error', error));
 
     const postItem = () => {
-        console.log("posting to DB")
+        // console.log("posting to DB")
         // POST TO DB
         fetch('/api/addimg', {
             method: 'POST',
@@ -171,14 +171,14 @@ export default class CropperTool extends Component {
                 uuid: user
             })
         }).then(response => {
-            console.log("hey i did it")
-            console.log(response)
+            // console.log("hey i did it")
+            // console.log(response)
             if (response.status == '200') {
                 this.setState({
                     itemPosted: true
                 })
                 // possibly better way to do this, but aws link needs to refresh to new one
-                // window.location.reload();
+                window.location.reload();
                 // this.props.toggleCropModal();
             }
         })

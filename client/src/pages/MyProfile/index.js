@@ -335,7 +335,7 @@ class MyProfile extends Component {
                    <div onClick={this.toggleCropModal} className="avatar-profile-page"
                     // style={{backgroundImage:`url(${context.userData.avatar})`,
                     style={{backgroundImage: context.userData.has_uploaded_img ? `url('https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}')` : `url('${context.userData.avatar}')` ,
-                     backgroundSize: 'cover', width: '115px', margin: '0px 25px', borderRadius: '15px'}}>
+                     backgroundSize: 'cover', width: '115px', margin: '0px 25px', borderRadius: '15px', height:'153px', backgroundPosition:'center center'}}>
                      <div>
                      <i                    // onClick={this.uploadAvatar}
                        class="lni lni-upload upload-avatar-icon"></i>
