@@ -23,6 +23,7 @@ export default class CropperTool extends Component {
       const reader = new FileReader();
       reader.addEventListener('load', () => {
         this.setState({ src: reader.result })
+        console.log(reader.result)
         this.dataURLtoFile(reader.result, `${this.props.currentUser}.jpg`)
       }
       );
@@ -40,6 +41,7 @@ export default class CropperTool extends Component {
   };
 
   onCropChange = (crop, percentCrop) => {
+      console.log("the crop", crop)
     // You could also use percentCrop:
     // this.setState({ crop: percentCrop });
     this.setState({ crop });
@@ -47,6 +49,8 @@ export default class CropperTool extends Component {
 
 
   dataURLtoFile(dataurl, filename) {
+      console.log("url", dataurl)
+        console.log("filename", filename);
     let arr = dataurl.split(','),
         mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), 
@@ -71,6 +75,7 @@ export default class CropperTool extends Component {
         `cropped.jpeg`
       );
       this.setState({ croppedImageUrl });
+      console.log("the new url", croppedImageUrl)
     }
   }
 
@@ -99,17 +104,30 @@ export default class CropperTool extends Component {
     );
 
     return new Promise((resolve, reject) => {
+        const reader = new FileReader()
       canvas.toBlob(blob => {
         if (!blob) {
           //reject(new Error('Canvas is empty'));
           console.error('Canvas is empty');
           return;
         }
+
+        reader.readAsDataURL(blob)
+        reader.onloadend = () => {
+            this.dataURLtoFile(reader.result, `${this.props.currentUser}.jpg`)
+        }
+
+
+        console.log("blob", blob)
         blob.name = fileName;
         window.URL.revokeObjectURL(this.fileUrl);
         this.fileUrl = window.URL.createObjectURL(blob);
         resolve(this.fileUrl);
-      }, 'image/jpeg');
+        console.log(this.fileUrl)
+    }
+      , 'image/jpeg');
+
+     
     });
   }
 
@@ -160,7 +178,7 @@ export default class CropperTool extends Component {
                     itemPosted: true
                 })
                 // possibly better way to do this, but aws link needs to refresh to new one
-                window.location.reload();
+                // window.location.reload();
                 // this.props.toggleCropModal();
             }
         })
@@ -172,12 +190,12 @@ export default class CropperTool extends Component {
 
 
   componentDidUpdate() {
-      console.log(this.state)
-      console.log(this.props)
+    //   console.log(this.state)
+    //   console.log(this.props)
   }
 
   componentDidMount() {
-      console.log("props", this.props)
+    //   console.log("props", this.props)
   }
 
   render() {
