@@ -56,9 +56,9 @@ export default class Homepage extends Component {
 
         if (truthyCats) {
             // console.log(truthyReviews, reviews)
-            var items = cats.slice(0,8).map((item, i) => (
-                <Link to={`/categories/${item.category}`}>
-                {item.category}
+            var items = cats.map((item, i) => (
+                <Link to={`/categories/${item.panda_cat}`}>
+                {item.panda_cat}
                   </Link>
           
             ));

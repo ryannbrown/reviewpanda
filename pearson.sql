@@ -364,3 +364,10 @@ INSERT INTO sal_emp
     VALUES ('Bill',
     '{10000, 10000, 10000, 10000}',
     '{{"meeting", "lunch"}, {"training", "presentation"}}');
+
+
+
+    ---- 3/1/21
+    --- setting panda_cats
+
+    

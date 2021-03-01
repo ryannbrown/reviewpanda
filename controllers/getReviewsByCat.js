@@ -2,7 +2,7 @@
 // TODO: change the name of this to tests not reviews
 handleFetchByCat = (req, res, db) => {
     const {cat} = req.params;
-    db.select('*').from('all_tests').where('category', cat)
+    db.select('*').from('all_tests').where('panda_cat', cat)
     // .where({id, email})
       .then(review => {
         //   console.log(review)

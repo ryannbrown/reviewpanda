@@ -1,7 +1,7 @@
 const handleCatsFetch = (req, res, db) => {
     console.log('we are here')
     // const {id } = req.params;
-    db('panda_categories').distinct('category')
+    db('all_tests').distinct('panda_cat')
       .then(cat => {
           console.log(cat)
         if (cat.length) {
