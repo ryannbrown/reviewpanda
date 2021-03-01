@@ -60,10 +60,10 @@ class ListingPage extends Component {
       // console.log(truthyReviews, reviews)
       var items = cats.map((item, i) => (
         <div key={i} className="single-cat">
-          <Link to={`/categories/${item.category}`}>
+          <Link to={`/categories/${item.panda_cat}`}>
             <div style={{display:'flex'}}>
           <img className="category-icon" src={sunImg}></img>
-            <p>{item.category}</p>
+            <p>{item.panda_cat}</p>
             </div>
             <img className="chevron" src={chevRight}></img>
             </Link>

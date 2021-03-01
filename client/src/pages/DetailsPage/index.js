@@ -190,7 +190,7 @@ let email = ourContext.userData.email
               </div>
               <a target ="_blank" href={thisPost.link}><button className="login-btn btn">Learn More</button></a>
               </div>
-                <Link to={`/categories/${thisPost.category}`} className=" back-link">Back</Link>
+                <Link to={`/categories/${thisPost.panda_cat}`} className="back-link"><i style={{margin:'0px 5px'}} class="lni lni-arrow-left"></i> Explore all from {thisPost.panda_cat}</Link>
               <div className="details-content">
                 <div className="split-left">
                   {thisPost.description && <div> <h2>Test Description</h2>

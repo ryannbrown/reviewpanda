@@ -47,9 +47,6 @@
     border-bottom:none ;
 }
 
-.single-cat p {
-    text-transform:lowercase;
-}
 
 .listing-page-content .cats {
     margin-top:35px;
