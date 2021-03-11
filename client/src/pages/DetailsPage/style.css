@@ -32,13 +32,17 @@
 }
 
 .hero-sub-info * {
-    margin:5px;
-    padding:5px;
+    /* margin:5px;
+    padding:5px; */
+}
+
+.hero-sub-info .star-ratings {
+    margin:0px 5px;
 }
 
 .details-content {
     display:flex;
-    max-width:980px;
+    max-width:1200px;
     justify-content: center;
     align-items:flex-start;
     border-bottom:2px solid #BEBCBC78;
@@ -52,14 +56,13 @@
     display:flex;
     flex-direction:column;
     text-align:left;
-    min-width:50%;
+   width:50%;
     float:left;
     padding:25px;
 }
 .split-right {
     display:flex;
     flex-direction:column;
-    min-width:50%;
     width:50%;
     float:right;
     text-align: left;
@@ -80,11 +83,11 @@
 
 .back-link {
     text-align: left;
-    max-width: 980px;
+    /* max-width: 980px; */
     display: flex;
     justify-content: flex-start;
-    width: 100%;
-    margin: 25px 0px 0px -50px;
+    width: 1200px;
+    margin: 50px 0px 0px 25px;
 }
 
 .hero-heart {
@@ -125,6 +128,12 @@
     font-size:42px;
     color:#77E0D4;
     margin:10px 0px;
+}
+
+@media(max-width:1200px) {
+    .back-link {
+        width:100%;
+    }
 }
 
 

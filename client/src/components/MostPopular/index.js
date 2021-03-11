@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom"
+import ClipLoader from "react-spinners/ClipLoader";
 
 class MostPopular extends Component {
   constructor(props) {
     super(props);
     this.state = {
       posts: [],
+      isLoading: true
     };
   }
 
@@ -22,6 +24,7 @@ class MostPopular extends Component {
         console.log("json", json);
         this.setState({
           posts: json,
+          isLoading: false
         });
       });
   }
@@ -35,27 +38,43 @@ class MostPopular extends Component {
     const { isLoading } = this.state;
 
     if (this.state.posts.length > 0) {
-      var items = this.state.posts.slice(0, 4).map((item, i) => (
+      var items = this.state.posts.slice(0, 6).map((item, i) => (
         <div>
-           <Link to={`/tests/${item.title}`}>
+           <Link to={`/tests/${item.uuid}`}>
           <div
             className="pop-item"
-            style={{ backgroundColor: "#123047", opacity: ".1", margin: "5px" }}
-          />
+          >
+             <h1>{item.abbrev}</h1>
+             <p>{item.title}</p>
+          </div>
           </Link>
-          <p>{item.title}</p>
         </div>
       ));
     }
-    return (
-      <div
-        className="most-pop-block"
-        style={{ display: "flex", height: "50vh", width: "100%" }}
-      >
-        <h1>Most Popular</h1>
-        <div className="pop-wrapper">{items}</div>
-      </div>
-    );
+      return (
+        <div
+          className="most-pop-block"
+          style={{ display: "flex", height: "50vh", width: "100%" }}
+        >
+          <div>
+          <h1 style={{textAlign:'left'}}>Most Popular</h1>
+          </div>
+          {!isLoading ?       <div className="pop-wrapper">{items}</div> :
+          <div>
+             <ClipLoader
+            // css={override}
+            className="clippy"
+            size={35}
+            color={"#196196"}
+            // loading={this.state.loading}
+          />
+          </div> }
+    
+        </div>
+      );
+  
+
+ 
   }
 }
 export default MostPopular;

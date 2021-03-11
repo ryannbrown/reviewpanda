@@ -370,4 +370,4 @@ INSERT INTO sal_emp
     ---- 3/1/21
     --- setting panda_cats
 
-    
+-- ended up using retool to set categories = to the panda_cat

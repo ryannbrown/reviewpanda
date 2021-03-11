@@ -39,6 +39,9 @@
 
 .pop-wrapper {
     display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    max-width:1200px;
 }
 
 .pop-img {
@@ -47,13 +50,58 @@
 
 .pop-wrapper p {
     font-size:.75rem;
-    max-width:50%;
+    max-width:80%;
     text-align:center;
-    margin:0px auto;
+    /* margin:0px auto; */
 }
 
 .pop-item {
-    height:372px;
-    min-width:296px;
+    margin: 5px;
+    height: 112px;
+    width: 296px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.pop-item * {
+ 
+
+}
+
+.pop-item p {
+    color:white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin:0px 25px;
+    margin-bottom:15px;
+}
+
+.pop-item h1 {
+    margin:0px 25px;
+    color:white;
+    font-weight:800;
+}
+
+div.pop-wrapper > div:nth-child(1) > a > div {
+    background-color: #777FE0;
+}
+div.pop-wrapper > div:nth-child(2) > a > div {
+    background-color: #77C0E0;
+}
+div.pop-wrapper > div:nth-child(3) > a > div {
+    background-color: #D4E077;
+}
+div.pop-wrapper > div:nth-child(4) > a > div {
+    background-color: #77E0D4;
+}
+div.pop-wrapper > div:nth-child(5) > a > div {
+    background-color: #FF9E4A;
+}
+div.pop-wrapper > div:nth-child(6) > a > div {
+    background-color: #E07777;
 }
 

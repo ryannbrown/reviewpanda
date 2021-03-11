@@ -45,8 +45,9 @@
 }
 
 .prize-box {
-    display:flex;
-    justify-content: space-between;
+    display: flex;
+    justify-content: flex-start;
+    gap: 5px;
 }
 
 .prize-item {

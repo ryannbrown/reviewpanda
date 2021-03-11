@@ -4,6 +4,7 @@ import ReviewControls from "../../components/ReviewControls";
 import ClipLoader from "react-spinners/ClipLoader";
 import {Link} from "react-router-dom"
 import ReviewComponent from "../../components/ReviewComponent"
+import StarRatings from 'react-star-ratings';
 
 import {
   ThemeContextConsumer,
@@ -22,7 +23,8 @@ class DetailsPage extends Component {
       testIsLoading:true,
       pageReady: true,
       isTestSaved: false,
-      attempt: 0
+      attempt: 0,
+      reviewAvg: 0
     };
   }
 
@@ -66,6 +68,35 @@ let email = ourContext.userData.email
 
   }
 
+  getReviewRatings = (reviews) => {
+
+    if (reviews.length > 0) {
+
+  
+    console.log(reviews)
+      let sum = []
+      reviews.forEach(function(review) {
+          sum.push(review.rating)
+       //  console.log(review.rating)
+      })
+      var total = 0
+      for(var i = 0; i < sum.length; i++) {
+         total += sum[i];
+         // console.log(total)
+     }
+     // console.log(total, sum.length)
+     var numReviews = sum.length;
+     var avg = total / sum.length;
+     var theAvg = (Math.round(avg * 100) / 100)
+    //  .toFixed(2);
+     console.log(theAvg)
+     this.setState({
+       reviewAvg: theAvg
+     })
+     //  console.log(avg)
+  }
+}
+
 
 
   fetchReviews = (uuid) => {
@@ -91,6 +122,7 @@ let email = ourContext.userData.email
           isLoading:false
           // userHasReviewed: false,
         });
+        this.getReviewRatings(json)
       }
       });
      
@@ -184,13 +216,48 @@ let email = ourContext.userData.email
               <h1>{thisPost.title}</h1>
               {thisPost.abbrev && <h2>{thisPost.abbrev}</h2>}
               <div className="hero-sub-info">
-              <p>Rating: ⭐⭐⭐⭐⭐ |</p>
+                {/* {this.state.reviewAvg !== 'NaN' ? 
+              <p>Rating: {this.state.reviewAvg} | </p> :
+              <p>Rating: Be the first! | </p>
+                } */}
+                {this.state.reviewAvg !== null ? 
+                <p>Rating: 
+                <StarRatings
+                rating={this.state.reviewAvg}
+                starRatedColor="#77E0D4"
+              //   changeRating={this.changeRating}
+                numberOfStars={5}
+                name='updated-rating'
+                starDimension = '11px'
+                starSpacing='0px'
+                isAggregateRating="true"
+                starEmptyColor='rgba(255,255,255, .25)'
+                starHoverColor='rgba(255,255,255)'
+                starRatedColor='rgba(255,255,255)'
+              /> | </p>: <p> Rating: NA | </p>
+                }
+                {/* |</p> */}
+              {/* <p>Rating:  
+                <StarRatings
+              rating={this.state.reviewAvg}
+              starRatedColor="#77E0D4"
+            //   changeRating={this.changeRating}
+              numberOfStars={5}
+              name='updated-rating'
+              starDimension = '11px'
+              starSpacing='1px'
+              starEmptyColor='rgba(142,142,142, .25)'
+              starHoverColor='rgba(142,142,142)'
+              starRatedColor='#8E8E8E'
+            /> |</p> */}
               <p>Author: {thisPost.author}</p>
             
               </div>
               <a target ="_blank" href={thisPost.link}><button className="login-btn btn">Learn More</button></a>
               </div>
+              <div>
                 <Link to={`/categories/${thisPost.panda_cat}`} className="back-link"><i style={{margin:'0px 5px'}} class="lni lni-arrow-left"></i> Explore all from {thisPost.panda_cat}</Link>
+              </div>
               <div className="details-content">
                 <div className="split-left">
                   {thisPost.description && <div> <h2>Test Description</h2>

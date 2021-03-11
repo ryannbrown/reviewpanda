@@ -40,10 +40,13 @@ class RecentlyReviewed extends Component {
            <Link to={`/tests/${item.test_uuid}`}>
           <div
             className="pop-item"
-            style={{ backgroundColor: "#123047", opacity: ".1", margin: "5px" }}
-          />
+          
+          >
+              {/* <h1>{item.abbrev}</h1> */}
+             <p>{item.test_title}</p>
+            </div>
           </Link>
-          <p>{item.test_title}</p>
+          {/* <p>{item.test_title}</p> */}
         </div>
       ));
     }
