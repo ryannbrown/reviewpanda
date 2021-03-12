@@ -9,6 +9,7 @@ import {
   ThemeContextProvider,
 } from "../../utils/themeContext";
 import "./style.css";
+import MyEditor from "../../components/MyEditor/index"
 
 class ReviewControls extends Component {
   static contextType = ThemeContextConsumer;
@@ -47,6 +48,13 @@ class ReviewControls extends Component {
         }
       // });
   // };
+
+  handleRichChange = (value) => {
+    // console.log("changing");
+    console.log(value)
+    this.setState({ richText: value });
+    // console.log(value);
+  }
 
   fetchMyReview = () => {
     this.setState({
@@ -96,6 +104,7 @@ class ReviewControls extends Component {
     let rating = this.state.rating
     let description = this.description.current.value;
     let email = ourContext.userData.email;
+    let richText = this.state.richText
     fetch("/api/postreview", {
       method: "POST",
       headers: {
@@ -112,7 +121,7 @@ class ReviewControls extends Component {
         avatar: ourContext.userData.avatar,
         has_uploaded_img: ourContext.userData.has_uploaded_img,
         rating: rating,
-        description: description,
+        description: richText,
       }),
     }).then((response) => {
       this.props.fetchReviews();
@@ -148,8 +157,6 @@ class ReviewControls extends Component {
 
   render() {
 
-
-    // console.log(this.state.reviews)
     const {
       isLoading,
       reviews,
@@ -163,11 +170,11 @@ class ReviewControls extends Component {
       return (
         <div className="loading-block">
           <ClipLoader
-            // css={override}
+      
             className="clippy"
             size={35}
             color={"#196196"}
-            // loading={this.state.loading}
+         
           />
         </div>
       );
@@ -193,16 +200,8 @@ class ReviewControls extends Component {
               starHoverColor='rgba(119,224,212)'
             />
               <form className="actual-form" onSubmit={this.submitReview}>
-                {/* <input
-                  ref={this.rating}
-                  placeholder="rating 1-5"
-                  type="number"
-                ></input> */}
                 <h3>Description</h3>
-                <textarea
-                  ref={this.description}
-                  placeholder="write description for this solution"
-                ></textarea>
+                <MyEditor handleRichChange={this.handleRichChange} defaultRichText={'Write description for this solution'}></MyEditor>
                 <div>
                   {showLoginAlert && !context.userData.email && <p className="alert alert-danger">Please login/register to contribute on Review Panda!</p>}
                 <button

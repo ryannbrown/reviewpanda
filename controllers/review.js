@@ -1,9 +1,14 @@
 
+const sanitizeHtml = require('sanitize-html');
 const uuid = require('uuid').v4
 const handleReviewPost = (req, res, db, uuidv4) => {
     let { avatar, title, test_uuid, test_abbrev, rating, email, description, full_name, date_posted, user_uuid, has_uploaded_img } = req.body;
     let test_title = title;
     console.log("user uuid", user_uuid)
+
+    const cleanHtml = sanitizeHtml(description)
+
+    // console.log(cleanHtml);
 
 
     if (!test_uuid || !rating || !email || !description  || !title || email == 'undefined') {
@@ -32,7 +37,7 @@ const handleReviewPost = (req, res, db, uuidv4) => {
       test_abbrev,
       rating: rating,
       email: email,
-      description: description,
+      description: cleanHtml,
       full_name,
       avatar,
       review_uuid:  uuid(),

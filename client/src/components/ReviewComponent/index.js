@@ -141,8 +141,10 @@ class ReviewComponent extends Component {
               starRatedColor='#8E8E8E'
             />
                </div>
-               <div className="single-review-description">
-                   {item.description}
+               <div className="single-review-description"
+               dangerouslySetInnerHTML={{__html: item.description}}
+               >
+                   {/* {item.description} */}
                </div>
            </div>
           </div>

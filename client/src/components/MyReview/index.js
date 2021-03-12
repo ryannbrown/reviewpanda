@@ -7,6 +7,7 @@ import {
   } from "../../utils/themeContext";
 import './style.css'
 import exitBtn from "../../media/feather/trash.svg"
+import MyEditor from "../../components/MyEditor/index"
 
 class MyReview extends Component {
     static contextType = ThemeContextConsumer;
@@ -15,13 +16,21 @@ class MyReview extends Component {
     this.state = {
       myReview: [],
       itemDeleted:false,
-      rating: this.props.myReview.rating || 0
+      rating: this.props.myReview.rating || 0,
+      richText: null
       // truthyReviews: false
     };
     // this.rating = React.createRef();
     this.description = React.createRef();
   }
 
+
+  handleRichChange = (value) => {
+    // console.log("changing");
+    console.log(value)
+    this.setState({ richText: value });
+    // console.log(value);
+  }
 
 
   changeRating = ( newRating, name ) => {
@@ -62,8 +71,9 @@ class MyReview extends Component {
   
     // let id = this.props.id;
     let rating = this.state.rating
-    let description = this.description.current.value;
+    // let description = this.description.current.value;
     let email = ourContext.userData.email;
+    let description = this.state.richText
 
     console.log(email, rating, description)
     fetch("/api/updatereview", {
@@ -111,11 +121,6 @@ class MyReview extends Component {
            <i class="lni lni-trash review-delete-btn"  onClick={this.deleteMyReview}></i>
           <h1> My Review
           </h1>
-          {/* <div>
-              <h3>Rating: {myReview.rating}</h3>
-              <h3>Description: {myReview.description}</h3>
-          </div> */}
-
 <h3>Rating</h3>
 <StarRatings
               rating={this.state.rating}
@@ -131,18 +136,8 @@ class MyReview extends Component {
                 <h3>Description</h3>
 
 <form className="actual-form" onSubmit={this.updateReview}>
-                {/* <input
-                  ref={this.rating}
-                  placeholder="rating 1-5"
-                  type="number"
-                ></input> */}
-
-
-
-                <textarea
-                  ref={this.description}
-                  defaultValue={myReview.description}
-                ></textarea>
+                <MyEditor handleRichChange={this.handleRichChange} defaultRichText={myReview.description}></MyEditor>
+    
                 <div>
                 <button
                   // disabled={this.state.buttonDisabled}
