@@ -2,7 +2,7 @@
 const sanitizeHtml = require('sanitize-html');
 const uuid = require('uuid').v4
 const handleReviewPost = (req, res, db, uuidv4) => {
-    let { avatar, title, test_uuid, test_abbrev, rating, email, description, full_name, date_posted, user_uuid, has_uploaded_img } = req.body;
+    let { avatar, title, test_uuid, test_abbrev, rating, email, description, full_name, date_posted, user_uuid, has_uploaded_img, review_count } = req.body;
     let test_title = title;
     console.log("user uuid", user_uuid)
 
@@ -27,26 +27,50 @@ const handleReviewPost = (req, res, db, uuidv4) => {
   
 
     console.log("Looks good: ", email)
-    db('reviews')
-    .insert([
-      {
-          // TODO ADD LINK ON SITE WHERE TEST IS
-          user_uuid,
-      test_title: test_title,
-      test_uuid: test_uuid,
-      test_abbrev,
-      rating: rating,
-      email: email,
-      description: cleanHtml,
-      full_name,
-      avatar,
-      review_uuid:  uuid(),
-      date_posted: new Date()
-    }
-       ])
-    .then(res.send("POST request to the homepage"))
-    .catch(err =>  console.log(err))
+
+
+
+    db.transaction(trx => {
+      db('reviews')
+      .insert([
+        {
+            // TODO ADD LINK ON SITE WHERE TEST IS
+            user_uuid,
+        test_title: test_title,
+        test_uuid: test_uuid,
+        test_abbrev,
+        rating: rating,
+        email: email,
+        description: cleanHtml,
+        full_name,
+        avatar,
+        review_uuid:  uuid(),
+        date_posted: new Date(),
+        review_count: review_count
+      }
+         ])
+         .returning('*')
+      .then(review => {
+        // console.log(user)
+          // console.log(data)
+        return trx('all_tests')
+          .returning('*')
+          .where('uuid', review[0].test_uuid)
+          .update(
+              {
+              review_count: `${review_count}`
+            }
+               )
+          .then(
+            res.json('success'))
+      })
+      .then(trx.commit)
+      .catch(trx.rollback)
+    })
   }
+
+
+
   
   module.exports = {
     handleReviewPost: handleReviewPost

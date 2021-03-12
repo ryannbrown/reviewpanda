@@ -97,6 +97,11 @@ let email = ourContext.userData.email
   }
 }
 
+setReviewCount = (number) => {
+console.log(number)
+this.setState({reviewCount:number})
+}
+
 
 
   fetchReviews = (uuid) => {
@@ -123,6 +128,7 @@ let email = ourContext.userData.email
           // userHasReviewed: false,
         });
         this.getReviewRatings(json)
+        this.setReviewCount(json.length)
       }
       });
      
@@ -281,6 +287,7 @@ let email = ourContext.userData.email
 
                      { pageReady && (
                 <ReviewControls
+                reviewCount={this.state.reviewCount}
               // TODO make saveTest the name of the saveTest variable in state
                 testSaved={this.state.isTestSaved}
                 saveTest={this.saveTest}

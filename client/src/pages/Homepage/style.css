@@ -44,6 +44,10 @@
     max-width:1200px;
 }
 
+.pop-loading {
+    margin-top:50px;
+}
+
 .pop-img {
     max-width:250px;
 }
@@ -84,6 +88,7 @@
     margin:0px 25px;
     color:white;
     font-weight:800;
+    text-align:left;
 }
 
 div.pop-wrapper > div:nth-child(1) > a > div {

@@ -29,7 +29,7 @@ class ReviewControls extends Component {
 
 
   changeRating = ( newRating, name ) => {
-    console.log(newRating, "for the win")
+    // console.log(newRating, "for the win")
     this.setState({
       rating: newRating
     });
@@ -102,7 +102,7 @@ class ReviewControls extends Component {
     e.preventDefault();
     // let id = this.props.id;
     let rating = this.state.rating
-    let description = this.description.current.value;
+    // let description = this.description.current.value;
     let email = ourContext.userData.email;
     let richText = this.state.richText
     fetch("/api/postreview", {
@@ -122,6 +122,7 @@ class ReviewControls extends Component {
         has_uploaded_img: ourContext.userData.has_uploaded_img,
         rating: rating,
         description: richText,
+        review_count: this.props.reviewCount + 1
       }),
     }).then((response) => {
       this.props.fetchReviews();
@@ -226,6 +227,7 @@ class ReviewControls extends Component {
           ) : (
             <MyReview
             // myRating = {this.state.rating}
+            reviewCount={this.props.reviewCount}
             testSaved={this.props.testSaved}
             saveTest={this.props.saveTest}
             fetchMyReview= {this.fetchMyReview}

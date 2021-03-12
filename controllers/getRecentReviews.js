@@ -9,7 +9,7 @@ const handleRecentReviewGet = (req, res, db) => {
     db.select().from('recent_reviews').orderBy('id', 'DESC').returning('*')
     // db('reviews').distinctOn('test_title').orderBy('date_posted')
       .then(review => {
-        console.log(review, "review")
+        // console.log(review, "review")
         if (review.length) {
           // console.log(review)
           res.json(review)

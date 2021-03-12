@@ -18,10 +18,10 @@ class MostPopular extends Component {
   }
 
   fetchPosts() {
-    fetch(`/api/tests`)
+    fetch(`/api/poptests`)
       .then((res) => res.json())
       .then((json) => {
-        console.log("json", json);
+        console.log("pop tests", json);
         this.setState({
           posts: json,
           isLoading: false
@@ -60,7 +60,7 @@ class MostPopular extends Component {
           <h1 style={{textAlign:'left'}}>Most Popular</h1>
           </div>
           {!isLoading ?       <div className="pop-wrapper">{items}</div> :
-          <div>
+          <div className="pop-loading">
              <ClipLoader
             // css={override}
             className="clippy"

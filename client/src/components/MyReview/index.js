@@ -34,7 +34,7 @@ class MyReview extends Component {
 
 
   changeRating = ( newRating, name ) => {
-    console.log(newRating, "for the win")
+    // console.log(newRating, "for the win")
     this.setState({
       rating: newRating
     });
@@ -51,6 +51,7 @@ class MyReview extends Component {
           },
           body: JSON.stringify({
               review_uuid: this.props.myReview.review_uuid,
+              review_count: this.props.reviewCount - 1
           })
       })
       .then((res) => {
