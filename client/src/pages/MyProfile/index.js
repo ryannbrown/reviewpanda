@@ -251,7 +251,7 @@ class MyProfile extends Component {
             <div className="single-review-heading">
               <Link to={`/tests/${item.test_uuid}`}>{item.test_title}</Link>
               <p>
-                | {format(new Date(item.date_posted), "eeee, MMM i yyyy")} |
+                | {format(new Date(item.date_posted), "eeee, MMM d yyyy")} |
               </p>
               <StarRatings
                 rating={item.rating}
@@ -266,7 +266,7 @@ class MyProfile extends Component {
                 starRatedColor="#8E8E8E"
               />
             </div>
-            <div className="single-review-description">{item.description}</div>
+            <div className="single-review-description" dangerouslySetInnerHTML={{__html:item.description }}></div>
           </div>
           <Link to={`/tests/${item.test_uuid}`}>
             <i className="lni lni-chevron-right my-review-chevron"></i>

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./style.css";
 import ReviewControls from "../../components/ReviewControls";
 import ClipLoader from "react-spinners/ClipLoader";
+import uniq from 'lodash/uniq';
+import _ from 'lodash'
 import {
   ThemeContextConsumer,
   ThemeContextProvider,
@@ -16,11 +18,63 @@ class CategorySrp extends Component {
     this.state = {
       reviews: [],
       thisPost: [],
+      savedTests:[],
       currentCat: '',
       truthyReviews: false,
       isLoading: true,
+      headerTitle: this.props.match.params.cat
     };
   }
+
+
+
+  formatSavedTests = (savedTest) => {
+
+    this.setState({
+      truthyReviews: false
+    })
+
+console.log(savedTest)
+
+    let uniqueTests = _.uniq(savedTest)
+
+
+    const allSaved = [];
+    if (savedTest) {
+     uniqueTests.forEach((test) => {
+        // function extractFirstText(str){
+        //     const matches = str.match(/"(.*?)"/);
+        //     console.log(matches)
+
+        //     // return matches
+        //     //   ? matches[1]
+        //     //   : str;
+        //   }
+        //   extractFirstText(test)
+
+        // console.log(test.match(/\(([^)]+)\)/)[1])
+
+        function extractAllText(str) {
+          const re = /"(.*?)"/g;
+          const result = [];
+          let current;
+          while ((current = re.exec(str))) {
+            result.push(current.pop());
+          }
+          allSaved.push(result);
+        }
+      
+        extractAllText(test);
+      });
+      console.log(allSaved)
+      
+
+      this.setState({
+        savedTests: allSaved,
+        headerTitle: 'Saved'
+      });
+    }
+  };
 
   fetchReviewsByCat = (cat) => {
     fetch(`/api/cats/${cat}`)
@@ -39,6 +93,7 @@ class CategorySrp extends Component {
           // console.log("we have else")
           this.setState({
             reviews: [],
+            headerTitle: cat,
             truthyReviews: false,
             isLoading: false,
             truthyCats: false,
@@ -47,22 +102,83 @@ class CategorySrp extends Component {
       });
   };
 
+  fetchPopTests = () => {
+    fetch(`/api/poptests`)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        if (json.length > 0) {
+          // console.log("we have length")
+          this.setState({
+            headerTitle: 'Most Popular',
+            reviews: json,
+            isLoading: false,
+            truthyReviews: true,
+            // userHasReviewed: false,
+          });
+        } else {
+          // console.log("we have else")
+          this.setState({
+            reviews: [],
+            truthyReviews: false,
+            isLoading: false,
+            truthyCats: false,
+          });
+        }
+      });
+  };
+  // fetchSavedTests = () => {
+  //   fetch(`/api/poptests`)
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       console.log(json);
+  //       if (json.length > 0) {
+  //         // console.log("we have length")
+  //         this.setState({
+  //           headerTitle: 'Your Saved Tests',
+  //           reviews: json,
+  //           isLoading: false,
+  //           truthyReviews: true,
+  //           // userHasReviewed: false,
+  //         });
+  //       } else {
+  //         // console.log("we have else")
+  //         this.setState({
+  //           reviews: [],
+  //           truthyReviews: false,
+  //           isLoading: false,
+  //           truthyCats: false,
+  //         });
+  //       }
+  //     });
+  // };
+
+
+
   componentDidMount() {
+console.log(this.state)
+
     this.fetchReviewsByCat(this.props.match.params.cat);
     this.setState({
       currentCat:this.props.match.params.cat
     })
 // console.log(this.props.match.params.cat);
 
+
   }
   componentDidUpdate() {
-    // console.log(this.state);
+    console.log(this.state);
   }
 
   render() {
-    const { truthyCats, reviews, truthyReviews } = this.state;
+    const { truthyCats, reviews, truthyReviews, savedTests, headerTitle } = this.state;
 
-    if (truthyReviews) {
+console.log(savedTests)
+
+
+
+    // if (headerTitle === this.state.currentCat || headerTitle ==='Most Popular') {
+      if (reviews.length > 0) {
       // console.log(truthyReviews, reviews)
       var items = reviews.map((item, i) => (
         <div key={i} className="single-test">
@@ -78,6 +194,22 @@ class CategorySrp extends Component {
       ));
     }
 
+        if (headerTitle === 'Saved') {
+      var items = savedTests.map((item, i) => (
+    
+        <div className="single-test">
+        <Link to={`/tests/${item[0]}`}>
+        <div className="single-test-text">
+       
+          <p>{item[1]}</p>
+          </div>
+          <img className="chevron" src={chevRight}></img>
+          </Link>
+        </div>
+       
+      ));
+    }
+
     // console.log(this.state.posts)
 
     if (!this.state.isLoading) {
@@ -89,16 +221,20 @@ class CategorySrp extends Component {
               style={{ display: "flex", height: "100%", width: "100%" }}
             >
               <div className="srp-page-content">
-                <h1>{this.state.currentCat || Error}</h1>
+                <h1>{this.state.headerTitle}</h1>
                 <div className="srp-action-btns">
                   <Link to="/categories"><button className="btn">All</button></Link>
-                  <Link to="/"><button className="btn">⭐</button></Link>
-                  <Link to="/"><button className="btn">Popular</button></Link>
+                  <button onClick={() => {this.formatSavedTests(context.userData.saved)}} className="btn">⭐</button>
+                 <button onClick={this.fetchPopTests} className="btn">Popular</button>
                 </div>
                 <div className="srp-row-header">
                   <p>Test Name</p>
                 </div>
-                <div className="cats">{items}</div>
+                {/* { ?  */}
+                <div className="cats">{items}</div> 
+                {/* :
+                <div className="catzs">{saved}</div>
+              } */}
               </div>
             </div>
           )}

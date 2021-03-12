@@ -127,7 +127,7 @@ class ReviewComponent extends Component {
            <div className="single-review-content">
                <div className="single-review-heading">
                    <a>{item.full_name}</a>
-                   <p>|  {format(new Date(item.date_posted), "eeee, MMM i yyyy")}  |</p>
+                   <p>|  {format(new Date(item.date_posted), "eeee, MMM dd yyyy")}  |</p>
                    <StarRatings
               rating={item.rating}
               starRatedColor="#77E0D4"
