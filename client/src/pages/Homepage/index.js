@@ -7,6 +7,7 @@ import MostPopular from "../../components/MostPopular/index"
 import RecentlyReviewed from "../../components/RecentlyReviewed/index"
 import {Link} from "react-router-dom"
 import DropdownSearch from "../../components/DropdownSearch/index"
+import heroImg from "../../media/hero-img.jpg"
 
 export default class Homepage extends Component {
 
@@ -68,12 +69,17 @@ export default class Homepage extends Component {
             <div className="homepage-content" style={{
             }}>
                 {/* <Navbar></Navbar> */}
-               <div className="search-block" style={{backgroundColor:'grey', height:'50vh', width: '100%'}}>
+               <div className="search-block" style={{ backgroundImage:`url('${heroImg}')`, height:'50vh', width: '100%'}}>
+                 <div className="hero-left">
                  <div className="search-block-content" >
                  <h1>Find your next test here.</h1>
                 <DropdownSearch></DropdownSearch>
                  </div>
-                 <div className="search-block-img" style={{backgroundColor:'grey'}}></div>
+                 </div>
+                 <div className="hero-right" style={{}}>
+                 </div>
+               
+                 {/* <div className="search-block-img" style={{backgroundColor:'grey'}}></div> */}
                </div>
                <div style={{display:'flex', height:'50vh', width: '100%'}}>
                    <div className="category-block">
