@@ -76,6 +76,7 @@ class MyReview extends Component {
         review_uuid: this.props.myReview.review_uuid,
         rating: rating,
         description: description,
+        test_abbrev: this.props.thisTest.abbrev
       }),
     }).then((response) => {
       this.props.fetchReviews();

@@ -1,7 +1,7 @@
 
 // const uuid = require('uuid').v4
 const handleUpdateReviewPost = (req, res, db, uuidv4) => {
-    const {review_uuid, rating, description, full_name } = req.body;
+    const {review_uuid, rating, description, full_name, test_abbrev } = req.body;
     // let test_title = title;
     // if (!test_uuid || !rating || !email || !description, !title) {
     //   console.log("we have a problem")
@@ -18,6 +18,7 @@ const handleUpdateReviewPost = (req, res, db, uuidv4) => {
       {
       rating: rating,
       description: description,
+      test_abbrev
     }
        )
     .then(res.send("POST request to the homepage"))

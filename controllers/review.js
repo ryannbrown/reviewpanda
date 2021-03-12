@@ -1,7 +1,7 @@
 
 const uuid = require('uuid').v4
 const handleReviewPost = (req, res, db, uuidv4) => {
-    let { avatar, title, test_uuid, rating, email, description, full_name, date_posted, user_uuid, has_uploaded_img } = req.body;
+    let { avatar, title, test_uuid, test_abbrev, rating, email, description, full_name, date_posted, user_uuid, has_uploaded_img } = req.body;
     let test_title = title;
     console.log("user uuid", user_uuid)
 
@@ -29,6 +29,7 @@ const handleReviewPost = (req, res, db, uuidv4) => {
           user_uuid,
       test_title: test_title,
       test_uuid: test_uuid,
+      test_abbrev,
       rating: rating,
       email: email,
       description: description,

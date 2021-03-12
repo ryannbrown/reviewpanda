@@ -35,14 +35,14 @@ class RecentlyReviewed extends Component {
     const { isLoading } = this.state;
 
     if (this.state.posts.length > 0) {
-      var items = this.state.posts.slice(0, 4).map((item, i) => (
+      var items = this.state.posts.slice(0, 6).map((item, i) => (
         <div>
            <Link to={`/tests/${item.test_uuid}`}>
           <div
             className="pop-item"
           
           >
-              {/* <h1>{item.abbrev}</h1> */}
+              <h1>{item.test_abbrev}</h1>
              <p>{item.test_title}</p>
             </div>
           </Link>
