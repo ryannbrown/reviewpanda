@@ -11,8 +11,10 @@ import {
 import { Link } from "react-router-dom";
 import chevRight from "../../media/grey-chev.svg"
 import sunImg from "../../media/pink-sun.svg"
+import LoginModal from '../../components/LoginModal'
 
 class CategorySrp extends Component {
+  static contextType = ThemeContextConsumer;
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +23,7 @@ class CategorySrp extends Component {
       savedTests:[],
       currentCat: '',
       truthyReviews: false,
+      modalOpened: false,
       isLoading: true,
       headerTitle: this.props.match.params.cat
     };
@@ -154,6 +157,12 @@ console.log(savedTest)
   // };
 
 
+  toggleModal = () => {
+    console.log("clicked");
+    this.setState({
+      modalOpened: !this.state.modalOpened,
+    });
+  };
 
   componentDidMount() {
 console.log(this.state)
@@ -167,11 +176,12 @@ console.log(this.state)
 
   }
   componentDidUpdate() {
-    console.log(this.state);
+    let ourContext = this.context
+    console.log(ourContext);
   }
 
   render() {
-    const { truthyCats, reviews, truthyReviews, savedTests, headerTitle } = this.state;
+    const { truthyCats, reviews, truthyReviews, savedTests, headerTitle, modalOpened } = this.state;
 
 console.log(savedTests)
 
@@ -224,7 +234,8 @@ console.log(savedTests)
                 <h1>{this.state.headerTitle}</h1>
                 <div className="srp-action-btns">
                   <Link to="/categories"><button className="btn">All</button></Link>
-                  <button onClick={() => {this.formatSavedTests(context.userData.saved)}} className="btn">⭐</button>
+                  {context.userLoggedIn ?  <button onClick={() => {this.formatSavedTests(context.userData.saved)}} className="btn loggedin">⭐</button> :  <button onClick={this.toggleModal} className="btn notlogged">⭐</button> }
+                 
                  <button onClick={this.fetchPopTests} className="btn">Popular</button>
                 </div>
                 <div className="srp-row-header">
@@ -236,6 +247,7 @@ console.log(savedTests)
                 <div className="catzs">{saved}</div>
               } */}
               </div>
+              {modalOpened && <LoginModal toggleModal={this.toggleModal}></LoginModal>}
             </div>
           )}
         </ThemeContextConsumer>

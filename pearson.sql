@@ -371,3 +371,10 @@ INSERT INTO sal_emp
     --- setting panda_cats
 
 -- ended up using retool to set categories = to the panda_cat
+
+
+
+-- 3/12
+-- added a new column of review_count 
+alter table all_tests
+add column review_count integer
