@@ -170,7 +170,7 @@ console.log(savedTests)
       var items = reviews.map((item, i) => (
         <div key={i} className="single-test">
            {item.review_avg && <div className="srp-rating-block"><StarRatings
-              rating={parseInt(item.review_avg)}
+              rating={parseFloat(item.review_avg)}
               starRatedColor="#77E0D4"
               // changeRating={this.changeRating}
               numberOfStars={5}
