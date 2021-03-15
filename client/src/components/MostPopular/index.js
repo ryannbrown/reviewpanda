@@ -46,7 +46,7 @@ class MostPopular extends Component {
           >
             {/* <p className="pop-count">Reviews: {item.review_count}</p> */}
             <StarRatings
-              rating={parseInt(item.review_avg)}
+              rating={parseFloat(item.review_avg)}
               starRatedColor="#77E0D4"
               // changeRating={this.changeRating}
               numberOfStars={5}
