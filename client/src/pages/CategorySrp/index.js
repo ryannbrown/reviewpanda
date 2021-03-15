@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import chevRight from "../../media/grey-chev.svg"
 import sunImg from "../../media/pink-sun.svg"
 import LoginModal from '../../components/LoginModal'
+import StarRatings from "react-star-ratings"
 
 class CategorySrp extends Component {
   static contextType = ThemeContextConsumer;
@@ -130,31 +131,7 @@ console.log(savedTest)
         }
       });
   };
-  // fetchSavedTests = () => {
-  //   fetch(`/api/poptests`)
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       console.log(json);
-  //       if (json.length > 0) {
-  //         // console.log("we have length")
-  //         this.setState({
-  //           headerTitle: 'Your Saved Tests',
-  //           reviews: json,
-  //           isLoading: false,
-  //           truthyReviews: true,
-  //           // userHasReviewed: false,
-  //         });
-  //       } else {
-  //         // console.log("we have else")
-  //         this.setState({
-  //           reviews: [],
-  //           truthyReviews: false,
-  //           isLoading: false,
-  //           truthyCats: false,
-  //         });
-  //       }
-  //     });
-  // };
+
 
 
   toggleModal = () => {
@@ -192,9 +169,24 @@ console.log(savedTests)
       // console.log(truthyReviews, reviews)
       var items = reviews.map((item, i) => (
         <div key={i} className="single-test">
+           {item.review_avg && <div className="srp-rating-block"><StarRatings
+              rating={parseInt(item.review_avg)}
+              starRatedColor="#77E0D4"
+              // changeRating={this.changeRating}
+              numberOfStars={5}
+              name='updated-rating'
+              starDimension = '11px'
+              starSpacing='0px'
+              isAggregateRating="true"
+              starEmptyColor='rgba(255,255,255, .25)'
+              starHoverColor='rgba(255,255,255)'
+              starRatedColor='rgba(255,255,255)'
+            /> {item.review_count > 1 ? <p>{item.review_count} Reviews</p> : <p>{item.review_count} Review</p>  } </div> }
           <Link to={`/tests/${item.uuid}`}>
             <div className="single-test-text">
           {/* <img className="category-icon" src={sunImg}></img> */}
+      
+         
           <h2>{item.abbrev}</h2>
             <p>{item.title}</p>
             </div>

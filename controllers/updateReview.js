@@ -1,29 +1,50 @@
 
 // const uuid = require('uuid').v4
 const handleUpdateReviewPost = (req, res, db, uuidv4) => {
-    const {review_uuid, rating, description, full_name, test_abbrev } = req.body;
-    // let test_title = title;
-    // if (!test_uuid || !rating || !email || !description, !title) {
-    //   console.log("we have a problem")
-    //   console.log(test_uuid, rating, email, description)
-    //   // return res.status(400).json('incorrect form submission');
-    // }cons
+    const {review_uuid, rating, description, full_name, test_abbrev, total_stars, review_count } = req.body;
+
+    console.log(total_stars)
+
+
+    let newAvgCalc = total_stars + rating
+    let newAvg = newAvgCalc / review_count;
+
+    console.log(newAvg)
+
+
+    db.transaction(trx => {
+
+
+      db('reviews')
+      .where('review_uuid',  review_uuid)
+      .update(
+        {
+        rating: rating,
+        description: description,
+        test_abbrev
+      }
+         ).returning('*')
+         .then(review => {
+          // console.log(user)
+            // console.log(data)
+          return trx('all_tests')
+            .returning('*')
+            .where('uuid', review[0].test_uuid)
+            .update(
+                {
+                review_avg: newAvg
+              }
+                 )
+            .then(
+              res.json('success'))
+        })
+   
+      .then(trx.commit)
+      .catch(trx.rollback)
+    })
+    }
 
   
-
-    // console.log("Looks good: ", title, test_uuid, rating, email, description)
-    db('reviews')
-    .where('review_uuid',  review_uuid)
-    .update(
-      {
-      rating: rating,
-      description: description,
-      test_abbrev
-    }
-       )
-    .then(res.send("POST request to the homepage"))
-    .catch(err =>  console.log(err))
-  }
   
   module.exports = {
     handleUpdateReviewPost: handleUpdateReviewPost

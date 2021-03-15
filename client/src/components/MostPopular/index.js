@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom"
 import ClipLoader from "react-spinners/ClipLoader";
-
+import StarRatings from "react-star-ratings"
 class MostPopular extends Component {
   constructor(props) {
     super(props);
@@ -44,6 +44,20 @@ class MostPopular extends Component {
           <div
             className="pop-item"
           >
+            {/* <p className="pop-count">Reviews: {item.review_count}</p> */}
+            <StarRatings
+              rating={parseInt(item.review_avg)}
+              starRatedColor="#77E0D4"
+              // changeRating={this.changeRating}
+              numberOfStars={5}
+              name='updated-rating'
+              starDimension = '11px'
+              starSpacing='0px'
+              isAggregateRating="true"
+              starEmptyColor='rgba(255,255,255, .25)'
+              starHoverColor='rgba(255,255,255)'
+              starRatedColor='rgba(255,255,255)'
+            />
              <h1>{item.abbrev}</h1>
              <p>{item.title}</p>
           </div>

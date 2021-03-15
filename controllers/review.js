@@ -2,9 +2,15 @@
 const sanitizeHtml = require('sanitize-html');
 const uuid = require('uuid').v4
 const handleReviewPost = (req, res, db, uuidv4) => {
-    let { avatar, title, test_uuid, test_abbrev, rating, email, description, full_name, date_posted, user_uuid, has_uploaded_img, review_count } = req.body;
+    let { avatar, title, test_uuid, test_abbrev, rating, email, description, full_name, date_posted, user_uuid, has_uploaded_img, review_count, total_stars } = req.body;
     let test_title = title;
     console.log("user uuid", user_uuid)
+
+    let newAvgCalc = total_stars + rating;
+let newAvg = newAvgCalc / review_count;
+    console.log( rating, review_count)
+
+    console.log(newAvg)
 
     const cleanHtml = sanitizeHtml(description)
 
@@ -46,7 +52,8 @@ const handleReviewPost = (req, res, db, uuidv4) => {
         avatar,
         review_uuid:  uuid(),
         date_posted: new Date(),
-        review_count: review_count
+        review_count: review_count,
+        review_avg: newAvg
       }
          ])
          .returning('*')
@@ -58,7 +65,8 @@ const handleReviewPost = (req, res, db, uuidv4) => {
           .where('uuid', review[0].test_uuid)
           .update(
               {
-              review_count: `${review_count}`
+              review_count: review_count,
+              review_avg: newAvg
             }
                )
           .then(

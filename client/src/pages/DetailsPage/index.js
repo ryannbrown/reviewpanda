@@ -24,7 +24,8 @@ class DetailsPage extends Component {
       pageReady: true,
       isTestSaved: false,
       attempt: 0,
-      reviewAvg: 0
+      reviewAvg: null,
+      totalStars: null
     };
   }
 
@@ -84,6 +85,7 @@ let email = ourContext.userData.email
          total += sum[i];
          // console.log(total)
      }
+    //  console.log(total)
      // console.log(total, sum.length)
      var numReviews = sum.length;
      var avg = total / sum.length;
@@ -91,7 +93,8 @@ let email = ourContext.userData.email
     //  .toFixed(2);
      console.log(theAvg)
      this.setState({
-       reviewAvg: theAvg
+       reviewAvg: theAvg,
+       totalStars: total
      })
      //  console.log(avg)
   }
@@ -287,6 +290,7 @@ this.setState({reviewCount:number})
 
                      { pageReady && (
                 <ReviewControls
+                totalStars={this.state.totalStars}
                 reviewCount={this.state.reviewCount}
               // TODO make saveTest the name of the saveTest variable in state
                 testSaved={this.state.isTestSaved}

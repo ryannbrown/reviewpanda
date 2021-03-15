@@ -122,7 +122,8 @@ class ReviewControls extends Component {
         has_uploaded_img: ourContext.userData.has_uploaded_img,
         rating: rating,
         description: richText,
-        review_count: this.props.reviewCount + 1
+        review_count: this.props.reviewCount + 1,
+        total_stars: this.props.totalStars
       }),
     }).then((response) => {
       this.props.fetchReviews();
@@ -227,6 +228,7 @@ class ReviewControls extends Component {
           ) : (
             <MyReview
             // myRating = {this.state.rating}
+            totalStars= {this.props.totalStars}
             reviewCount={this.props.reviewCount}
             testSaved={this.props.testSaved}
             saveTest={this.props.saveTest}

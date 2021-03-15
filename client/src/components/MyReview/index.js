@@ -41,6 +41,7 @@ class MyReview extends Component {
   }
 
   deleteMyReview = () => {
+    console.log(this.props.totalStars, this.props.myReview.rating)
       console.log("deleting review")
       // POST TO DB
       fetch('/api/remove_review', {
@@ -51,7 +52,8 @@ class MyReview extends Component {
           },
           body: JSON.stringify({
               review_uuid: this.props.myReview.review_uuid,
-              review_count: this.props.reviewCount - 1
+              review_count: this.props.reviewCount - 1,
+              total_stars: this.props.totalStars - this.props.myReview.rating
           })
       })
       .then((res) => {
@@ -87,7 +89,9 @@ class MyReview extends Component {
         review_uuid: this.props.myReview.review_uuid,
         rating: rating,
         description: description,
-        test_abbrev: this.props.thisTest.abbrev
+        review_count: this.props.reviewCount,
+        test_abbrev: this.props.thisTest.abbrev,
+        total_stars: this.props.totalStars - this.props.myReview.rating
       }),
     }).then((response) => {
       this.props.fetchReviews();

@@ -1,8 +1,11 @@
 const handleReviewRemove = (req, res, db) => {
-    const { review_uuid, review_count } = req.body
+    const { review_uuid, review_count, total_stars } = req.body
     console.log(req.body)
     console.log(review_uuid)
 
+    console.log(total_stars)
+
+    let newAvg = total_stars / review_count
 
 
   db.transaction(trx => {
@@ -14,7 +17,8 @@ const handleReviewRemove = (req, res, db) => {
           // console.log(data)
         return trx('all_tests')
           .where('uuid', uuid[0])
-          .update('review_count', review_count)
+          .update({'review_count' : review_count,
+        review_avg: newAvg})
           .then(
             res.json('success'))
       })

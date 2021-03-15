@@ -68,12 +68,22 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-end;
+    position:relative;
 }
 
-.pop-item * {
- 
 
+.pop-item .star-ratings {
+    position:absolute !important;
+    top:10px;
+    right:10px;
 }
+/* .pop-item .pop-count {
+    font-size:10px;
+    position: absolute;
+    top: 5px;
+    right: 0px;
+    margin-bottom: 0px;
+} */
 
 .pop-item p {
     color:white;
