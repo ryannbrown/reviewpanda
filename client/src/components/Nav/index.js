@@ -212,8 +212,8 @@ this.getCats();
 <nav>
 <div classname="container">
     <input id="responsive-menu" type="checkbox"></input>
-   
-    <label for="responsive-menu"> <img className="brand-icon" src={logo}></img> <span id="menu-icon"></span></label>
+    <label for="responsive-menu"><span id="menu-icon"></span></label>
+    <img className="brand-icon" src={logo}></img>
     <div id="overlay"></div>
     <div className="inner-menu">
       <div className="menu-content">

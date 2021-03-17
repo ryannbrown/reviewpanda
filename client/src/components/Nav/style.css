@@ -35,6 +35,7 @@ a:hover {
 } */
 
 .container {
+ 
     margin: 0 auto;
     max-width: 80em;
 }
@@ -64,6 +65,7 @@ p {
 /****************** NAVIGATION ******************/
 /************************************************/
 nav {
+    height:81px !important;
     background: #ffffff;
     color: #1d1f20;
     left: 0;
@@ -185,7 +187,7 @@ nav .inner-menu {
     border-bottom: 1px solid white;
     margin-left: 25px;
     color: white;
-    padding-bottom: 25px;
+    padding-bottom: 10px;
 }
 
 nav input:checked ~ div {
@@ -216,5 +218,8 @@ nav ul#social-media > li {
 
 
 .brand-icon {
+    position: absolute;
   width:225px;
+  margin-left:-112.5px;
+  margin-top:-12.5px;
 }
