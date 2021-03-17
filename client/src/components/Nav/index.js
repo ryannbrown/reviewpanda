@@ -213,7 +213,38 @@ this.getCats();
 <div classname="container">
     <input id="responsive-menu" type="checkbox"></input>
     <label for="responsive-menu"><span id="menu-icon"></span></label>
-    <img className="brand-icon" src={logo}></img>
+    <Link to="/"><img className="brand-icon" src={logo}></img></Link>
+
+                <div className="nav-right">
+                  {context.userLoggedIn && context.userData ? (
+                    <div className="user-nav">
+                      {/* <p>Welcome back, {context.userData.first_name}</p> */}
+                      {/* <button onClick={this.logOut} className="login-btn btn">
+                        Logout
+                      </button> */}
+                      {/* style={{backgroundImage: context.userData.has_uploaded_img ? `url('https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}')` : `backgroundImage:'url(${context.userData.avatar})'` , */}
+                      {context.userData.has_uploaded_img ?  <img src={`https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}`}/> :  <img src={context.userData.avatar}/> }
+                      <div className="user-nav-options">
+                      <Link to="/myprofile">Profile</Link>
+                      {/* <hr></hr> */}
+                      <Link>Support</Link>
+                      <Link onClick={this.logOut}>Log Out</Link>
+                      </div>
+                    </div>
+                  ) : (
+                    <div>
+                      {" "}
+                      <button
+                        onClick={this.toggleModal}
+                        toggleregister={this.toggleRegister}
+                        className="login-btn btn"
+                      >
+                        Login
+                      </button>
+                    
+                    </div>
+                  )}
+                  </div>
     <div id="overlay"></div>
     <div className="inner-menu">
       <div className="menu-content">
