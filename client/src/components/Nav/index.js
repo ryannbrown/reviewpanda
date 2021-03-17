@@ -40,6 +40,7 @@ export default class Nav extends Component {
       hideNav: false,
       isMobile: false,
       modalOpened: false,
+      overflowHidden:true
       // registrationToggled: false
     };
   }
@@ -100,6 +101,7 @@ export default class Nav extends Component {
   };
 
   handleMobileNav = () => {
+    this.fixOverflow();
     // list.innerHTML = `
     // body {
     //   overflow-y:hidden;
@@ -156,7 +158,13 @@ this.getCats();
   }
 
   fixOverflow = () => {
-    document.getElementsByTagName('body')[0].style.overflowY='hidden';
+    console.log(this.state.overflowHidden)
+if (this.state.overflowHidden) {
+  document.getElementsByTagName('body')[0].style.overflowY='hidden';
+} else {
+  document.getElementsByTagName('body')[0].style.overflowY='unset';
+}
+    this.setState({overflowHidden: !this.state.overflowHidden})
   }
 
   componentDidUpdate() {
