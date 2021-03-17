@@ -378,3 +378,13 @@ INSERT INTO sal_emp
 -- added a new column of review_count 
 alter table all_tests
 add column review_count integer
+
+
+
+
+-- 3/15
+alter table reviews
+add column review_avg decimal
+
+alter table all_tests
+add column review_avg decimal

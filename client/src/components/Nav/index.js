@@ -104,7 +104,35 @@ export default class Nav extends Component {
     document.getElementById("menu-toggle").checked = false;
   };
 
+  getCats = () => {
+    fetch(`/api/cats`)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log("nav-cats", json);
+        if (json.length > 0) {
+          // console.log("we have length")
+          this.setState({
+            cats: json,
+            isLoading: false,
+            truthyCats: true,
+            // userHasReviewed: false,
+          });
+        } else {
+          // console.log("we have else")
+          this.setState({
+            cats: [],
+            truthyReviews: false,
+            isLoading: false,
+            truthyCats: false,
+          });
+        }
+      });
+}
+
   componentDidMount() {
+
+this.getCats();
+
     var ourContext = this.context;
     // console.log(ourContext);
     // console.log("HEY!")
@@ -161,219 +189,267 @@ export default class Nav extends Component {
   }
 
   render() {
+
+
+
+    const {truthyCats, cats} = this.state;
+
+    if (truthyCats) {
+        // console.log(truthyReviews, reviews)
+        var items = cats.map((item, i) => (
+            <Link to={`/categories/${item.panda_cat}`}>
+            {item.panda_cat}
+              </Link>
+      
+        ));
+      }
+
+
     return (
       <ThemeContextConsumer>
         {(context) => (
-          <div className="nav-section">
-            <header
-              id="navvy-bar"
-              // class={this.state.mobileNavToggle ? "mobile-header" + (this.state.hideNav ? '-hidden' : '') : 'header' + (this.state.hideNav ? '-hidden' : '')}
-              className={this.state.mobileNavToggle ? "mobile-header" : "header"}
-            >
-              <div className="nav-brand">
-                <Link to="/">
-                  <img src={logo}></img>
-                </Link>
-              </div>
-              {/* <nav className="nav-options">
-                {this.state.mobileNavToggle ? (
-                  <ul>
-                    <li>
-                      <Link onClick={this.handleMobileNav} to="/blog">
-                        Blog
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        onClick={this.handleMobileNav}
-                        to="/shop/most-popular"
-                      >
-                        Shop
-                      </Link>
-                    </li>
-                    <li className="service-trigger">
-                      <input
-                        type="checkbox"
-                        class="nav-down-toggle"
-                        id="nav-toggle"
-                      ></input>
-                      <FontAwesomeIcon
-                        className="nav-down"
-                        icon={faChevronDown}
-                      />
-                      <Link to="/about">About</Link>
-                      <div className="nav-services">
-                        <div className="nav-service-arrow"></div>
-                        <li>
-                          <Link to="/about">About me</Link>
-                        </li>
-                        <li>
-                          <Link to="/resources">Resources</Link>
-                        </li>
-                        <li>
-                          <Link to="/speaking-engagements">
-                            Speaking Engagements
-                          </Link>
-                        </li>
-                      </div>
-                    </li>
-                  </ul>
-                ) : (
-                  <ul>
-                    <li>
-                      <Link to="/blog">Blog</Link>
-                    </li>
-                    <li>
-                      <Link to="/shop/most-popular">Shop</Link>
-                    </li>
-                    <li className="service-trigger">
-                      <input
-                        type="checkbox"
-                        class="nav-down-toggle"
-                        id="nav-toggle"
-                      ></input>
-                      <FontAwesomeIcon
-                        className="nav-down"
-                        icon={faChevronDown}
-                      />
-                      <Link to="/Services">About</Link>
-                      <div className="nav-services">
-                        <div className="nav-service-arrow"></div>
-                        <li>
-                          <Link to="/about">About me</Link>
-                        </li>
-                        <li>
-                          <Link to="/resources">Resources</Link>
-                        </li>
-                        <li>
-                          <Link to="/speaking-engagements">
-                            Speaking Engagements
-                          </Link>
-                        </li>
-                      </div>
-                    </li>
-                  </ul>
-                )}
-              </nav> */}
-              {/* <div className="mobile-nav-logos">
-          <a  href="/"><img src={instaLogo}></img></a>
-          <a href="/"><img src={fbLogo}></img></a>
-             <a  href="/"><img src={cartLogo}></img></a>
-          </div> */}
 
-              {!this.state.isMobile ? (
-                <div className="nav-right">
-                  {context.userLoggedIn && context.userData ? (
-                    <div className="user-nav">
-                      {/* <p>Welcome back, {context.userData.first_name}</p> */}
-                      {/* <button onClick={this.logOut} className="login-btn btn">
-                        Logout
-                      </button> */}
-                      {/* style={{backgroundImage: context.userData.has_uploaded_img ? `url('https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}')` : `backgroundImage:'url(${context.userData.avatar})'` , */}
-                      {context.userData.has_uploaded_img ?  <img src={`https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}`}/> :  <img src={context.userData.avatar}/> }
-                      <div className="user-nav-options">
-                      <Link to="/myprofile">Profile</Link>
-                      {/* <hr></hr> */}
-                      <Link>Support</Link>
-                      <Link onClick={this.logOut}>Log Out</Link>
-                      </div>
-                    </div>
-                  ) : (
-                    <div>
-                      {" "}
-                      <button
-                        onClick={this.toggleModal}
-                        toggleregister={this.toggleRegister}
-                        className="login-btn btn"
-                      >
-                        Login
-                      </button>
-                    
-                    </div>
-                  )}
-                  {/* <a href="https://www.instagram.com/Carolyn9787/">
-                    <img src={instaLogo}></img>
-                  </a>
-                  <a href="/">
-                    <img src={fbLogo}></img>
-                  </a> */}
-                  {/* <a className="cart-desktop">
-                    <img
-                      className="myimg"
-                      // onClick={context.handleCartOpen}
-                      src={cartLogo}
-                    ></img>
-                  </a> */}
-                </div>
-              ) : (
-                <div className="nav-right">
-                  {context.userLoggedIn && context.userData ? (
-                    <div>
-                      <p>Welcome back, {context.userData.first_name}</p>
-                      <button onClick={this.logOut} className="login-btn btn">
-                        Logout
-                      </button>
-                    </div>
-                  ) : (
-                    <div>
-                      {" "}
-                      <button
-                        onClick={this.toggleModal}
-                        toggleRegister={this.toggleRegister}
-                        className="login-btn btn"
-                      >
-                        Login | Register
-                      </button>
-                    </div>
-                  )}
-                  {/* <a href="https://www.instagram.com/Carolyn9787/">
-                    <img src={instaLogoW}></img>
-                  </a>
-                  <a href="/">
-                    <img src={fbLogoW}></img>
-                  </a> */}
-                  {/* <a
-                    style={{ cursor: "pointer" }}
-                    // onClick={context.handleCartOpen}
-                  >
-                    <img src={cartLogoW}></img>
-                  </a> */}
-                </div>
-              )}
-            </header>
-            <input
-              type="checkbox"
-              className="menu-toggle"
-              id="menu-toggle"
-              onClick={this.toggleNav}
-            />
-            {/* <div class={this.state.hideNav ? 'mobile-bar-hidden': 'mobile-bar' }> */}
-            <div className="mobile-bar">
-              <label for="menu-toggle" className="menu-icon">
-                <span></span>
-              </label>
-              <div className="mobile-nav-brand">
-                <Link to="/">
-                  <img src={logo}></img>
-                </Link>
-              </div>
-              {/* <a className="cart-mobile">
-                <img
-                  // onClick={context.handleCartOpen}
-                  className="mbar-cart"
-                  src={cartLogo}
-                ></img>
-              </a> */}
-            </div>
-            {this.state.modalOpened && (
+<nav>
+<div classname="container">
+    <input id="responsive-menu" type="checkbox"></input>
+   
+    <label for="responsive-menu"> <img className="brand-icon" src={logo}></img> <span id="menu-icon"></span></label>
+    <div id="overlay"></div>
+    <div className="inner-menu">
+      <div className="menu-content">
+      <div><h1>Menu</h1></div>
+    <div className="category-block">
+      <div className="cat-wrapper">{items}</div>
+      </div>
+      </div>
+
+    </div>
+</div>
+{this.state.modalOpened && (
               <LoginModal toggleModal={this.toggleModal}></LoginModal>
             )}
-          </div>
+</nav>
+
         )}
-      </ThemeContextConsumer>
-    );
-  }
-}
+        </ThemeContextConsumer>
+
+ )
+        }
+      }
+
+
+
+
+      //     <div className="nav-section">
+      //       <header
+      //         id="navvy-bar"
+      //         // class={this.state.mobileNavToggle ? "mobile-header" + (this.state.hideNav ? '-hidden' : '') : 'header' + (this.state.hideNav ? '-hidden' : '')}
+      //         className={this.state.mobileNavToggle ? "mobile-header" : "header"}
+      //       >
+      //         <div className="nav-brand">
+      //           <Link to="/">
+      //             <img src={logo}></img>
+      //           </Link>
+      //         </div>
+      //         {/* <nav className="nav-options">
+      //           {this.state.mobileNavToggle ? (
+      //             <ul>
+      //               <li>
+      //                 <Link onClick={this.handleMobileNav} to="/blog">
+      //                   Blog
+      //                 </Link>
+      //               </li>
+      //               <li>
+      //                 <Link
+      //                   onClick={this.handleMobileNav}
+      //                   to="/shop/most-popular"
+      //                 >
+      //                   Shop
+      //                 </Link>
+      //               </li>
+      //               <li className="service-trigger">
+      //                 <input
+      //                   type="checkbox"
+      //                   class="nav-down-toggle"
+      //                   id="nav-toggle"
+      //                 ></input>
+      //                 <FontAwesomeIcon
+      //                   className="nav-down"
+      //                   icon={faChevronDown}
+      //                 />
+      //                 <Link to="/about">About</Link>
+      //                 <div className="nav-services">
+      //                   <div className="nav-service-arrow"></div>
+      //                   <li>
+      //                     <Link to="/about">About me</Link>
+      //                   </li>
+      //                   <li>
+      //                     <Link to="/resources">Resources</Link>
+      //                   </li>
+      //                   <li>
+      //                     <Link to="/speaking-engagements">
+      //                       Speaking Engagements
+      //                     </Link>
+      //                   </li>
+      //                 </div>
+      //               </li>
+      //             </ul>
+      //           ) : (
+      //             <ul>
+      //               <li>
+      //                 <Link to="/blog">Blog</Link>
+      //               </li>
+      //               <li>
+      //                 <Link to="/shop/most-popular">Shop</Link>
+      //               </li>
+      //               <li className="service-trigger">
+      //                 <input
+      //                   type="checkbox"
+      //                   class="nav-down-toggle"
+      //                   id="nav-toggle"
+      //                 ></input>
+      //                 <FontAwesomeIcon
+      //                   className="nav-down"
+      //                   icon={faChevronDown}
+      //                 />
+      //                 <Link to="/Services">About</Link>
+      //                 <div className="nav-services">
+      //                   <div className="nav-service-arrow"></div>
+      //                   <li>
+      //                     <Link to="/about">About me</Link>
+      //                   </li>
+      //                   <li>
+      //                     <Link to="/resources">Resources</Link>
+      //                   </li>
+      //                   <li>
+      //                     <Link to="/speaking-engagements">
+      //                       Speaking Engagements
+      //                     </Link>
+      //                   </li>
+      //                 </div>
+      //               </li>
+      //             </ul>
+      //           )}
+      //         </nav> */}
+      //         {/* <div className="mobile-nav-logos">
+      //     <a  href="/"><img src={instaLogo}></img></a>
+      //     <a href="/"><img src={fbLogo}></img></a>
+      //        <a  href="/"><img src={cartLogo}></img></a>
+      //     </div> */}
+
+      //         {!this.state.isMobile ? (
+      //           <div className="nav-right">
+      //             {context.userLoggedIn && context.userData ? (
+      //               <div className="user-nav">
+      //                 {/* <p>Welcome back, {context.userData.first_name}</p> */}
+      //                 {/* <button onClick={this.logOut} className="login-btn btn">
+      //                   Logout
+      //                 </button> */}
+      //                 {/* style={{backgroundImage: context.userData.has_uploaded_img ? `url('https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}')` : `backgroundImage:'url(${context.userData.avatar})'` , */}
+      //                 {context.userData.has_uploaded_img ?  <img src={`https://reviewpanda.s3.amazonaws.com/${context.userData.avatar}`}/> :  <img src={context.userData.avatar}/> }
+      //                 <div className="user-nav-options">
+      //                 <Link to="/myprofile">Profile</Link>
+      //                 {/* <hr></hr> */}
+      //                 <Link>Support</Link>
+      //                 <Link onClick={this.logOut}>Log Out</Link>
+      //                 </div>
+      //               </div>
+      //             ) : (
+      //               <div>
+      //                 {" "}
+      //                 <button
+      //                   onClick={this.toggleModal}
+      //                   toggleregister={this.toggleRegister}
+      //                   className="login-btn btn"
+      //                 >
+      //                   Login
+      //                 </button>
+                    
+      //               </div>
+      //             )}
+      //             {/* <a href="https://www.instagram.com/Carolyn9787/">
+      //               <img src={instaLogo}></img>
+      //             </a>
+      //             <a href="/">
+      //               <img src={fbLogo}></img>
+      //             </a> */}
+      //             {/* <a className="cart-desktop">
+      //               <img
+      //                 className="myimg"
+      //                 // onClick={context.handleCartOpen}
+      //                 src={cartLogo}
+      //               ></img>
+      //             </a> */}
+      //           </div>
+      //         ) : (
+      //           <div className="nav-right">
+      //             {context.userLoggedIn && context.userData ? (
+      //               <div>
+      //                 <p>Welcome back, {context.userData.first_name}</p>
+      //                 <button onClick={this.logOut} className="login-btn btn">
+      //                   Logout
+      //                 </button>
+      //               </div>
+      //             ) : (
+      //               <div>
+      //                 {" "}
+      //                 <button
+      //                   onClick={this.toggleModal}
+      //                   toggleRegister={this.toggleRegister}
+      //                   className="login-btn btn"
+      //                 >
+      //                   Login | Register
+      //                 </button>
+      //               </div>
+      //             )}
+      //             {/* <a href="https://www.instagram.com/Carolyn9787/">
+      //               <img src={instaLogoW}></img>
+      //             </a>
+      //             <a href="/">
+      //               <img src={fbLogoW}></img>
+      //             </a> */}
+      //             {/* <a
+      //               style={{ cursor: "pointer" }}
+      //               // onClick={context.handleCartOpen}
+      //             >
+      //               <img src={cartLogoW}></img>
+      //             </a> */}
+      //           </div>
+      //         )}
+      //       </header>
+      //       <input
+      //         type="checkbox"
+      //         className="menu-toggle"
+      //         id="menu-toggle"
+      //         onClick={this.toggleNav}
+      //       />
+      //       {/* <div class={this.state.hideNav ? 'mobile-bar-hidden': 'mobile-bar' }> */}
+      //       <div className="mobile-bar">
+      //         <label for="menu-toggle" className="menu-icon">
+      //           <span></span>
+      //         </label>
+      //         <div className="mobile-nav-brand">
+      //           <Link to="/">
+      //             <img src={logo}></img>
+      //           </Link>
+      //         </div>
+      //         {/* <a className="cart-mobile">
+      //           <img
+      //             // onClick={context.handleCartOpen}
+      //             className="mbar-cart"
+      //             src={cartLogo}
+      //           ></img>
+      //         </a> */}
+      //       </div>
+      //       {this.state.modalOpened && (
+      //         <LoginModal toggleModal={this.toggleModal}></LoginModal>
+      //       )}
+      //     </div>
+      //   )}
+      // </ThemeContextConsumer>
+//     );
+//   }
+// }
 
 // {!this.props.isCartOpen ?
 //   <a onClick={this.props.handleCartOpen}>
