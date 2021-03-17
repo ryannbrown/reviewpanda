@@ -100,6 +100,11 @@ export default class Nav extends Component {
   };
 
   handleMobileNav = () => {
+    // list.innerHTML = `
+    // body {
+    //   overflow-y:hidden;
+    // }`;
+    // console.log(list)
     this.setState({ mobileNavToggle: false });
     document.getElementById("responsive-menu").checked = false;
   };
@@ -150,6 +155,10 @@ this.getCats();
     }
   }
 
+  fixOverflow = () => {
+    document.getElementsByTagName('body')[0].style.overflowY='hidden';
+  }
+
   componentDidUpdate() {
 
 
@@ -167,6 +176,13 @@ this.getCats();
     window.addEventListener(
       "resize",
       _.debounce(() => {
+
+if (document.getElementById("responsive-menu").checked) {
+  console.log("its true")
+  document.getElementsByTagName('body')[0].style.overflowY='hidden';
+}
+
+
         if (window.innerWidth > 725) {
           this.setState({
             mobileNavToggle: false,
@@ -215,7 +231,7 @@ this.getCats();
 
 <nav>
 <div classname="container">
-    <input id="responsive-menu" type="checkbox"></input>
+    <input onClick={this.fixOverflow} id="responsive-menu" type="checkbox"></input>
     <label for="responsive-menu"><span id="menu-icon"></span></label>
     <Link to="/"><img className="brand-icon" src={logo}></img></Link>
 
