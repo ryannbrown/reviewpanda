@@ -101,7 +101,7 @@ export default class Nav extends Component {
 
   handleMobileNav = () => {
     this.setState({ mobileNavToggle: false });
-    document.getElementById("menu-toggle").checked = false;
+    document.getElementById("responsive-menu").checked = false;
   };
 
   getCats = () => {
@@ -151,6 +151,10 @@ this.getCats();
   }
 
   componentDidUpdate() {
+
+
+
+  
     // console.log(this.state.modalOpened);
     // if (this.state.lastPosition > 0) {
     //   console.log("here boy")
@@ -197,7 +201,7 @@ this.getCats();
     if (truthyCats) {
         // console.log(truthyReviews, reviews)
         var items = cats.map((item, i) => (
-            <Link to={`/categories/${item.panda_cat}`}>
+            <Link onClick={this.handleMobileNav} to={`/categories/${item.panda_cat}`}>
             {item.panda_cat}
               </Link>
       

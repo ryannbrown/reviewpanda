@@ -81,6 +81,7 @@ console.log(savedTest)
   };
 
   fetchReviewsByCat = (cat) => {
+    this.setState({isLoading:true})
     fetch(`/api/cats/${cat}`)
       .then((res) => res.json())
       .then((json) => {
@@ -89,6 +90,7 @@ console.log(savedTest)
           // console.log("we have length")
           this.setState({
             reviews: json,
+            headerTitle:cat,
             isLoading: false,
             truthyReviews: true,
             // userHasReviewed: false,
@@ -97,7 +99,7 @@ console.log(savedTest)
           // console.log("we have else")
           this.setState({
             reviews: [],
-            headerTitle: cat,
+            // headerTitle: cat,
             truthyReviews: false,
             isLoading: false,
             truthyCats: false,
@@ -152,7 +154,15 @@ console.log(this.state)
 
 
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
+
+      //Typical usage, don't forget to compare the props
+      if (this.props.match.params.cat !== prevProps.match.params.cat) {
+         this.fetchReviewsByCat(this.props.match.params.cat)
+      }
+     
+
+
     let ourContext = this.context
     console.log(ourContext);
   }
