@@ -72,6 +72,7 @@ export default class Nav extends Component {
   };
 
   toggleModal = () => {
+      this.fixOverflow();
     console.log("clicked");
     this.setState({
       modalOpened: !this.state.modalOpened,
@@ -102,11 +103,6 @@ export default class Nav extends Component {
 
   handleMobileNav = () => {
     this.fixOverflow();
-    // list.innerHTML = `
-    // body {
-    //   overflow-y:hidden;
-    // }`;
-    // console.log(list)
     this.setState({ mobileNavToggle: false });
     document.getElementById("responsive-menu").checked = false;
   };

@@ -34,7 +34,8 @@ class LoginModal extends Component {
       modalOpened: false,
       registrationToggled: false,
       showLoginAlert: false,
-      showRegisterAlert:false
+      showRegisterAlert:false,
+      overflowHidden: true
       //   loggedInState: this.props.loggedInState,
       //   user: null,
       //   userLoggedIn: this.props.userLoggedIn
@@ -53,6 +54,19 @@ class LoginModal extends Component {
     this.license = React.createRef();
   }
 
+
+
+  
+  fixOverflow = () => {
+    // console.log(this.state.overflowHidden)
+if (this.state.overflowHidden) {
+  document.getElementsByTagName('body')[0].style.overflowY='hidden';
+} else {
+  document.getElementsByTagName('body')[0].style.overflowY='unset';
+}
+    this.setState({overflowHidden: !this.state.overflowHidden})
+  }
+
    toggleRegister = () => {
     this.setState({
       registrationToggled: !this.state.registrationToggled
@@ -60,6 +74,7 @@ class LoginModal extends Component {
   }
 
   toggleOpen = () => {
+    // this.fixOverflow();
     this.setState({
       opened: !this.state.opened,
     });
