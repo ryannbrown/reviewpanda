@@ -68,7 +68,7 @@ class MostPopular extends Component {
       return (
         <div
           className="most-pop-block"
-          style={{ display: "flex", height: "50vh", width: "100%" }}
+          style={{ display: "flex", height: "100%", width: "100%" }}
         >
           <div>
           <h1 style={{textAlign:'left'}}>Most Popular</h1>

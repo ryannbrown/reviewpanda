@@ -3,11 +3,13 @@
 import React, { Component } from 'react';
 import './style.css';
 import Navbar from "../../components/Nav"
+import Footer from "../../components/Footer/index"
 import MostPopular from "../../components/MostPopular/index"
 import RecentlyReviewed from "../../components/RecentlyReviewed/index"
 import {Link} from "react-router-dom"
 import DropdownSearch from "../../components/DropdownSearch/index"
 import heroImg from "../../media/hero-img.jpg"
+import HomeAboutBlock from "../../components/HomeAboutBlock/index"
 
 export default class Homepage extends Component {
 
@@ -91,6 +93,8 @@ export default class Homepage extends Component {
                </div>
                <MostPopular></MostPopular>
                <RecentlyReviewed></RecentlyReviewed>
+               <HomeAboutBlock></HomeAboutBlock>
+               <Footer></Footer>
             </div>
         )
     }
