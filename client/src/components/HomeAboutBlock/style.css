@@ -45,7 +45,8 @@
 .auth-img {
   width: 458px;
   height: 50vh;
-  object-fit: cover;
+  /* object-fit: cover; */
+  object-fit: contain;
   margin: 75px 0px;
   object-position: 50% 50%;
 }
