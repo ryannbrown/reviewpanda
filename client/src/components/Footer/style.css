@@ -18,7 +18,7 @@
 }
 
 .footer-content * {
-    color:#0E3B62;
+    color:#123047;
 }
 
 .footer-content img {
@@ -26,23 +26,23 @@
 }
 
 .footer-content input {
-    border: 1px solid #0E3B62;
+    border: 1px solid #123047;
     background-color: transparent;
     padding: .75rem;
-    color:#0E3B62;
+    color:#123047;
     letter-spacing: .1rem;
 }
 
 
 .footer-content input::placeholder {
-    color:#0E3B62;
+    color:#123047;
     opacity:1;
 }
 .footer-content button {
-    border: 1px solid #0E3B62;
+    border: 1px solid #123047;
     padding: .75rem;
     color:white;
-    background-color: #0E3B62;
+    background-color: #123047;
 }
 
 .footer-content .contact-info * {

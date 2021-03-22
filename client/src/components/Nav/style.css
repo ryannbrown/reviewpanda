@@ -251,7 +251,7 @@ nav ul#social-media > li {
 
 .user-nav-options {
     box-shadow:0 2px 4px 0 rgb(0 0 0 / 13%);
-    margin-top:-50px;
+    margin-top:-75px; /*TODO maybe fix*/
     width: 200px;
     background-color: #BEBCBC;
     visibility: hidden;
@@ -278,4 +278,14 @@ nav ul#social-media > li {
     border-color: #F5F5F5;
     border-width: 2px;
     margin: 0px 10px;
+}
+
+
+@media (max-width:750px) {
+    nav .inner-menu {
+        height:75vh;
+    }
+    .menu-content > div > h1 {
+        width:250px;
+    }
 }

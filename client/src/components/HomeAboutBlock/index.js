@@ -49,7 +49,7 @@ export default class HomeAboutBlock extends Component {
             </div>
           </div>
           <br></br>
-          {/* <p style={{color:'#0e3b62'}} className="action-button">February 2021</p> */}
+          {/* <p style={{color:'#123047'}} className="action-button">February 2021</p> */}
         </div>
       </div>
     );

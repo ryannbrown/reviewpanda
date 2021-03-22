@@ -21,7 +21,7 @@ class DetailsPage extends Component {
       truthyReviews: false,
       reviewIsLoading:true,
       testIsLoading:true,
-      pageReady: true,
+      pageReady: false,
       isTestSaved: false,
       attempt: 0,
       reviewAvg: null,
@@ -145,7 +145,8 @@ this.setState({reviewCount:number})
         console.log("json", json);
         this.setState({
           thisPost: json,
-          testIsLoading:false
+          testIsLoading:false,
+          pageReady:true
         });
         this.fetchReviews(json.uuid);
       });
