@@ -57,7 +57,7 @@
 }
 
 .pop-wrapper p {
-    font-size:.75rem;
+    /* font-size:.75rem; */
     max-width:80%;
     text-align:center;
     /* margin:0px auto; */
