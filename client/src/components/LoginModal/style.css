@@ -4,8 +4,7 @@
     height: 100vh;
     -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
-    background-color: #123047;
-
+    background-color: #FFFFFF;
     background-blend-mode: blur;
     z-index: 699;
     display: flex;
@@ -21,7 +20,7 @@
     width: 400px;
     /* height: 200px; */
     max-height:100%;
-    padding: 50px 25px;
+    padding: 0px 0px 50px 0px;
     border-radius: 25px;
     display: flex;
     align-items: center;
@@ -38,19 +37,21 @@
 
     .modal-exit-btn {
         position:absolute;
-        top:15px;
-        right:15px;
+        top:100px;
+        right:150px;
         cursor:pointer;
+       opacity:.5;
     }
     .modal-exit-btn:hover {
-        opacity:.5;
+        opacity:1;
     }
 
     .form-checkbox {
         display: flex;
         height: 40px;
-        width: 100px;
+        width: 100%;
         align-items: center;
+        position:relative;
     }
     .form-checkbox label {
         /* margin-right:5px; */
@@ -61,7 +62,12 @@
     }
 
 .actual-form * {
-    margin:5px;
+    /* margin:5px 0px; */
+}
+
+.actual-form h1 {
+  margin:25px 0px;
+  font-weight:500;
 }
 
     
@@ -73,6 +79,7 @@
     color: black;
     border: 0.5px solid #cccccc;
     padding: 5px;
+    margin:5px 0px;
   }
   
   .actual-form input[type="text"] {
@@ -88,6 +95,19 @@
     border-radius: 5px;
     border: 1px solid #cccccc;
   }
+
+  .actual-form .modal-btn {
+    margin-top:25px;
+  }
+
+  .first-time-block {
+    margin-top: 50px;
+}
+
+.first-time-block p{
+  color:#77E0D4;
+  cursor:pointer;
+}
   
   .actual-form input::placeholder {
     color: #cccccc !important;
@@ -153,17 +173,17 @@
 
 
   .actual-form.registration .alert {
-    width:243px;
+    width:100%;
   }
 
   .why-title{
-    position:absolute;
-    /* top:5px; */
-    right:5px;
-    height:50px;
+    position: absolute;
+    bottom: 50px;
+    /* left: 10px; */
     cursor: pointer;
     display: flex;
     align-items: center;
+    opacity:.5;
   }
 
   .tooltip{
@@ -182,4 +202,34 @@
     width:250px;
     left:50%;
     top:25%;
+  }
+
+
+  .register-form-wrapper {
+    display: flex;
+    gap:15px;
+}
+
+.register-form-wrapper input {
+margin:10px 0px;
+}
+  .register-license-wrapper {
+    position:relative;
+    display: flex;
+    gap:15px;
+}
+
+.register-license-wrapper input {
+margin:50px 0px;
+}
+
+
+
+  @media (max-width:900px) {
+    .modal-exit-btn {
+     
+      top:50px;
+      right:50px;
+ 
+  }
   }

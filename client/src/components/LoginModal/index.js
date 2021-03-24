@@ -220,7 +220,7 @@ if (this.state.overflowHidden) {
 
           //   this.props.action(email);
           // alert("success")
-        } else if (response.status == "400") {
+        } else if (response.status !== "200") {
           this.setState({
             showRegisterAlert: true,
           });
@@ -253,8 +253,8 @@ if (this.state.overflowHidden) {
     const {showRegisterAlert, showLoginAlert} = this.state;
     return (
       <div className="modal-background">
-        <div className="modal-box">
           <img className="modal-exit-btn" src={exitBtn} onClick={this.props.toggleModal}></img>
+        <div className="modal-box">
           <div className="modal-content">
             {/* Login Form */}
             {!this.state.registrationToggled ? (
@@ -263,10 +263,13 @@ if (this.state.overflowHidden) {
                 <h1>Login</h1>
                 <input ref={this.email} placeholder="email" />
                 <input type="password" ref={this.password} placeholder="password" />
-                <button className="modal-btn btn" >Sign In</button>
                 {showLoginAlert && <div className="alert alert-danger">Incorrect email or password</div>}
-                <p>First Time?</p>
-                <button className="modal-btn btn" type="submit" onClick={this.toggleRegister}>Register</button>
+                <button className="modal-btn btn" >Sign In</button>
+                <div className="first-time-block">
+                <h3>First Time?</h3>
+                <p className="" type="submit" onClick={this.toggleRegister}>Create an account</p>
+                </div>
+       
               </form>
             ) :
            
@@ -274,12 +277,19 @@ if (this.state.overflowHidden) {
               <form className="actual-form registration" onSubmit={this.handleRegistration}>
                     {/* Registration Form */} 
                 <h1>Register</h1>
-                <input ref={this.email} name="email" placeholder="Email" />
-                <input type="password" ref={this.password} placeholder="Password" />
-                <input type="password" ref={this.verPassword} placeholder="Verify Password" />
-                <input ref={this.first_name} name="first" placeholder="First Name" />
-                <input ref={this.last_name} name="last" placeholder="Last Name" />
-                <div style={{position:'relative', width:'253px', margin:'0px 0px'}}>
+                {showRegisterAlert && <div className="alert alert-danger">This email may already exist in our system</div>}
+                <div className="register-form-wrapper">
+              <div className="register-left">
+              <input ref={this.first_name} name="first" placeholder="First Name" />
+              <input ref={this.email} name="email" placeholder="Email" />
+              <input type="password" ref={this.verPassword} placeholder="Verify Password" />
+              </div>
+              <div className="register-right">
+              <input ref={this.last_name} name="last" placeholder="Last Name" />
+              <input type="password" ref={this.password} placeholder="Password" />
+              </div>
+                </div>
+                <div className="register-license-wrapper">
                 <Tooltip
                 className="tooltip"
                   // options
@@ -296,12 +306,17 @@ if (this.state.overflowHidden) {
                 <input ref={this.prof_title} name="title" placeholder="Professional Title" />
                 <input ref={this.license} name="license_number" placeholder="Clinical License #" />
                 </div>
+           
+                {/* <div style={{position:'relative', width:'253px', margin:'0px 0px'}}>
+               
+             
+                </div> */}
                 <div className="form-checkbox">
                 <label>Subscribe?</label>
                 <input ref={this.isSubscribed} type="checkbox"></input>
                 </div>
                 <button className="modal-btn btn" type="submit">Register</button>
-                {showRegisterAlert && <div className="alert alert-danger">This email may already exist in our system</div>}
+         
               </form>
             )}
            

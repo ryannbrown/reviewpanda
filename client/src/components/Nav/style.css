@@ -75,7 +75,8 @@ nav #responsive-menu {
 nav label {
     cursor: pointer;
     display: block;
-    font: 2em/1 'Oswald', sans-serif;
+    /* font: 2em/1 'Oswald', sans-serif; */
+    font: 1.25em/1 'Oswald', sans-serif;
     padding: 0.5em;
     position: absolute;
     left: 0px;
@@ -90,7 +91,7 @@ nav label {
 #menu-icon:after {
     background: #1d1f20;
     border-radius: 0.05em;
-    height: 0.2em;
+    height: 1px;
     transition: all 0.2s ease-in-out;
     width: 100%;
 }

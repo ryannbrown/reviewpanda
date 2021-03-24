@@ -21,11 +21,11 @@
 .reviews-comp .actual-form textarea {
     width:100%;
 }
-
+/* 
 .reviews-comp .actual-form button {
     width:60%;
     font-size:.9rem;
-}
+} */
 
 .review-heart {
     cursor:pointer;
@@ -51,19 +51,20 @@
 }
 
 .prize-item {
-    display:flex;
+    display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     flex-direction: column;
-    width:125px;
-    height:89px;
+    padding: 15px;
+    min-width: 100px;
+    /* height: 89px; */
     border: 2px solid #77E0D4;
-    border-radius:15px;
-    margin: 25px 0px;
+    border-radius: 10px;
+    /* margin: 25px 0px; */
 }
 
-.prize-item:hover {
+/* .prize-item:hover {
     cursor:pointer;
     color:white;
     background-image: linear-gradient(to right bottom, #77E0D4, #2ECEE2, #00B9EF, #309FF1, #777FE0);
-}
+} */

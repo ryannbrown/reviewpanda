@@ -18,6 +18,7 @@ input:focus {
 h1, h2, h3 {
 /* font-family: 'adelle'; */
   /* font-family: serif; */
+  font-weight:500;
 color:#123047;
 }
 
@@ -157,6 +158,18 @@ p, li, h3, h4, h5, a, button {
   outline:none;
 }
 
+.transparent-btn {
+  background-color:transparent;
+  border: 1px solid white;
+  /* border:transparent; */
+  /* outline:1px solid transparent; */
+}
+.transparent-btn:hover {
+  background-color:#77E0D4;
+  border:transparent;
+  border:1px solid transparent;
+}
+
 .login-btn {
   background-color: #77E0D4;
 }
@@ -174,9 +187,9 @@ p, li, h3, h4, h5, a, button {
 
 
 .alert-danger {
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
+  color: #E21414 !important;
+  /* background-color: #f8d7da;
+  border-color: #f5c6cb; */
 }
 
 .alert {

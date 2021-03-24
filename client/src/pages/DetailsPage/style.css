@@ -19,6 +19,7 @@
 .details-hero h1, .details-hero h2 {
     /* overrrides h1 colors in app.css file */
     color:white !important;
+    font-weight:500;
 }
 
 
@@ -47,6 +48,7 @@
     justify-content: center;
     align-items:flex-start;
     border-bottom:2px solid #BEBCBC78;
+    padding-bottom:50px;
 }
 
 .details-content p {
@@ -78,17 +80,14 @@
     align-items: center;
 }
 
-.details-content h2 {
-    font-weight:300;
-}
 
 .back-link {
     text-align: left;
-    /* max-width: 980px; */
+    max-width: 980px;
     display: flex;
     justify-content: flex-start;
-    width: 1200px;
-    margin: 50px 0px 0px 25px;
+    min-width: 100vw;
+    margin: 50px 0px 50px 100px;
 }
 
 .hero-heart {
@@ -114,13 +113,16 @@
 }
 
 .spec-icons p {
+    color: #123047;
+    font-weight:500;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     font-size: .75rem;
     width:100px;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 25px 35px 25px 0px;
+    font-size:16px;
 
 }
 

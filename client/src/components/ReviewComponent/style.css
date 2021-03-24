@@ -90,3 +90,9 @@ margin:0px 15px;
     background-position:center center;
     border-radius: 15px;
 }
+
+@media(max-width:1200px) {
+    .reviews-wrapper {
+        max-width:90%;
+    }
+}

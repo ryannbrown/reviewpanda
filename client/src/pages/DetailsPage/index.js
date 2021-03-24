@@ -219,12 +219,15 @@ this.setState({reviewCount:number})
               className="details-page"
               style={{ display: "flex", height: "100%", width: "100%" }}
             >
+               <div>
+                <Link to={`/categories/${thisPost.panda_cat}`} className="back-link"><i style={{margin:'0px 5px'}} class="lni lni-chevron-left"></i> Explore all from {thisPost.panda_cat}</Link>
+              </div>
               <div className="details-hero">
 {!this.state.isTestSaved ?   <i onClick={() => {this.saveTest(thisPost.title)}} class="lni lni-heart hero-heart"></i> :  <i class="lni lni-checkmark-circle hero-heart"></i> }
             
              
               <h1>{thisPost.title}</h1>
-              {thisPost.abbrev && <h2>{thisPost.abbrev}</h2>}
+          
               <div className="hero-sub-info">
                 {/* {this.state.reviewAvg !== 'NaN' ? 
               <p>Rating: {this.state.reviewAvg} | </p> :
@@ -260,13 +263,11 @@ this.setState({reviewCount:number})
               starHoverColor='rgba(142,142,142)'
               starRatedColor='#8E8E8E'
             /> |</p> */}
+                {thisPost.abbrev && <p>{thisPost.abbrev}</p>}
               <p>Author: {thisPost.author}</p>
             
               </div>
-              <a target ="_blank" href={thisPost.link}><button className="login-btn btn">Learn More</button></a>
-              </div>
-              <div>
-                <Link to={`/categories/${thisPost.panda_cat}`} className="back-link"><i style={{margin:'0px 5px'}} class="lni lni-arrow-left"></i> Explore all from {thisPost.panda_cat}</Link>
+              <a target ="_blank" href={thisPost.link}><button className="transparent-btn btn">Learn More</button></a>
               </div>
               <div className="details-content">
                 <div className="split-left">
