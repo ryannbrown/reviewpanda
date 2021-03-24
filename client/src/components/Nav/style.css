@@ -78,11 +78,11 @@ nav label {
     /* font: 2em/1 'Oswald', sans-serif; */
     font: 1.25em/1 'Oswald', sans-serif;
     padding: 0.5em;
-    position: absolute;
+    /* position: absolute; */
     left: 0px;
     top: 0px;
-    width: 100px;
-    height: 100px;
+    /* width: 100px; */
+    /* height: 100px; */
 }
 
 /* Hamburger Icon */

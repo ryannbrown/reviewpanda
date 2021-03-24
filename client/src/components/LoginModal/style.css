@@ -52,13 +52,22 @@
         width: 100%;
         align-items: center;
         position:relative;
+        justify-content: space-evenly;
     }
+
     .form-checkbox label {
         /* margin-right:5px; */
     }
     .form-checkbox input {
         height: auto !important;
+        width:15px  !important;
         margin: 0px;
+    }
+
+    .subscribe-block {
+      display:flex;
+      align-items:center;
+      justify-content: center;
     }
 
 .actual-form * {
@@ -95,10 +104,10 @@
     border-radius: 5px;
     border: 1px solid #cccccc;
   }
-
+/* 
   .actual-form .modal-btn {
     margin-top:25px;
-  }
+  } */
 
   .first-time-block {
     margin-top: 50px;

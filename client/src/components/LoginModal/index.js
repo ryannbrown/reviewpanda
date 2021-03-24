@@ -312,10 +312,14 @@ if (this.state.overflowHidden) {
              
                 </div> */}
                 <div className="form-checkbox">
+                <button className="modal-btn btn" type="submit">Register</button>
+                <div className="subscribe-block">
                 <label>Subscribe?</label>
                 <input ref={this.isSubscribed} type="checkbox"></input>
                 </div>
-                <button className="modal-btn btn" type="submit">Register</button>
+  
+                </div>
+           
          
               </form>
             )}
