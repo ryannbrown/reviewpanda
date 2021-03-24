@@ -11,12 +11,13 @@
     align-items: center;
     justify-content: center;
     overflow-y:hidden;
-    margin-top:100px;
+    /* margin-top:100px; */
+    margin-top:80px;
 }
 
 .modal-box {
     position:relative;
-    background-color: white;
+    background-color: transparent;
     width: 400px;
     /* height: 200px; */
     max-height:100%;
@@ -41,6 +42,7 @@
         right:150px;
         cursor:pointer;
        opacity:.5;
+       z-index:2000;
     }
     .modal-exit-btn:hover {
         opacity:1;
@@ -235,10 +237,43 @@ margin:50px 0px;
 
 
   @media (max-width:900px) {
+    .modal-box {
+      padding: 0px 0px 125px 0px;
+    }
     .modal-exit-btn {
      
       top:50px;
       right:50px;
  
   }
+  .register-form-wrapper {
+    display: flex;
+    grid-gap: 15px;
+    gap: 15px;
+    max-width: 87%;
+    margin: 0px auto;
+}
+  .actual-form input {
+    
+    width:150px;
+  }
+  .register-license-wrapper {
+    position: relative;
+    display: flex;
+    grid-gap: 15px;
+    gap: 15px;
+    max-width: 75%;
+    /* margin: 0px auto; */
+    /* text-align: center; */
+    padding: 15px 25px;
+}
+.register-license-wrapper input {
+  margin:25px 0px;
+}
+.why-title {
+  bottom:60px;
+}
+.form-checkbox {
+  /* width:90%; */
+}
   }

@@ -283,6 +283,9 @@ nav ul#social-media > li {
 
 
 @media (max-width:750px) {
+    .brand-icon {
+        top:80%;
+    }
     nav .inner-menu {
         height:75vh;
     }
