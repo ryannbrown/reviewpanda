@@ -263,8 +263,8 @@ this.setState({reviewCount:number})
               starHoverColor='rgba(142,142,142)'
               starRatedColor='#8E8E8E'
             /> |</p> */}
-                {thisPost.abbrev && <p>{thisPost.abbrev}</p>}
-              <p>Author: {thisPost.author}</p>
+                {thisPost.abbrev && <p> {thisPost.abbrev} |</p>}
+              <p> Author: {thisPost.author}</p>
             
               </div>
               <a target ="_blank" href={thisPost.link}><button className="transparent-btn btn">Learn More</button></a>

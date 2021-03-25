@@ -30,6 +30,7 @@
 .hero-sub-info {
     display:flex;
     justify-content: center;
+    gap:15px;
 }
 
 .hero-sub-info * {
@@ -88,6 +89,12 @@
     justify-content: flex-start;
     min-width: 100vw;
     margin: 50px 0px 50px 100px;
+    align-items: center;
+}
+
+
+.lni .lni-chevron-left {
+    font-size:16px !important;
 }
 
 .hero-heart {
@@ -160,5 +167,9 @@
     .spec-icons {
         max-width:unset;
         justify-content: center;
+    }
+
+    .hero-sub-info {
+        gap:5px;
     }
 }

@@ -179,7 +179,16 @@ console.log(savedTests)
       // console.log(truthyReviews, reviews)
       var items = reviews.map((item, i) => (
         <div key={i} className="single-test">
-           {item.review_avg && <div className="srp-rating-block"><StarRatings
+          <Link to={`/tests/${item.uuid}`}>
+            <div className="single-test-text">
+          {/* <img className="category-icon" src={sunImg}></img> */}
+      
+         <div className="srp-test-titles">
+          <h2>{item.abbrev}</h2>
+            <p>{item.title}</p>
+         </div>
+         <div className="srp-line-item">
+         {item.review_avg && <div className="srp-rating-block"><StarRatings
               rating={parseFloat(item.review_avg)}
               starRatedColor="#77E0D4"
               // changeRating={this.changeRating}
@@ -192,13 +201,7 @@ console.log(savedTests)
               starHoverColor='rgba(255,255,255)'
               starRatedColor='rgba(255,255,255)'
             /> {item.review_count > 1 ? <p>{item.review_count} Reviews</p> : <p>{item.review_count} Review</p>  } </div> }
-          <Link to={`/tests/${item.uuid}`}>
-            <div className="single-test-text">
-          {/* <img className="category-icon" src={sunImg}></img> */}
-      
-         
-          <h2>{item.abbrev}</h2>
-            <p>{item.title}</p>
+         </div>
             </div>
             <img className="chevron" src={chevRight}></img>
             </Link>
@@ -242,6 +245,7 @@ console.log(savedTests)
                 </div>
                 <div className="srp-row-header">
                   <p>Test Name</p>
+                  <p>Reviews</p>
                 </div>
                 {/* { ?  */}
                 <div className="cats">{items}</div> 
