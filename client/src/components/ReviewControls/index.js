@@ -10,6 +10,7 @@ import {
 } from "../../utils/themeContext";
 import "./style.css";
 import MyEditor from "../../components/MyEditor/index"
+// import LoginModal from "../../components/LoginModal"
 
 class ReviewControls extends Component {
   static contextType = ThemeContextConsumer;
@@ -216,6 +217,7 @@ class ReviewControls extends Component {
                 {!this.props.testSaved && this.props.thisTest ?   <i onClick={() => {this.props.saveTest(this.props.thisTest.title)}} className="lni lni-heart review-heart"></i> : <i class="lni lni-checkmark-circle review-heart"></i> }
                 {/* <i class="lni lni-heart review-heart"></i> */}
                 </div>
+                {this.props.loginAlert && <p className="alert-danger">Please login in order to save tests to your account</p>}
                 <p className="under-text"><i>Don’t have time to leave a review? Save to submit later!</i></p>
               </form>
                 <h2>Our Prizes</h2>
@@ -242,6 +244,9 @@ class ReviewControls extends Component {
               id={this.props.id}
             ></MyReview>
           )}
+          
+
+
           
         </div>
               )}

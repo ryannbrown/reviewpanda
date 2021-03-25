@@ -180,6 +180,9 @@ this.setState({reviewCount:number})
 
 
   componentDidUpdate(prevState) {
+console.log(this.state);
+
+
     let ourContext = this.context;
     // make sure to not have continuous loop when checking if this current test has been saved by a user
     // for some reason my original conditional wasn't working so I incremeneted 'attempt' to ensure there was no loop.
@@ -294,6 +297,7 @@ this.setState({reviewCount:number})
                 <ReviewControls
                 totalStars={this.state.totalStars}
                 reviewCount={this.state.reviewCount}
+                loginAlert={this.state.loginAlert}
               // TODO make saveTest the name of the saveTest variable in state
                 testSaved={this.state.isTestSaved}
                 saveTest={this.saveTest}
