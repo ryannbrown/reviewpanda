@@ -30,6 +30,11 @@
     padding: 25px;
 }
 
+.cat-wrapper a:hover {
+    opacity:.5;
+}
+
+
 .most-pop-block {
     /* margin:100px 0px; */
     align-items: center;
@@ -65,7 +70,7 @@
 
 .pop-item {
     margin: 5px;
-    height: 112px;
+    height: 115px;
     width: 296px;
     border-radius: 15px;
     display: flex;
@@ -103,6 +108,10 @@
     color:white;
     font-weight:800;
     text-align:left;
+}
+
+.pop-item:hover {
+    opacity:.75;
 }
 
 div.pop-wrapper > div:nth-child(1) > a > div {

@@ -236,7 +236,7 @@ if (document.getElementById("responsive-menu").checked) {
 <nav>
 <div classname="container">
     <input onClick={this.fixOverflow} id="responsive-menu" type="checkbox"></input>
-    <label for="responsive-menu"><span id="menu-icon"></span></label>
+    <label id="menu-label" for="responsive-menu"><span id="menu-icon"></span></label>
     <Link to="/"><img className="brand-icon" src={logo}></img></Link>
 
                 <div className="nav-right">
