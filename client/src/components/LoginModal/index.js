@@ -298,7 +298,7 @@ if (this.state.overflowHidden) {
                   //   <div className="tooltip-content">
                   //     <p>This is our tip and why we do it</p></div>
                   // )}
-                  position="top"
+                  position="bottom"
                   trigger="click"
                 >
                  <i className="lni lni-question-circle why-title"></i>
