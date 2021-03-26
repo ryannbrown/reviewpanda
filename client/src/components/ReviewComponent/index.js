@@ -37,6 +37,10 @@ class ReviewComponent extends Component {
     this.setState({ buttonDisabled: false });
   };
 
+  activateEditor = () => {
+    console.log("clicked")
+  }
+
   fetchFromDelete = () => {
           this.setState({
             userHasReviewed: false,
@@ -127,7 +131,9 @@ class ReviewComponent extends Component {
            <div className="single-review-content">
                <div className="single-review-heading">
                    <a>{item.full_name}</a>
-                   <p>|  {format(new Date(item.date_posted), "eeee, MMM dd yyyy")}  |</p>
+                   <p>|</p>
+                   <p>{format(new Date(item.date_posted), "eeee, MMM dd yyyy")}</p>
+                   <p>|</p>
                    <StarRatings
               rating={item.rating}
               starRatedColor="#77E0D4"

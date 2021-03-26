@@ -52,6 +52,10 @@
     color:#E3E3E3;
     font-size:16px;
 }
+.my-review .ql-editor p  {
+    color:black;
+    font-size:16px;
+}
 
 .ql-container.ql-snow {
     border:none;

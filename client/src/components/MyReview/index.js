@@ -122,7 +122,7 @@ class MyReview extends Component {
     const { myReview} = this.props;
 
     return (
-      <div className="reviews-comp">
+      <div className="reviews-comp my-review">
            <i class="lni lni-trash review-delete-btn"  onClick={this.deleteMyReview}></i>
           <h1> My Review
           </h1>

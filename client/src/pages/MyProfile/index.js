@@ -250,9 +250,11 @@ class MyProfile extends Component {
           <div className="single-review-content">
             <div className="single-review-heading">
               <Link to={`/tests/${item.test_uuid}`}>{item.test_title}</Link>
+              <p>|</p>
               <p>
-                | {format(new Date(item.date_posted), "eeee, MMM d yyyy")} |
+               {format(new Date(item.date_posted), "eeee, MMM d yyyy")}
               </p>
+              <p>|</p>
               <StarRatings
                 rating={item.rating}
                 starRatedColor="#77E0D4"

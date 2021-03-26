@@ -30,12 +30,18 @@
 .hero-sub-info {
     display:flex;
     justify-content: center;
-    gap:15px;
+    /* gap:15px; */
 }
 
 .hero-sub-info * {
-    /* margin:5px;
-    padding:5px; */
+ flex: 0 0 5%;
+}
+
+.hero-sub-info p:nth-child(3) {
+    max-width:250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .hero-sub-info .star-ratings {
@@ -170,6 +176,6 @@
     }
 
     .hero-sub-info {
-        gap:5px;
+        /* gap:5px; */
     }
 }

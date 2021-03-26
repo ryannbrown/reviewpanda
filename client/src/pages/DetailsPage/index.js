@@ -250,8 +250,9 @@ console.log(this.state);
                 starEmptyColor='rgba(255,255,255, .25)'
                 starHoverColor='rgba(255,255,255)'
                 starRatedColor='rgba(255,255,255)'
-              /> | </p>: <p> Rating: NA | </p>
+              /> </p>: <p> Rating: NA </p>
                 }
+                <p>|</p>
                 {/* |</p> */}
               {/* <p>Rating:  
                 <StarRatings
@@ -266,8 +267,9 @@ console.log(this.state);
               starHoverColor='rgba(142,142,142)'
               starRatedColor='#8E8E8E'
             /> |</p> */}
-                {thisPost.abbrev && <p> {thisPost.abbrev} |</p>}
-              <p> Author: {thisPost.author}</p>
+                {thisPost.abbrev && <p> {thisPost.abbrev} </p>}
+                <p>|</p>
+              <p> Level Required: {thisPost.qual_level} </p>
             
               </div>
               <a target ="_blank" href={thisPost.link}><button className="transparent-btn btn">Learn More</button></a>
@@ -276,6 +278,7 @@ console.log(this.state);
                 <div className="split-left">
                   {thisPost.description && <div> <h2>Test Description</h2>
                 <p>{thisPost.description}</p> </div> }
+                <p>Author(s): {thisPost.author} </p>
                 {thisPost.scores_interpretation &&  <div> <h2>Scores Intepretation</h2> <p> {thisPost.scores_interpretation}</p> </div>}
                       <div className="spec-icons">
 

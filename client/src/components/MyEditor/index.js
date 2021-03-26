@@ -10,6 +10,7 @@ export default class MyEditor extends React.Component {
     super(props);
     this.state = {
       text: "",
+      toggleEditor: false
     //   defaultRichText: this.props.defaultRichText,
       // theText:''
     }; // You can also pass a Quill Delta here
@@ -49,6 +50,24 @@ export default class MyEditor extends React.Component {
     this.props.handleRichChange(value);
   };
 
+  toggleEditor = () => {
+    // console.log('activated')
+    // if (this.state.editorActivated) {
+if (!this.state.toggleEditor) {
+  document.querySelectorAll('.ql-editor p')[0].style.color="black";
+  // document.querySelectorAll('.ql-editor p')[0].value=""; TODO Make input erase on click
+  // console.log(element)
+  this.setState({toggleEditor: !this.state.toggleEditor})
+} else {
+   document.querySelectorAll('.ql-editor p')[0].style.color="#E3E3E3";
+  this.setState({toggleEditor: false})
+}
+      // document.getElementsByName('.ql-editor p')[0].style.color='black';
+    // } else {
+      // document.getElementsByTagName('body')[0].style.overflowY='unset';
+  // }
+}
+
     componentDidMount() {
         // console.log(this.props)
     }
@@ -72,6 +91,8 @@ export default class MyEditor extends React.Component {
           defaultValue={this.props.defaultRichText
           }
           onChange={this.handleChange}
+          onFocus={this.toggleEditor}
+          onBlur={this.toggleEditor}
         ></ReactQuill>
       </div>
     );
