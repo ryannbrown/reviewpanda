@@ -7,6 +7,7 @@ import logo from "../../media/mainlogo.png"
 // import heroImg from "../../media/sand-beach.png"
 import fbLogo from "../../media/icons/facebook.svg"
 import instaLogo from "../../media/icons/instagram.svg"
+import {Link} from "react-router-dom"
 
 export default class Footer extends Component {
 
@@ -35,6 +36,7 @@ export default class Footer extends Component {
         <div className="footer-content">
         <div>
             <img src={logo}></img>
+            <p>Experiencing issues? Send a <Link style={{color:'#77e0d4'}} to="/support">Support</Link> ticket</p>
         </div>
         <div className="contact-info">
             <p>Review Panda </p>

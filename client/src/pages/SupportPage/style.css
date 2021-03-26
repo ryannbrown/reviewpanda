@@ -1,0 +1,51 @@
+.support-page{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height:75vh;
+}
+
+.support-content form {
+    display:flex;
+    flex-direction: column;
+    max-width:750px;
+}
+
+
+
+.support-content input {
+width:500px;
+margin:5px auto;
+    height: 40px;
+    border-radius: 5px;
+    /* opacity:.3; */
+    color: black;
+    border: 0.5px solid #cccccc;
+    padding: 5px;
+  }
+  
+  .support-content form input[type="text"] {
+    padding: 15px !important;
+  }
+  
+  .support-content form textarea {
+      min-width:250px;
+    width:500px;
+    max-width:500px;
+    margin:5px auto;
+    height: 100px;
+    min-height: 100px;
+    max-height: 400px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+  }
+
+  .support-content .login-btn {
+      margin-top:25px;
+  }
+
+  .lni.lni-pointer {
+      font-size:unset !important;
+      margin-left:5px;
+  }
