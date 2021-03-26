@@ -355,11 +355,14 @@ class MyProfile extends Component {
                   </div>
                   <div>
                     <h1>Welcome Back, {context.userData.first_name}</h1>
-                    <p>You've submitted {numOfReviews} reviews, great work!</p>
+                    {reviews.length > 0 ?  <p>You've submitted {numOfReviews} reviews, great work!</p> :<p>Submit reviews and win prizes!</p> }
+                   
                   </div>
                 </div>
                 <div className="saved-tests">
+                  {}
                   <h1>Saved Tests</h1>
+                  {!savedTests && <p>Save your favorite tests and they will appear here!</p>}
                   {tests}
 
                   {/* <SavedTests></SavedTests> */}
@@ -374,7 +377,7 @@ class MyProfile extends Component {
                       {items}
                     </div>
                   ) : (
-                    <h1>There are no reviews yet. Be the first!</h1>
+                    <h1>You haven't left any reviews yet.</h1>
                   )}
                 </div>
               </div>

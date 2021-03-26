@@ -19,6 +19,7 @@
     width:100%;
     max-width:980px;
     margin:0px auto;
+    min-height:50vh; /*this is to make sure menu items don't disappear from nav menu*/
 }
 
 

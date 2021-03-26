@@ -54,12 +54,21 @@ export default class MyEditor extends React.Component {
     // console.log('activated')
     // if (this.state.editorActivated) {
 if (!this.state.toggleEditor) {
-  document.querySelectorAll('.ql-editor p')[0].style.color="black";
+  var all = document.querySelectorAll('.ql-editor p');
+  all.forEach(item => {
+    console.log(item)
+    item.style.color="black";
+  })
+  // document.querySelectorAll('.ql-editor p')[0].style.color="black";
   // document.querySelectorAll('.ql-editor p')[0].value=""; TODO Make input erase on click
   // console.log(element)
   this.setState({toggleEditor: !this.state.toggleEditor})
 } else {
-   document.querySelectorAll('.ql-editor p')[0].style.color="#E3E3E3";
+  var all = document.querySelectorAll('.ql-editor p');
+  all.forEach(item => {
+    console.log(item)
+    item.style.color="#E3E3E3";
+  })
   this.setState({toggleEditor: false})
 }
       // document.getElementsByName('.ql-editor p')[0].style.color='black';
