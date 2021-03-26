@@ -176,7 +176,8 @@ this.fetchMyReviews();
                     <div>
                       <div className="reviews-header">
                         <h1>{this.state.userData.first_name} {this.state.userData.last_name}'s Reviews</h1>
-                        <p>User has left {this.state.numOfReviews} reviews</p>
+                        {reviews.length > 1 ?   <p>User has left {this.state.numOfReviews} reviews</p> : <p>User has left {this.state.numOfReviews} review</p> }
+                     
                       </div>
                       {items}
                     </div>
