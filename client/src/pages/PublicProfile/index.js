@@ -107,8 +107,8 @@ this.fetchMyReviews();
            starRatedColor='#8E8E8E'
          />
             </div>
-            <div className="single-review-description">
-                {item.description}
+            <div className="single-review-description" dangerouslySetInnerHTML={{__html: item.description}}>
+                {/* {item.description} */}
             </div>
         </div>
        </div>
@@ -166,7 +166,7 @@ this.fetchMyReviews();
                     {/* Using the first review to grab all of the clients information */}
                     {/* <Link to={`/tests/${item.test_uuid}`}>{item.test_title.slice(0,25)}...</Link> */}
                     <h1>{this.state.userData.first_name} {this.state.userData.last_name}</h1>
-                    <p>{this.state.userData.title}Title </p>
+                    <p>{this.state.userData.title}</p>
                   </div>
                 </div>
               

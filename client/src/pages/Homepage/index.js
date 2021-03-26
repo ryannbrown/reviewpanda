@@ -10,6 +10,7 @@ import {Link} from "react-router-dom"
 import DropdownSearch from "../../components/DropdownSearch/index"
 import heroImg from "../../media/hero-img.jpg"
 import HomeAboutBlock from "../../components/HomeAboutBlock/index"
+import TopContributors from "../../components/TopContributors/index"
 
 export default class Homepage extends Component {
 
@@ -93,6 +94,7 @@ export default class Homepage extends Component {
                </div>
                <MostPopular></MostPopular>
                <RecentlyReviewed></RecentlyReviewed>
+               <TopContributors></TopContributors>
                <HomeAboutBlock></HomeAboutBlock>
                <Footer></Footer>
             </div>

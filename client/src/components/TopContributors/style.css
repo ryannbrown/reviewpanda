@@ -1,0 +1,21 @@
+.pop-item.contributors {
+    margin: 5px;
+    height: 153px !important;
+    width: 115px !important;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    position: relative;
+    background-size: cover;
+    background-position: top center;
+}
+
+.contrib-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    gap:25px;
+}
