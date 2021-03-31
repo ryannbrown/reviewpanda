@@ -1,5 +1,5 @@
 .listing-page {
-    background-image: linear-gradient(to right bottom, #123047, #133854, #144062, #154970, #8f8f8f);
+    background-color:white;
     min-height:100vh;
     height:100%;
     width:100%;
@@ -41,7 +41,7 @@
 
 .single-cat a{
     display:flex;
-    color:white;
+    color:#123047;
     width:100%;
     justify-content:space-between;
     /* min-width:750px; */
@@ -51,7 +51,8 @@
 
 
 .loading-block-srp{
-    background-image:linear-gradient(to right bottom, #123047, #133854, #144062, #154970, #8f8f8f);
+    /* background-image:linear-gradient(to right bottom, #123047, #133854, #144062, #154970, #8f8f8f); */
+    background-color: white;
     height:100vh;
     /* margin-top:115px; */
     display:flex;

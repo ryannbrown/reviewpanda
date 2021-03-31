@@ -197,9 +197,9 @@ console.log(savedTests)
               starDimension = '11px'
               starSpacing='0px'
               isAggregateRating="true"
-              starEmptyColor='rgba(255,255,255, .25)'
-              starHoverColor='rgba(255,255,255)'
-              starRatedColor='rgba(255,255,255)'
+              starEmptyColor='rgba(119,224,212, .25)'
+              starHoverColor='rgba(119,224,212)'
+              starRatedColor='rgba(119,224,212)'
             /> {item.review_count > 1 ? <p>{item.review_count} Reviews</p> : <p>{item.review_count} Review</p>  } </div> }
          </div>
             </div>

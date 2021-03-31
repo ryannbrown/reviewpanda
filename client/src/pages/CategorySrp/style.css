@@ -1,5 +1,6 @@
 .srp-page {
-    background-image: linear-gradient(to right bottom, #123047, #133854, #144062, #154970, #17517E);
+    /* background-image: linear-gradient(to right bottom, #123047, #133854, #144062, #154970, #17517E); */
+   background-color:white;
     min-height:100vh;
     height:100%;
     width:100%;
@@ -54,16 +55,17 @@
 
 
 .single-test h2 {
-    color:white;
+    color:#123047;
 }
 
 
 .srp-page .single-test {
     position:relative;
-    background-color:rgba(248, 248, 248, .1);
+    background-color:#f7f7f7;
     border-radius: 12px;
     margin: 10px 0;
     padding: 25px 25px;
+    color:#123047;
 }
 
 .srp-page .single-test a{
@@ -78,13 +80,13 @@
 
 .single-test p {
     text-transform:capitalize;
-    color:#BEBCBC;
+    color:#123047;
     text-overflow:ellipsis;
 }
 
 
 .srp-row-header {
-    color:#BEBCBC;
+    color:#123047;
     border-bottom:1px solid rgba(190, 188, 188, 0.12);
     margin:25px 0px;
     display:flex;
@@ -98,7 +100,8 @@
 
 .srp-action-btns button {
 background-color:transparent;
-border: 1px solid rgba(190, 188, 188, 0.5);
+border: 1px solid #77E0D4;
+color: #77E0D4;
 margin-right:5px;
 padding: 1rem 2rem !important;
 }
@@ -116,7 +119,7 @@ padding: 1rem 2rem !important;
 }
 
 .srp-rating-block p {
-    color:white;
+    color:#123047;
     font-size:12px;
     margin-left:10px;
 }
