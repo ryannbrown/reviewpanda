@@ -132,8 +132,8 @@ class ReviewComponent extends Component {
                <div className="single-review-heading">
                    <a>{item.full_name}</a>
                    <p>|</p>
-                   <p>{format(new Date(item.date_posted), "eeee, MMM dd yyyy")}</p>
-                   <p>|</p>
+                   <p className="desktop-date">{format(new Date(item.date_posted), "eeee, MMM dd yyyy")}</p>
+                   <p className="desktop-hash">|</p>
                    <StarRatings
               rating={item.rating}
               starRatedColor="#77E0D4"
@@ -147,6 +147,7 @@ class ReviewComponent extends Component {
               starRatedColor='#8E8E8E'
             />
                </div>
+               <p className="mobile-date">{format(new Date(item.date_posted), "eeee, MMM dd yyyy")}</p>
                <div className="single-review-description"
                dangerouslySetInnerHTML={{__html: item.description}}
                >

@@ -52,8 +52,7 @@ class RecentlyReviewed extends Component {
     }
     return (
       <div
-        className="most-pop-block"
-        style={{ display: "flex", height: "50vh", width: "100%" }}
+        className="most-pop-block recently-reviewed-comp"
       >
         <h1>Recently Reviewed</h1>
         <div className="pop-wrapper">{items}</div>

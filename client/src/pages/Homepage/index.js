@@ -84,7 +84,7 @@ export default class Homepage extends Component {
                
                  {/* <div className="search-block-img" style={{backgroundColor:'grey'}}></div> */}
                </div>
-               <div style={{display:'flex', height:'50vh', width: '100%'}}>
+               <div style={{display:'flex', height:'50vh', minHeight:'100%', width: '100%', marginTop:'100px', height:'100%'}}>
                    <div className="category-block">
                        <h1>Browse By Category</h1>
                        <div className="cat-wrapper">
