@@ -151,7 +151,9 @@ padding: 1rem 2rem !important;
 
 @media(max-width:850px) {
     .srp-page-content {
-        padding:25px;
+        /* padding:25px; */
+        width:90%;
+        margin:0px auto;
     }
     .srp-page-content h1 {
         font-size:30px;
@@ -163,7 +165,7 @@ padding: 1rem 2rem !important;
         text-overflow:ellipsis;
     }
     .single-test p {
-        max-width:250px;
+        max-width:150px;
         overflow:hidden;
         white-space:nowrap;
     }
