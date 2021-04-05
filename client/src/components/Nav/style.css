@@ -301,11 +301,19 @@ nav ul#social-media > li {
 
 
 @media (max-width:750px) {
+    .menu-content{
+        margin-top:50px;
+    }
     .brand-icon {
         top:80%;
     }
     nav .inner-menu {
-        height:75vh;
+        height:100vh;
+        padding-left:0%;
+    }
+    .cat-wrapper a {
+        flex: 0 0 40%;
+        padding: 10px;
     }
     .menu-content > div > h1 {
         width:250px;
