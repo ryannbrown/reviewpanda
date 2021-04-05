@@ -56,7 +56,7 @@ class TopContributors extends Component {
     return (
       <div
         className="most-pop-block"
-        style={{ display: "flex", height: "50vh", width: "100%" }}
+        style={{ display: "flex", height: "100%", minHeight:'50vh', width: "100%" }}
       >
         <h1>Top Contributors</h1>
         <div className="contrib-wrapper">{items}</div>
