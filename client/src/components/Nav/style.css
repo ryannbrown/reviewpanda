@@ -301,11 +301,37 @@ nav ul#social-media > li {
 
 
 @media (max-width:750px) {
+
+    nav #responsive-menu {
+        left:unset;
+        right:25px;
+        top:50%;
+    }
+    #menu-label {
+        left:unset;
+        right:0px;
+    }
+    .nav-right {
+        width:200px;
+    }
+    nav label #menu-icon {
+        float: left;
+        position: absolute;
+        left: 50px;
+        top: 50%;
+        margin-top: -5px;
+    }
+
+    .nav-right .login-btn{
+        display:none;
+    }
     .menu-content{
         margin-top:50px;
     }
     .brand-icon {
-        top:80%;
+        top:50%;
+        left:35%;
+      
     }
     nav .inner-menu {
         height:100vh;

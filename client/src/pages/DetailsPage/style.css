@@ -160,8 +160,21 @@
 
 
 @media(max-width:977px) {
+
+.hero-sub-info {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:15px;
+}
+
+
+
     .details-hero h1, .details-hero h2 {
         font-size:1.25rem;
+        width: 50%;
+        margin: 0px auto;
+   
     }
     .details-content {
         display: flex;
@@ -200,6 +213,7 @@
 
     .hero-sub-info * {
         flex: 0 0 15%;
+        margin-block-end: 0;
     }
 
     .back-link {
