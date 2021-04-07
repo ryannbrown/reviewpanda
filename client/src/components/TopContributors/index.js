@@ -19,7 +19,7 @@ class TopContributors extends Component {
     fetch(`/api/topcontribs`)
       .then((res) => res.json())
       .then((json) => {
-        console.log("json", json);
+        console.log("contribs", json);
         this.setState({
           posts: json,
         });
