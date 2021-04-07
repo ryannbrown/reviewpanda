@@ -23,7 +23,9 @@ class ReviewControls extends Component {
       userHasReviewed: false,
       buttonDisabled: false,
       showLoginAlert: false,
-      rating: 0
+      rating: 0,
+      // ratingClicked: false,
+      // needsRating:false 
     };
     this.description = React.createRef();
   }
@@ -32,7 +34,8 @@ class ReviewControls extends Component {
   changeRating = ( newRating, name ) => {
     // console.log(newRating, "for the win")
     this.setState({
-      rating: newRating
+      rating: newRating,
+      // ratingClicked:true 
     });
   }
 
@@ -90,6 +93,13 @@ class ReviewControls extends Component {
       });
   };
   submitReview = (e) => {
+    // if we want them to have to rate something at least 1 star
+    // if (!this.state.ratingClicked) {
+    //   this.setState({
+    //     needsRating:true
+    //   })
+    //   return;
+    // }
     // prevent multiple clicks
     if (this.state.buttonDisabled) {
       return;
@@ -192,6 +202,7 @@ class ReviewControls extends Component {
               <h2>Leave a review, get rewarded!</h2>
               <p>Leave a review and you’ll get entered to win one of the prizes below.</p>
               <h3>Rating</h3>
+              {/* <p className="alert alert-danger">Please leave a rating for this review.</p> */}
                   <StarRatings
               rating={this.state.rating}
               starRatedColor="#77E0D4"

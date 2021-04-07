@@ -26,7 +26,8 @@ class CategorySrp extends Component {
       truthyReviews: false,
       modalOpened: false,
       isLoading: true,
-      headerTitle: this.props.match.params.cat
+      headerTitle: this.props.match.params.cat,
+      overflowHidden:true
     };
   }
 
@@ -137,11 +138,23 @@ console.log(savedTest)
 
 
   toggleModal = () => {
+    this.fixOverflow();
     console.log("clicked");
     this.setState({
       modalOpened: !this.state.modalOpened,
     });
   };
+
+
+  fixOverflow = () => {
+    console.log(this.state.overflowHidden)
+if (this.state.overflowHidden) {
+  document.getElementsByTagName('body')[0].style.overflowY='hidden';
+} else {
+  document.getElementsByTagName('body')[0].style.overflowY='unset';
+}
+    this.setState({overflowHidden: !this.state.overflowHidden})
+  }
 
   componentDidMount() {
 console.log(this.state)

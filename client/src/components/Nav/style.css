@@ -62,6 +62,8 @@ nav {
     position:absolute;
     right:50px;
     top:15px;
+    top: 50%;
+    margin-top: -21px;
 }
 
 /*** INPUT ***/
@@ -162,7 +164,8 @@ nav input[type=checkbox]:checked + label #menu-icon:after {
 /*** MENU ***/
 /* Overlay */
 nav input:checked ~ #overlay {
-  background-image: linear-gradient(to right bottom, #77E0D4, #2ECEE2, #00B9EF, #309FF1, #777FE0);
+  /* background-image: linear-gradient(to right bottom, #77E0D4, #2ECEE2, #00B9EF, #309FF1, #777FE0);*/
+  background-color:#77E0D4;
     bottom: 0;
     left: 0;
     height: 100vh;
@@ -171,6 +174,7 @@ nav input:checked ~ #overlay {
     top: 0;
     width: 100vw;
     z-index: -1;
+    margin-top:100px; /*this keeps the navbar the right color, white */
 }
 
 /* List */
