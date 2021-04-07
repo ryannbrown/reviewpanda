@@ -75,8 +75,13 @@ export default class Homepage extends Component {
                <div className="search-block" style={{ backgroundImage:`url('${heroImg}')`, height:'50vh', width: '100%'}}>
                  <div className="hero-left">
                  <div className="search-block-content" >
+                 <div style={{display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                  <h1>Find your next test here.</h1>
+                
+
+            
                 <DropdownSearch></DropdownSearch>
+                </div>
                  </div>
                  </div>
                  <div className="hero-right" style={{}}>
