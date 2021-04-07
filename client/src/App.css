@@ -25,6 +25,8 @@ color:#123047;
 h1 {
   margin:0;
   font-weight:unset;
+  font-size:2.5rem;
+  font-weight:500;
 }
 
 .lni {
