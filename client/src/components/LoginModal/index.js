@@ -280,13 +280,13 @@ if (this.state.overflowHidden) {
                 {showRegisterAlert && <div className="alert alert-danger">This email may already exist in our system</div>}
                 <div className="register-form-wrapper">
               <div className="register-left">
-              <input ref={this.first_name} name="first" placeholder="First Name" />
-              <input ref={this.email} name="email" placeholder="Email" />
-              <input type="password" ref={this.verPassword} placeholder="Verify Password" />
+              <input ref={this.first_name} name="first" placeholder="First Name" tabIndex="1" />
+              <input ref={this.email} name="email" placeholder="Email" tabIndex="3"  />
+              <input type="password" ref={this.verPassword} placeholder="Verify Password" tabIndex="5"  />
               </div>
               <div className="register-right">
-              <input ref={this.last_name} name="last" placeholder="Last Name" />
-              <input type="password" ref={this.password} placeholder="Password" />
+              <input ref={this.last_name} name="last" placeholder="Last Name" tabIndex="2" />
+              <input type="password" ref={this.password} placeholder="Password" tabIndex="4"/>
               </div>
                 </div>
                 <div className="register-license-wrapper">
@@ -303,8 +303,8 @@ if (this.state.overflowHidden) {
                 >
                  <i className="lni lni-question-circle why-title"></i>
                 </Tooltip>
-                <input ref={this.prof_title} name="title" placeholder="Professional Title" />
-                <input ref={this.license} name="license_number" placeholder="Clinical License #" />
+                <input ref={this.prof_title} name="title" placeholder="Professional Title" tabIndex="6" />
+                <input ref={this.license} name="license_number" placeholder="Clinical License #" tabIndex="7" />
                 </div>
            
                 {/* <div style={{position:'relative', width:'253px', margin:'0px 0px'}}>
