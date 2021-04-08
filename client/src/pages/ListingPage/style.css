@@ -10,12 +10,11 @@
     flex-direction:column;
     justify-content: center;
     /* align-items: center; */
-    margin:0px auto;
+    margin:100px auto;
     text-align:left;
     min-height:75vh;
     height:100%;
     width:800px;
-    margin-top:115px;
     /* width:100%; */
 }
 
