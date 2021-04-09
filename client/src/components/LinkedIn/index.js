@@ -74,7 +74,7 @@ export default class LinkedInPage extends Component {
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
       {/* <a href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=https%3A%2F%2Freviewpanda.herokuapp.com`}><button>Login with Linked IN</button></a> */}
-      <a href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F`}><LinkedInLoginButton align='center' style={{width:'200px'}}>
+      <a href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=https%3A%2F%2Freviewpanda.herokuapp.com`}><LinkedInLoginButton align='center' style={{width:'200px'}}>
       <span>{this.props.text}</span></LinkedInLoginButton></a>
       </div>
     );
