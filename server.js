@@ -202,6 +202,10 @@ let uriEncode = process.env.LI_URLENCODE
     getUserImage(token)
     userInfo.push(response.data)
     totalCount++;
+    if (totalCount === 3) {
+      console.log("all user info", userInfo)
+      res.send(JSON.stringify({userInfo}))
+    }
     // getBasicInfo(response.data.access_token)
    
   }).catch(function (error) {
@@ -230,6 +234,10 @@ let uriEncode = process.env.LI_URLENCODE
     getUserEmail(token)
     userInfo.push(response.data)
     totalCount++
+    if (totalCount === 3) {
+      console.log("all user info", userInfo)
+      res.send(JSON.stringify({userInfo}))
+    }
     // getBasicInfo(response.data.access_token)
     
   }).catch(function (error) {
