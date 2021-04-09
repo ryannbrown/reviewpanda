@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { LinkedIn } from 'react-linkedin-login-oauth2';
 import linkedin from 'react-linkedin-login-oauth2/assets/linkedin.png'
 import axios from "axios"
+import { LinkedInLoginButton } from "react-social-login-buttons";
 const queryString = require('querystring');
 
 export default class LinkedInPage extends Component {
@@ -85,9 +86,9 @@ if (code) {
     // const query = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=https%3A%2F%2Freviewpanda.herokuapp.com`
     const { code, errorMessage } = this.state;
     return (
-      <div>
+      <div style={{display:'flex', justifyContent:'center'}}>
       {/* <a href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=https%3A%2F%2Freviewpanda.herokuapp.com`}><button>Login with Linked IN</button></a> */}
-      <a href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F`}><button>Login with Linked IN</button></a>
+      <a href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F`}><LinkedInLoginButton style={{width:'200px'}}></LinkedInLoginButton></a>
       </div>
     );
   }
