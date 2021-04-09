@@ -11,9 +11,13 @@ import DropdownSearch from "../../components/DropdownSearch/index"
 import heroImg from "../../media/hero-img.jpg"
 import HomeAboutBlock from "../../components/HomeAboutBlock/index"
 import TopContributors from "../../components/TopContributors/index"
-import LinkedIn from "../../components/LinkedIn/index"
+import {
+  ThemeContextConsumer,
+  ThemeContextProvider,
+} from "../../utils/themeContext";
+const queryString = require('querystring');
 export default class Homepage extends Component {
-
+  static contextType = ThemeContextConsumer;
     constructor(props) {
         super(props);
 
@@ -48,8 +52,46 @@ export default class Homepage extends Component {
               });
     }
 
+    handleLinkedIn = () => {
+      console.log("did it!")
+      let string = queryString.parse(window.location.search);
+      let code = string["?code"];
+      console.log("string", string["?code"])
+ //      this.setState({
+ // code: code
+ //      })
+     //   console.log(querystring)
+ if (code) {
+ 
+   let ourContext = this.context;
+ 
+     // console.log('clicked')
+     fetch('/api/linkedin', {
+       method: 'POST',
+       body: JSON.stringify({
+        code:code
+       }),
+       headers: {
+         'Content-type': 'application/json; charset=UTF-8',
+       },
+     }).then(res => res.json())
+       .then((response) => {
+ console.log(response)
+             // if (response.status == "200") {
+               let email = response.userInfo[2].elements[0]["handle~"].emailAddress
+               console.log(email)
+               if (email) {
+                 ourContext.activateUser(email);
+               }
+       // }
+       // .then((json) => console.log("json", json));
+     })
+   }
+    }
+
     componentDidMount() {
         this.getCats()
+      this.handleLinkedIn()
     }
 
 
@@ -89,7 +131,6 @@ export default class Homepage extends Component {
                
                  {/* <div className="search-block-img" style={{backgroundColor:'grey'}}></div> */}
                </div>
-               <LinkedIn></LinkedIn>
                <div style={{display:'flex', height:'50vh', minHeight:'100%', width: '100%', marginTop:'100px', height:'100%'}}>
                    <div className="category-block">
                        <h1>Browse By Category</h1>

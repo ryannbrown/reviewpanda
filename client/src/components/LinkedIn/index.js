@@ -8,14 +8,18 @@ import {
   ThemeContextConsumer,
   ThemeContextProvider,
 } from "../../utils/themeContext";
-const queryString = require('querystring');
+
 
 export default class LinkedInPage extends Component {
   static contextType = ThemeContextConsumer;
-  state = {
-    code: '',
-    errorMessage: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      code: '',
+      errorMessage: '',
+    };
+  }
+
 
 
 //   handleSuccess = (data) => {
@@ -58,40 +62,7 @@ export default class LinkedInPage extends Component {
 }
 
   componentDidMount() {
-      console.log("did it!")
-     let string = queryString.parse(window.location.search);
-     let code = string["?code"];
-     console.log("string", string["?code"])
-//      this.setState({
-// code: code
-//      })
-    //   console.log(querystring)
-if (code) {
-
-  let ourContext = this.context;
-
-    // console.log('clicked')
-    fetch('/api/linkedin', {
-      method: 'POST',
-      body: JSON.stringify({
-       code:code
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    }).then(res => res.json())
-      .then((response) => {
-console.log(response)
-            // if (response.status == "200") {
-              let email = response.userInfo[2].elements[0]["handle~"].emailAddress
-              console.log(email)
-              if (email) {
-                ourContext.activateUser(email);
-              }
-      // }
-      // .then((json) => console.log("json", json));
-    })
-  }
+    
 }
   
 
@@ -103,7 +74,8 @@ console.log(response)
     return (
       <div style={{display:'flex', justifyContent:'center'}}>
       {/* <a href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=https%3A%2F%2Freviewpanda.herokuapp.com`}><button>Login with Linked IN</button></a> */}
-      <a href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F`}><LinkedInLoginButton style={{width:'200px'}}></LinkedInLoginButton></a>
+      <a href={`https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile,r_emailaddress&client_id=77vmr4j9fldtav&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F`}><LinkedInLoginButton align='center' style={{width:'200px'}}>
+      <span>{this.props.text}</span></LinkedInLoginButton></a>
       </div>
     );
   }

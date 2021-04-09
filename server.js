@@ -326,6 +326,8 @@ if (userResponse.length ===0) {
               console.log("THE USER", user)
               res.send(JSON.stringify({userInfo}))
             })
+} else {
+  res.send(JSON.stringify({userInfo}))
 }
 
     })

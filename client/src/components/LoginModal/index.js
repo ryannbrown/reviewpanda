@@ -1,4 +1,5 @@
 import React, { useState, setShow, Component } from "react";
+import LinkedIn from "../../components/LinkedIn/index"
 import {
   Card,
   ListGroup,
@@ -258,6 +259,7 @@ if (this.state.overflowHidden) {
           <div className="modal-content">
             {/* Login Form */}
             {!this.state.registrationToggled ? (
+              <div>
               <form className="actual-form" onSubmit={this.handleLogin}>
                      
                 <h1>Login</h1>
@@ -266,11 +268,18 @@ if (this.state.overflowHidden) {
                 {showLoginAlert && <div className="alert alert-danger">Incorrect email or password</div>}
                 <button className="modal-btn btn" >Sign In</button>
                 <div className="first-time-block">
+
+
                 <h3>First Time?</h3>
                 <p className="" type="submit" onClick={this.toggleRegister}>Create an account</p>
                 </div>
        
               </form>
+              <div>
+  <h3>Or</h3>
+  <LinkedIn text="Login with LinkedIn"></LinkedIn>
+</div>
+              </div>
             ) :
            
              (   
@@ -319,7 +328,10 @@ if (this.state.overflowHidden) {
                 </div>
   
                 </div>
-           
+                <div>
+  <h3>Or</h3>
+  <LinkedIn text="Register with Linked In"></LinkedIn>
+</div>
          
               </form>
             )}
