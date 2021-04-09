@@ -165,7 +165,8 @@ nav input[type=checkbox]:checked + label #menu-icon:after {
 /* Overlay */
 nav input:checked ~ #overlay {
   /* background-image: linear-gradient(to right bottom, #77E0D4, #2ECEE2, #00B9EF, #309FF1, #777FE0);*/
-  background-color:#77E0D4;
+  /* background-color:#77E0D4; */
+  background-color:#123047;
     bottom: 0;
     left: 0;
     height: 100vh;

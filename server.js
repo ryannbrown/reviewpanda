@@ -15,6 +15,7 @@ const router = require("express").Router();
 const path = require("path");
 const bcrypt = require("bcrypt-nodejs");
 
+
 const register = require("./controllers/register");
 const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
@@ -53,6 +54,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 var pg = require("pg");
+const { response } = require("express");
 
 //  production
  const db = knex({
@@ -133,6 +135,191 @@ app.get("/api/cats", (req, res) => {
   getCats.handleCatsFetch(req, res, db);
 });
 
+app.post("/api/hello", (req, res) => {
+console.log(req.body.code)
+})
+
+app.post("/api/linkedin", (req, res) => {
+  console.log('here we go!')
+
+  
+let clientId = process.env.CLIENT_ID
+let clientSecret = process.env.CLIENT_SECRET
+let redirect = process.env.LI_REDIRECT
+let uriEncode = process.env.LI_URLENCODE
+
+
+  // console.log(req.body)
+
+  // const options = {
+  //   headers: {
+  //       'Content-Type': 'application/json',
+  //   }
+  // };
+
+  let userInfo = []
+  let totalCount = 0;
+
+  let code = req.body.code;
+ console.log(code)
+
+
+  axios.post(`https://www.linkedin.com/oauth/v2/accessToken?grant_type=authorization_code&code=${code}&redirect_uri=${uriEncode}&client_id=${clientId}&client_secret=${clientSecret}`, {
+    
+    // grant_type: 'authorization_cod',
+    // code: code,
+    // redirect_uri: 'http%3A%2F%2Flocalhost%3A3000%2F',
+    // client_id: '77vmr4j9fldtav',
+    // client_secret: 'jmD6TSEIzjWWr8TE'
+  })
+  .then((response) => {
+
+ 
+    // handle success
+    console.log("our response", response.data.access_token);
+    getBasicInfo(response.data.access_token)
+  }).catch(function (error) {
+    console.log(error);
+  });
+
+  const getBasicInfo = (token) => {
+    console.log("lets run this code", token)
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+  
+  // const bodyParameters = {
+  //    key: "value"
+  // };
+
+  axios.get( 
+    'https://api.linkedin.com/v2/me',
+    config
+  ).then((response) => {
+    // handle success
+    console.log("basic info", response.data);
+    getUserImage(token)
+    userInfo.push(response.data)
+    totalCount++;
+    // getBasicInfo(response.data.access_token)
+   
+  }).catch(function (error) {
+    console.log(error);
+  });
+
+
+  }
+  const getUserImage = (token) => {
+    console.log("lets run this code", token)
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+  
+  // const bodyParameters = {
+  //    key: "value"
+  // };
+
+  axios.get( 
+    'https://api.linkedin.com/v2/me?projection=(id,profilePicture(displayImage~:playableStreams))',
+    config
+  ).then((response) => {
+    // handle success
+    console.log("user image", response.data);
+    getUserEmail(token)
+    userInfo.push(response.data)
+    totalCount++
+    // getBasicInfo(response.data.access_token)
+    
+  }).catch(function (error) {
+    console.log(error);
+  });
+
+
+  }
+  const getUserEmail = (token) => {
+    console.log("lets run this code", token)
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+  
+  // const bodyParameters = {
+  //    key: "value"
+  // };
+
+  axios.get( 
+    'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))',
+    config
+  ).then((response) => {
+    // handle success
+    console.log("user email address", response.data.elements[0]["handle~"]);
+    userInfo.push(response.data)
+    totalCount++
+
+    if (totalCount === 3) {
+      console.log("all user info", userInfo)
+      res.send(JSON.stringify({userInfo}))
+    }
+    // getUserEmail(token)
+    // getBasicInfo(response.data.access_token)
+    
+  }).catch(function (error) {
+    console.log(error);
+  });
+
+  // registerThroughLinkedIn(userInfo);
+
+// const registerThroughLinkedIn (userInfo) => {
+//   const { email, first_name, last_name, password, subscribed, prof_title, license } = req.body;
+
+
+
+//   // let title = prof_title
+//   // let license_number = license
+//   let defaultImg = 'https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png'
+//   if (!userInfo) {
+//     return res.status(400).json('Trouble with Linked in');
+//   }
+//   const hash = bcrypt.hashSync(password);
+//     db.transaction(trx => {
+//       trx.insert({
+//         password: hash,
+//         email: email
+//       })
+//       .into('user_logins')
+//       .returning('email')
+//       .then(loginEmail => {
+//         return trx('user_profiles')
+//           .returning('*')
+//           .insert({
+//             email: loginEmail[0],
+//             first_name: first_name,
+//             last_name: last_name,
+//             subscribed: subscribed,
+//             title,
+//             avatar: defaultImg,
+//             uuid: uuid(),
+//             license_number,
+//             joined: new Date()
+//           })
+//           .then(user => {
+//             res.json(user[0]);
+//           })
+//       })
+//       .then(trx.commit)
+//       .catch(trx.rollback)
+//     })
+//     .catch(err => res.status(400).json('unable to register'))
+//     // .catch(err => console.log(err))
+// }
+}
+
+
+
+})
+
 
 
 
@@ -195,7 +382,12 @@ app.post('/api/upload', function (req, res, next) {
 
 
 
-
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
 
 if (process.env.NODE_ENV === "production") {

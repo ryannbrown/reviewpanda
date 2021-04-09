@@ -21,6 +21,8 @@ import CategorySrp from './pages/CategorySrp';
 import MyProfile from './pages/MyProfile/index';
 import PublicProfile from './pages/PublicProfile/index'
 import SupportPage from "./pages/SupportPage/index"
+import LinkedInPopUp from 'react-linkedin-login-oauth2';
+import LinkedInPage from './components/LinkedIn/index';
 
 
 class App extends Component {
@@ -52,6 +54,8 @@ class App extends Component {
              <Route exact path="/myprofile" render={(props) => <MyProfile {...props} context={context} email={context.userData.email}  />} />
              <Route exact path="/categories/:cat" render={(props) => <CategorySrp {...props}  />} />
              <Route path="/categories" component={ListingPage}/>
+             <Route path="/linkedin" component={LinkedInPopUp}/>
+             {/* <Route path="/linkedinpage" component={LinkedInPage}/> */}
              <Route path="/support" component={SupportPage}/>
              <Route path="/scrape" component={Scraper}/>
              <Route exact path="/tests/:uuid" render={(props) => <DetailsPage {...props}  />} />

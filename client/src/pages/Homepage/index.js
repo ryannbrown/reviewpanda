@@ -11,7 +11,7 @@ import DropdownSearch from "../../components/DropdownSearch/index"
 import heroImg from "../../media/hero-img.jpg"
 import HomeAboutBlock from "../../components/HomeAboutBlock/index"
 import TopContributors from "../../components/TopContributors/index"
-
+import LinkedIn from "../../components/LinkedIn/index"
 export default class Homepage extends Component {
 
     constructor(props) {
@@ -89,6 +89,7 @@ export default class Homepage extends Component {
                
                  {/* <div className="search-block-img" style={{backgroundColor:'grey'}}></div> */}
                </div>
+               <LinkedIn></LinkedIn>
                <div style={{display:'flex', height:'50vh', minHeight:'100%', width: '100%', marginTop:'100px', height:'100%'}}>
                    <div className="category-block">
                        <h1>Browse By Category</h1>
