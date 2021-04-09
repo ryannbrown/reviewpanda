@@ -4,9 +4,14 @@ import { LinkedIn } from 'react-linkedin-login-oauth2';
 import linkedin from 'react-linkedin-login-oauth2/assets/linkedin.png'
 import axios from "axios"
 import { LinkedInLoginButton } from "react-social-login-buttons";
+import {
+  ThemeContextConsumer,
+  ThemeContextProvider,
+} from "../../utils/themeContext";
 const queryString = require('querystring');
 
 export default class LinkedInPage extends Component {
+  static contextType = ThemeContextConsumer;
   state = {
     code: '',
     errorMessage: '',
@@ -63,6 +68,7 @@ export default class LinkedInPage extends Component {
     //   console.log(querystring)
 if (code) {
 
+  let ourContext = this.context;
 
     // console.log('clicked')
     fetch('/api/linkedin', {
@@ -74,10 +80,19 @@ if (code) {
         'Content-type': 'application/json; charset=UTF-8',
       },
     }).then(res => res.json())
-      .then((response) => console.log(response))
+      .then((response) => {
+console.log(response)
+            // if (response.status == "200") {
+              let email = response.userInfo[2].elements[0]["handle~"].emailAddress
+              console.log(email)
+              if (email) {
+                ourContext.activateUser(email);
+              }
+      // }
       // .then((json) => console.log("json", json));
-}
+    })
   }
+}
   
 
  

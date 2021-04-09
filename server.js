@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 var Client = require("ftp");
 var fs = require("fs");
 const knex = require("knex");
+const uuid = require('uuid').v4
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -198,13 +199,14 @@ let uriEncode = process.env.LI_URLENCODE
     config
   ).then((response) => {
     // handle success
-    console.log("basic info", response.data);
+    // console.log("basic info", response.data);
     getUserImage(token)
     userInfo.push(response.data)
     totalCount++;
     if (totalCount === 3) {
-      console.log("all user info", userInfo)
-      res.send(JSON.stringify({userInfo}))
+      // console.log("all user info", userInfo)
+      // res.send(JSON.stringify({userInfo}))
+      registerThroughLinkedIn(userInfo)
     }
     // getBasicInfo(response.data.access_token)
    
@@ -230,13 +232,14 @@ let uriEncode = process.env.LI_URLENCODE
     config
   ).then((response) => {
     // handle success
-    console.log("user image", response.data);
+    // console.log("user image", response.data);
     getUserEmail(token)
     userInfo.push(response.data)
     totalCount++
     if (totalCount === 3) {
-      console.log("all user info", userInfo)
-      res.send(JSON.stringify({userInfo}))
+      // console.log("all user info", userInfo)
+      // res.send(JSON.stringify({userInfo}))
+      registerThroughLinkedIn(userInfo)
     }
     // getBasicInfo(response.data.access_token)
     
@@ -262,13 +265,14 @@ let uriEncode = process.env.LI_URLENCODE
     config
   ).then((response) => {
     // handle success
-    console.log("user email address", response.data.elements[0]["handle~"]);
+    // console.log("user email address", response.data.elements[0]["handle~"]);
     userInfo.push(response.data)
     totalCount++
 
     if (totalCount === 3) {
-      console.log("all user info", userInfo)
-      res.send(JSON.stringify({userInfo}))
+      // console.log("all user info", userInfo)
+      // res.send(JSON.stringify({userInfo}))
+      registerThroughLinkedIn(userInfo)
     }
     // getUserEmail(token)
     // getBasicInfo(response.data.access_token)
@@ -276,6 +280,60 @@ let uriEncode = process.env.LI_URLENCODE
   }).catch(function (error) {
     console.log(error);
   });
+
+
+
+  const registerThroughLinkedIn = (userInfo) => {
+    const { email, first_name, last_name, password, subscribed, prof_title, license } = req.body;
+  
+    let data = {
+      email: userInfo[2].elements[0]["handle~"].emailAddress,
+      first_name : userInfo[0].localizedFirstName,
+      last_name : userInfo[0].localizedLastName,
+      avatar: userInfo[1].profilePicture["displayImage~"].elements[1].identifiers[0].identifier
+    }
+
+    console.log("data for db", data)
+  
+  
+    // let title = prof_title
+    // let license_number = license
+    // let defaultImg = 'https://www.clipartkey.com/mpngs/m/152-1520367_user-profile-default-image-png-clipart-png-download.png'
+    if (!userInfo) {
+      return res.status(400).json('Trouble with Linked in');
+    }
+
+
+    db.select('email').from('user_profiles').where('email', data.email).then(userResponse => {
+      console.log("userResponse", userResponse)
+if (userResponse.length ===0) {
+
+  db('user_profiles')
+            // .returning('*')
+            .insert({
+              email: data.email,
+              first_name: data.first_name,
+              last_name: data.last_name,
+              // subscribed: subscribed,
+              // title,
+              avatar: data.avatar,
+              uuid: uuid(),
+              // license_number,
+              joined: new Date()
+            })
+            .then(user => {
+            
+              console.log("THE USER", user)
+              res.send(JSON.stringify({userInfo}))
+            })
+}
+
+    })
+  
+         
+      .catch(err => console.log("ERROR", err))
+      // .catch(err => console.log(err))
+    }
 
   // registerThroughLinkedIn(userInfo);
 
