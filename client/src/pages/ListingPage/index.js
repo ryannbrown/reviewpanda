@@ -62,7 +62,7 @@ class ListingPage extends Component {
         <div key={i} className="single-cat">
           <Link to={`/categories/${item.panda_cat}`}>
             <div style={{display:'flex'}}>
-          <img className="category-icon" src={sunImg}></img>
+          {/* <img className="category-icon" src={sunImg}></img> */}
             <p>{item.panda_cat}</p>
             </div>
             <img className="chevron" src={chevRight}></img>

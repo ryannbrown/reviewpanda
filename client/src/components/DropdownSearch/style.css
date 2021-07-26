@@ -72,7 +72,7 @@ border-radius: 5px;
 /* opacity: .3; */
 color: black;
 border: 0.5px solid #cccccc;
-padding: 5px;
+padding: 5px 15px;
 }
 
 /* ul#downshift-0-menu {
@@ -93,10 +93,11 @@ padding: 5px;
     border-radius: 50px;
     background: transparent;
     border: 2px solid #fff;
-    padding: 5px;
+    padding: 5px 15px;
     color:white;
 }
 
 .search-block input::placeholder{
     color:white;
 }
+

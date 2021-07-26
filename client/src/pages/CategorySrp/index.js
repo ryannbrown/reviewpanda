@@ -187,6 +187,7 @@ console.log(savedTests)
 
 
 
+
     // if (headerTitle === this.state.currentCat || headerTitle ==='Most Popular') {
       if (reviews.length > 0) {
       // console.log(truthyReviews, reviews)
@@ -201,8 +202,9 @@ console.log(savedTests)
             <p>{item.title}</p>
          </div>
          <div className="srp-line-item">
-         {item.review_avg && <div className="srp-rating-block"><StarRatings
+         {item.review_avg && item.review_avg !=='NaN' && <div className="srp-rating-block"><StarRatings
               rating={parseFloat(item.review_avg)}
+              // rating={5}
               starRatedColor="#77E0D4"
               // changeRating={this.changeRating}
               numberOfStars={5}

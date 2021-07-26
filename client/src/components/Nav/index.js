@@ -182,7 +182,7 @@ if (this.state.overflowHidden) {
       _.debounce(() => {
 
 if (document.getElementById("responsive-menu").checked) {
-  console.log("its true")
+  // console.log("its true")
   document.getElementsByTagName('body')[0].style.overflowY='hidden';
 }
 

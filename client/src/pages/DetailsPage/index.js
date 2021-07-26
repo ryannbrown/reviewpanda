@@ -252,7 +252,7 @@ console.log(this.state);
                 starRatedColor='rgba(255,255,255)'
               /> </p>: <p> Rating: NA </p>
                 }
-                {thisPost.abbrev && <p className="desktop-hash">|</p>}
+                {thisPost.abbrev && <span className="desktop-hash">|</span>}
                 {/* |</p> */}
               {/* <p>Rating:  
                 <StarRatings
@@ -268,7 +268,7 @@ console.log(this.state);
               starRatedColor='#8E8E8E'
             /> |</p> */}
                 {thisPost.abbrev && <p> {thisPost.abbrev} </p>}
-                {thisPost.qual_level && <p className="desktop-hash">|</p>}
+                {thisPost.qual_level && <span className="desktop-hash">|</span>}
               <p> Level Required: {thisPost.qual_level} </p>
             
               </div>

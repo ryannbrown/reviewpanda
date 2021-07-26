@@ -33,8 +33,13 @@
     /* gap:15px; */
 }
 
-.hero-sub-info * {
- flex: 0 0 5%;
+.hero-sub-info p {
+ flex: 0 0 12%;
+}
+
+.hero-sub-info span {
+    margin-top:1em;
+    flex:0 0 2%;
 }
 
 .hero-sub-info p:nth-child(3) {

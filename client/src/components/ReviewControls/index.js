@@ -231,12 +231,12 @@ class ReviewControls extends Component {
                 {this.props.loginAlert && <p className="alert-danger">Please login in order to save tests to your account</p>}
                 <p className="under-text"><i>Don’t have time to leave a review? Save to submit later!</i></p>
               </form>
-                <h2>Our Prizes</h2>
+                {/* <h2>Our Prizes</h2>
               <div className="prize-box">
                 <div className="prize-item"> <span>Apple</span> <span>EarBuds</span></div>
                 <div className="prize-item"><span>Airbnb</span>Gift Card</div>
                 <div className="prize-item"><span>Visa</span> Gift Card</div>
-              </div>
+              </div> */}
             </div>
           ) : (
             <MyReview
