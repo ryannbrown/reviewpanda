@@ -91,6 +91,7 @@ opacity:0;
     width: 100px;
     height: 100px;
     background-color: transparent;
+    display:none;
 }
 #modal-label {
     cursor: pointer;
@@ -121,6 +122,10 @@ opacity:0;
     margin: 0.4em 0;
     max-width: 1em;
     position: relative;
+}
+
+nav label {
+    position:relative;
 }
 
 nav label #menu-icon {
@@ -349,4 +354,16 @@ nav ul#social-media > li {
     .menu-content > div > h1 {
         width:250px;
     }
+}
+
+
+.nav-login {
+    position: absolute;
+    right: 75px;
+    top: 15px;
+    /* background-color: lightgrey; */
+}
+
+.nav-login i {
+    background-color: white;
 }

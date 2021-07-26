@@ -390,11 +390,6 @@ if (userResponse.length ===0) {
 
 
 
-
-
-
-
-
 const BUCKET_NAME = process.env.NAME;
 const ACCESS = process.env.ACCESS
 const SECRET = process.env.SECRET

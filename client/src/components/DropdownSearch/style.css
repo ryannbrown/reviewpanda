@@ -75,7 +75,7 @@ border: 0.5px solid #cccccc;
 padding: 5px;
 }
 
-ul#downshift-0-menu {
+/* ul#downshift-0-menu {
     background: #ffffff;
     padding: 2vw;
     position: relative;
@@ -85,7 +85,7 @@ ul#downshift-0-menu {
     width: auto;
     text-align: left;
     border-radius: 10px;
-}
+} */
 
 .search-block input {
     width: 253px;
