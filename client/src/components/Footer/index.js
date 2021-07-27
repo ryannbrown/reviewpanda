@@ -41,7 +41,7 @@ export default class Footer extends Component {
         <div className="contact-info">
             <p>Review Panda </p>
             <p>reviewpanda.net</p>
-            <p>Stirred up by Just Soup</p>
+            <p>Built by Just Soup</p>
         </div>
         <div>
             <p>Stay in touch!</p>

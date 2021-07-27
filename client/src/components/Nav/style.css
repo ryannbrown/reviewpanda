@@ -58,12 +58,18 @@ nav {
     z-index: 9999;
 }
 
+
 .nav-right {
     position:absolute;
-    right:50px;
+    right:0px;
     top:15px;
-    top: 50%;
-    margin-top: -21.25px;
+    /* top: 15px; */
+    /* margin-top: -21.25px; */
+    width:200px;
+}
+
+.nav-right.btn {
+    /* top:25px; */
 }
 
 /*** INPUT ***/
@@ -257,7 +263,7 @@ nav ul#social-media > li {
     /* justify-content: flex-start; */
     justify-content: center;
     position:relative;
-    width:400px;
+    width:200px;
 }
 
 .nav-right img {
@@ -285,8 +291,8 @@ nav ul#social-media > li {
     background-color: #BEBCBC;
     visibility: hidden;
     position: fixed;
-    top: 125px;
-    right: 129px;
+    top: 160px;
+    /* right: 129px; */
     border-radius:15px;
     text-align:left;
     overflow-x:hidden;
@@ -370,9 +376,12 @@ nav ul#social-media > li {
         padding-left:0%;
     }
     .cat-wrapper a {
-        font-size:12px;
         flex: 0 0 40%;
         padding: 10px;
+    }
+
+    .menu-content .cat-wrapper a {
+        font-size:12px;
     }
     .menu-content > div > h1 {
         width:250px;

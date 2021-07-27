@@ -22,6 +22,7 @@
   margin-top: 15px;
 }
 .auth-text button {
+  display:none;
   background-color: transparent;
   padding: 1.4em 2.338em;
   margin-top: 15px !important;

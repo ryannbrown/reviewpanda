@@ -242,8 +242,8 @@ if (document.getElementById("responsive-menu").checked) {
     <label id="menu-label" for="responsive-menu"><span id="menu-icon"></span></label>
     <Link to="/"><img className="brand-icon" src={logo}></img></Link>
 
-                <div className="nav-right">
                   {context.userLoggedIn && context.userData ? (
+                <div className="nav-right">
                     <div className="user-nav">
                       {/* <p>Welcome back, {context.userData.first_name}</p> */}
                       {/* <button onClick={this.logOut} className="login-btn btn">
@@ -258,7 +258,9 @@ if (document.getElementById("responsive-menu").checked) {
                       <Link onClick={this.logOut}>Log Out</Link>
                       </div>
                     </div>
+                    </div>
                   ) : (
+                    <div className="nav-right btn">
                     <div>
                       {" "}
                       <button
@@ -270,8 +272,8 @@ if (document.getElementById("responsive-menu").checked) {
                       </button>
                     
                     </div>
-                  )}
                   </div>
+                  )}
     <div id="overlay"></div>
     <div className="inner-menu">
       <div className="menu-content">
