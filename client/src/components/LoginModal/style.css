@@ -254,8 +254,11 @@ margin:50px 0px;
     margin: 0px auto;
 }
   .actual-form input {
-    
-    width:150px;
+    width:100%;
+  }
+
+  .first-time-block {
+    margin-top:25px;
   }
   .register-license-wrapper {
     position: relative;

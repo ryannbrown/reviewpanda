@@ -120,4 +120,43 @@ transition:.3s;
     cursor:pointer;
 }
 
+@media(max-width:667px) {
+.my-profile-content {
+    /* padding:25px; */
+}
 
+
+    .profile-page  .single-review {
+        margin:25px auto;
+        width:75%;
+    }
+
+    .saved-tests {
+        text-align:center;
+    }
+
+    .reviews-header {
+        justify-content: center;
+    }
+
+    .profile-page .single-review-heading {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-page .single-review-heading p {
+        margin-top:5px !important;
+    }
+
+    .profile-page .star-ratings {
+        margin-top:5px !important;
+    }
+
+    .profile-page .single-review-heading p:nth-child(2), .single-review-heading p:nth-child(4)  {
+        display:none;
+    }
+
+    .profile-page .single-review-description {
+        margin-top:25px;
+    }
+}

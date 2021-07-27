@@ -57,11 +57,14 @@ export default class Nav extends Component {
     }
   };
 
-  // toggleRegister = () => {
-  //   this.setState({
-  //     registrationToggled: !this.state.registrationToggled
-  // })
-  // }
+  toggleMobileLogin = () => {
+    console.log('clicked')
+    this.setState({
+      mobileNavToggle: false,
+      modalOpened: !this.state.modalOpened
+  })
+  document.getElementById("responsive-menu").checked = false;
+  }
 
   logOut = () => {
     var ourContext = this.context;
@@ -272,7 +275,12 @@ if (document.getElementById("responsive-menu").checked) {
     <div id="overlay"></div>
     <div className="inner-menu">
       <div className="menu-content">
-      <div><h1>Menu</h1></div>
+    
+      {context.userLoggedIn && context.userData ? (   <div className="menu-header"><h1>Menu</h1> <Link onClick={this.handleMobileNav} to='/myprofile'><button className="login-btn btn">My Profile</button></Link></div> ) : ( <div className="menu-header">
+   <button className="login-btn btn">Login</button>
+   </div>
+   )
+  }
     <div className="category-block">
       <div className="cat-wrapper">{items}</div>
       </div>

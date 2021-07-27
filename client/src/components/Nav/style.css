@@ -63,7 +63,7 @@ nav {
     right:50px;
     top:15px;
     top: 50%;
-    margin-top: -41.25px;
+    margin-top: -21.25px;
 }
 
 /*** INPUT ***/
@@ -91,7 +91,7 @@ opacity:0;
     width: 100px;
     height: 100px;
     background-color: transparent;
-    display:none;
+    /* display:none; */
 }
 #modal-label {
     cursor: pointer;
@@ -132,7 +132,7 @@ nav label #menu-icon {
   float: left;
   position: absolute;
   left: 50px;
-  top: 25px;
+  top: 41px;
 }
 
 #menu-icon:before,
@@ -309,8 +309,16 @@ nav ul#social-media > li {
     margin: 0px 10px;
 }
 
+.menu-header button {
+    display:none;
+}
+
 
 @media (max-width:750px) {
+
+    .user-nav {
+        display:none;
+    }
 
     nav #responsive-menu {
         left:unset;
@@ -336,7 +344,21 @@ nav ul#social-media > li {
         display:none;
     }
     .menu-content{
+        margin-top:75px;
+    }
+
+    .menu-header{
+        display:flex;
+        align-items: center;
+        justify-content: center;
         margin-top:50px;
+    }
+    .menu-header h1 {
+        display:none;
+    }
+
+    .menu-header button {
+        display:block;
     }
     .brand-icon {
         top:50%;
@@ -348,6 +370,7 @@ nav ul#social-media > li {
         padding-left:0%;
     }
     .cat-wrapper a {
+        font-size:12px;
         flex: 0 0 40%;
         padding: 10px;
     }
