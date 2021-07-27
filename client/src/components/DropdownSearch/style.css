@@ -62,7 +62,8 @@
     max-width: 300px;
     position: absolute;
     left: 50%;
-    margin-left: -170px;
+    margin-left: -150px;
+    padding-inline-start: 0px;
 }
 
 .search-block input {
