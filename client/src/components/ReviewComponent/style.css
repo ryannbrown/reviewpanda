@@ -53,8 +53,8 @@
     margin-left: 50px;
 }
 
-.single-review-description {
-    color:#8E8E8E;
+.single-review-description p, .single-review-description {
+    color:#8E8E8E !important;
 }
 
 .single-review-heading {
