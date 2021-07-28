@@ -279,7 +279,7 @@ if (document.getElementById("responsive-menu").checked) {
       <div className="menu-content">
     
       {context.userLoggedIn && context.userData ? (   <div className="menu-header"><h1>Menu</h1> <Link onClick={this.handleMobileNav} to='/myprofile'><button className="login-btn btn">My Profile</button></Link></div> ) : ( <div className="menu-header">
-   <button className="login-btn btn">Login</button>
+   <button onClick={this.toggleMobileLogin} className="login-btn btn">Login</button>
    </div>
    )
   }
