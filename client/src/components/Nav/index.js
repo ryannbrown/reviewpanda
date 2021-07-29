@@ -58,7 +58,7 @@ export default class Nav extends Component {
   };
 
   toggleMobileLogin = () => {
-    console.log('clicked')
+    // console.log('clicked')
     this.setState({
       mobileNavToggle: false,
       modalOpened: !this.state.modalOpened
@@ -76,7 +76,7 @@ export default class Nav extends Component {
 
   toggleModal = () => {
       this.fixOverflow();
-    console.log("clicked");
+    // console.log("clicked");
     this.setState({
       modalOpened: !this.state.modalOpened,
     });
@@ -114,7 +114,7 @@ export default class Nav extends Component {
     fetch(`/api/cats`)
       .then((res) => res.json())
       .then((json) => {
-        console.log("nav-cats", json);
+        // console.log("nav-cats", json);
         if (json.length > 0) {
           // console.log("we have length")
           this.setState({
@@ -157,7 +157,7 @@ this.getCats();
   }
 
   fixOverflow = () => {
-    console.log(this.state.overflowHidden)
+    // console.log(this.state.overflowHidden)
 if (this.state.overflowHidden) {
   document.getElementsByTagName('body')[0].style.overflowY='hidden';
 } else {

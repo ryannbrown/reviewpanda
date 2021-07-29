@@ -31,10 +31,10 @@ class DetailsPage extends Component {
 
 
   saveTest = (test) => {
-console.log(test)
+// console.log(test)
     // console.log('clicked')
     const ourContext = this.context;
-    console.log(ourContext);
+    // console.log(ourContext);
 let email = ourContext.userData.email
     if (email) {
       fetch('/api/savetest', {
@@ -50,15 +50,15 @@ let email = ourContext.userData.email
 
         })
       }).then(response => {
-        console.log("hey i did it")
-        console.log(response)
+        // console.log("hey i did it")
+        // console.log(response)
         if (response.status == '200') {
           this.setState({
             isTestSaved: true
           })
 
         } else if (response.status == '400') {
-          console.log("failed")
+          // console.log("failed")
         }
       })
     } else {
@@ -74,7 +74,7 @@ let email = ourContext.userData.email
     if (reviews.length > 0) {
 
   
-    console.log(reviews)
+    // console.log(reviews)
       let sum = []
       reviews.forEach(function(review) {
           sum.push(review.rating)
@@ -91,7 +91,7 @@ let email = ourContext.userData.email
      var avg = total / sum.length;
      var theAvg = (Math.round(avg * 100) / 100)
     //  .toFixed(2);
-     console.log(theAvg)
+    //  console.log(theAvg)
      this.setState({
        reviewAvg: theAvg,
        totalStars: total
@@ -101,21 +101,21 @@ let email = ourContext.userData.email
 }
 
 setReviewCount = (number) => {
-console.log(number)
+// console.log(number)
 this.setState({reviewCount:number})
 }
 
 
 
   fetchReviews = (uuid) => {
-    console.log(uuid)
+    // console.log(uuid)
   if (!uuid) {
     uuid = this.props.match.params.uuid
   }
     fetch(`/api/review/${uuid}`)
       .then((res) => res.json())
       .then((json) => {
-        console.log("review", json)
+        // console.log("review", json)
         if (json == 'error getting review') {
           this.setState({
             reviews: [],
@@ -142,7 +142,7 @@ this.setState({reviewCount:number})
     fetch(`/api/tests/${uuid}`)
       .then((res) => res.json())
       .then((json) => {
-        console.log("json", json);
+        // console.log("json", json);
         this.setState({
           thisPost: json,
           testIsLoading:false,
@@ -154,13 +154,13 @@ this.setState({reviewCount:number})
   }
 
   checkIfTestIsSaved = (savedTests, thisPost) => {
-    console.log(this.state.testSaved)
+    // console.log(this.state.testSaved)
    let currentTest = thisPost
-   console.log(savedTests)
-   console.log(currentTest)
+  //  console.log(savedTests)
+  //  console.log(currentTest)
     let saved = JSON.stringify(savedTests)
       if (saved.includes(currentTest)){
-        console.log("it includes it")
+        // console.log("it includes it")
         this.setState({
           isTestSaved: true,
           attempt: this.state.attempt + 1
@@ -180,7 +180,7 @@ this.setState({reviewCount:number})
 
 
   componentDidUpdate(prevState) {
-console.log(this.state);
+// console.log(this.state);
 
 
     let ourContext = this.context;

@@ -38,7 +38,7 @@ class ReviewComponent extends Component {
   };
 
   activateEditor = () => {
-    console.log("clicked")
+    // console.log("clicked")
   }
 
   fetchFromDelete = () => {
@@ -67,7 +67,7 @@ class ReviewComponent extends Component {
       .then((json) => {
         // console.log(json)
         if (json == "error getting review") {
-          console.log("user does not have review")
+          // console.log("user does not have review")
           this.setState({
             isLoading: false,
             userHasReviewed: false,
