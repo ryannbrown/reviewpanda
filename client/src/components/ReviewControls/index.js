@@ -24,6 +24,9 @@ class ReviewControls extends Component {
       buttonDisabled: false,
       showLoginAlert: false,
       rating: 0,
+      reliable: 0,
+      userFriendly: 0,
+      costEffective: 0
       // ratingClicked: false,
       // needsRating:false 
     };
@@ -32,11 +35,30 @@ class ReviewControls extends Component {
 
 
   changeRating = ( newRating, name ) => {
+    console.log(newRating, name)
     // console.log(newRating, "for the win")
-    this.setState({
-      rating: newRating,
-      // ratingClicked:true 
-    });
+
+if (name === 'rating') {
+  this.setState({
+    rating: newRating,
+    // ratingClicked:true 
+  });
+} else if (name === 'reliable') {
+  this.setState({
+    reliable: newRating,
+    // ratingClicked:true 
+  });
+} else if (name === 'userFriendly') {
+  this.setState({
+    userFriendly: newRating,
+    // ratingClicked:true 
+  });
+} else if (name === 'costEffective') {
+  this.setState({
+    costEffective: newRating,
+    // ratingClicked:true 
+  });
+}
   }
 
   enableButton = () => {
@@ -113,6 +135,9 @@ class ReviewControls extends Component {
     e.preventDefault();
     // let id = this.props.id;
     let rating = this.state.rating
+    let reliable = this.state.reliable
+    let userFriendly = this.state.userFriendly
+    let costEffective = this.state.costEffective
     // let description = this.description.current.value;
     let email = ourContext.userData.email;
     let richText = this.state.richText
@@ -132,6 +157,9 @@ class ReviewControls extends Component {
         avatar: ourContext.userData.avatar,
         has_uploaded_img: ourContext.userData.has_uploaded_img,
         rating: rating,
+        reliable: reliable,
+        userFriendly: userFriendly,
+        costEffective: costEffective,
         description: richText,
         review_count: this.props.reviewCount + 1,
         total_stars: this.props.totalStars
@@ -201,7 +229,9 @@ class ReviewControls extends Component {
               {" "}
               <h2>Leave a review, get rewarded!</h2>
               <p>Leave a review and you’ll get entered to win one of the prizes below.</p>
-              <h3>Rating</h3>
+              <div style={{display:'flex', justifyContent: 'space-between', maxWidth: '450px'}}>
+              <div>
+              <h3>Overall Rating</h3>
               {/* <p className="alert alert-danger">Please leave a rating for this review.</p> */}
                   <StarRatings
               rating={this.state.rating}
@@ -213,6 +243,46 @@ class ReviewControls extends Component {
               starEmptyColor='rgba(119,224,212, .25)'
               starHoverColor='rgba(119,224,212)'
             />
+              <h3>User Friendly</h3>
+              {/* <p className="alert alert-danger">Please leave a rating for this review.</p> */}
+                  <StarRatings
+              rating={this.state.userFriendly}
+              starRatedColor="#77E0D4"
+              changeRating={this.changeRating}
+              numberOfStars={5}
+              name='userFriendly'
+              starDimension = '25px'
+              starEmptyColor='rgba(119,224,212, .25)'
+              starHoverColor='rgba(119,224,212)'
+            />
+            </div>
+            <div style={{marginLeft:'25px'}}>
+              <h3>Reliable</h3>
+              {/* <p className="alert alert-danger">Please leave a rating for this review.</p> */}
+                  <StarRatings
+              rating={this.state.reliable}
+              starRatedColor="#77E0D4"
+              changeRating={this.changeRating}
+              numberOfStars={5}
+              name='reliable'
+              starDimension = '25px'
+              starEmptyColor='rgba(119,224,212, .25)'
+              starHoverColor='rgba(119,224,212)'
+            />
+              <h3>Cost Effective</h3>
+              {/* <p className="alert alert-danger">Please leave a rating for this review.</p> */}
+                  <StarRatings
+              rating={this.state.costEffective}
+              starRatedColor="#77E0D4"
+              changeRating={this.changeRating}
+              numberOfStars={5}
+              name='costEffective'
+              starDimension = '25px'
+              starEmptyColor='rgba(119,224,212, .25)'
+              starHoverColor='rgba(119,224,212)'
+            />
+            </div>
+            </div>
               <form className="actual-form" onSubmit={this.submitReview}>
                 <h3>Description</h3>
                 <MyEditor handleRichChange={this.handleRichChange} defaultRichText={'Write description for this solution'}></MyEditor>

@@ -1,7 +1,8 @@
 
 // const uuid = require('uuid').v4
 const handleUpdateReviewPost = (req, res, db, uuidv4) => {
-    const {review_uuid, rating, description, full_name, test_abbrev, total_stars, review_count } = req.body;
+    const {review_uuid, rating, description, full_name, test_abbrev, total_stars, review_count, reliable, userFriendly,
+      costEffective, } = req.body;
 
     console.log(total_stars)
 
@@ -20,6 +21,9 @@ const handleUpdateReviewPost = (req, res, db, uuidv4) => {
       .update(
         {
         rating: rating,
+        reliable,
+        userFriendly,
+        costEffective,
         description: description,
         test_abbrev
       }
