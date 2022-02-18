@@ -129,7 +129,7 @@ app.get("/api/tests/:uuid", (req, res) => {
 app.get("/api/tests", (req, res) => {
   getTests.handleTestsFetch(req, res, db);
 });
-app.get("/api/cats/:cat", (req, res) => {
+app.get("/api/cats/:cat/:alphaFilter", (req, res) => {
   getReviewsByCat.handleFetchByCat(req, res, db);
 });
 app.get("/api/cats", (req, res) => {

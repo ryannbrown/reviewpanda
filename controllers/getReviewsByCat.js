@@ -1,11 +1,23 @@
 
 // TODO: change the name of this to tests not reviews
+
+// const subquery = knex('all_tests').where('status', 'active').andWhere('title', 'like', `${alphaFilter}%`).select('*');
+
 handleFetchByCat = (req, res, db) => {
-    const {cat} = req.params;
-    db.select('*').from('all_tests').where('panda_cat', cat).orderBy('review_avg')
+    let {cat, alphaFilter} = req.params;
+    // alphaFilter = 'A';
+
+    if (alphaFilter =='showAll') {
+alphaFilter = '%';
+    }
+    
+    db.select('*').from('all_tests').where(function() {
+      this.where('panda_cat', cat)
+      .andWhere('title', 'like', `${alphaFilter}%`)
+    }).orderBy('title')
     // .where({id, email})
       .then(review => {
-        //   console.log(review)
+          // console.log(review)
         if (review.length) {
         //   console.log(review)
           res.json(review)
@@ -13,7 +25,7 @@ handleFetchByCat = (req, res, db) => {
           res.status(400).json([])
         }
       })
-      .catch(err => res.status(400).json('error getting review'))
+      .catch(err => res.status(400).json({err}))
   }
   
   module.exports = {

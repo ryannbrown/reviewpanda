@@ -13,6 +13,7 @@ import chevRight from "../../media/grey-chev.svg"
 import sunImg from "../../media/pink-sun.svg"
 import LoginModal from '../../components/LoginModal'
 import StarRatings from "react-star-ratings"
+import FilterByAlphabet from '../../components/FilterByAlphabet/index'
 
 class CategorySrp extends Component {
   static contextType = ThemeContextConsumer;
@@ -81,9 +82,50 @@ console.log(savedTest)
     }
   };
 
-  fetchReviewsByCat = (cat) => {
+  fetchReviewsByCat = (cat, filter) => {
+    if (filter == undefined) {
+      filter = 'showAll';
+    }
+    console.log(filter)
     this.setState({isLoading:true})
-    fetch(`/api/cats/${cat}`)
+    fetch(`/api/cats/${cat}/${filter}`)
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        if (json.length > 0) {
+          // console.log("we have length")
+          this.setState({
+            reviews: json,
+            headerTitle:cat,
+            isLoading: false,
+            truthyReviews: true,
+            // userHasReviewed: false,
+          });
+        } else {
+          // console.log("we have else")
+          this.setState({
+            reviews: [],
+            // headerTitle: cat,
+            truthyReviews: false,
+            isLoading: false,
+            truthyCats: false,
+          });
+        }
+      });
+  };
+
+
+
+  fetchReviewsByAlpha = (cat, filter) => {
+// cat = this.props.match.params.cat;
+console.log(cat, filter);
+    console.log("BY ALLPHAAA")
+    if (filter === undefined) {
+      filter = 'showAll';
+    }
+    console.log(filter)
+    this.setState({isLoading:true})
+    fetch(`/api/cats/${cat}/${filter}`)
       .then((res) => res.json())
       .then((json) => {
         console.log(json);
@@ -258,6 +300,7 @@ console.log(savedTests)
                  
                  <button onClick={this.fetchPopTests} className="btn">Popular</button>
                 </div>
+                <FilterByAlphabet cat={this.props.match.params.cat} filter={this.fetchReviewsByAlpha}/>
                 <div className="srp-row-header">
                   <p>Test Name</p>
                   <p>Reviews</p>

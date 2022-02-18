@@ -104,7 +104,11 @@ export default class Homepage extends Component {
             // console.log(truthyReviews, reviews)
             var items = cats.map((item, i) => (
                 <Link to={`/categories/${item.panda_cat}`}>
-                {item.panda_cat}
+                  {item.panda_cat}
+                {/* <div>
+                  <img></img>
+                  <p>{item.panda_cat}</p>
+                </div> */}
                   </Link>
           
             ));

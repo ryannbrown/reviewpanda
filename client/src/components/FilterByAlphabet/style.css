@@ -1,0 +1,27 @@
+.alpha-filter {
+    margin-top:50px;
+    padding:0px;
+    display:flex;
+    justify-content: flex-start;
+    /* border:1px solid #f7f7f7; */
+    align-items: center;
+    color:#123047;
+    font-size:13px;
+    flex-wrap:wrap;
+}
+
+.alpha-filter a {
+    /* width:100%; */
+    cursor:pointer;
+    padding:7.5px;
+display:flex;
+justify-content: center;
+    border:1px solid #f7f7f7;
+}
+
+.alpha-filter a:last-of-type {
+    /* border-right:none; */
+}
+
+
+

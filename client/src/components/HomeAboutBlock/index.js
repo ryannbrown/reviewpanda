@@ -44,7 +44,7 @@ export default class HomeAboutBlock extends Component {
             </div>
             <div className="auth-text">
               <h2>Review Panda</h2>
-              <p>Created by psychologists, for psychologists</p>
+              <p>Created by practitioners, for practitioners</p>
               <Link to="/about"><button>Learn More</button></Link>
             </div>
           </div>
