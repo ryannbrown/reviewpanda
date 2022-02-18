@@ -28,7 +28,8 @@ class CategorySrp extends Component {
       modalOpened: false,
       isLoading: true,
       headerTitle: this.props.match.params.cat,
-      overflowHidden:true
+      overflowHidden:true,
+      noneReturned: false
     };
   }
 
@@ -132,6 +133,7 @@ console.log(cat, filter);
         if (json.length > 0) {
           // console.log("we have length")
           this.setState({
+            noneReturned: false,
             reviews: json,
             headerTitle:cat,
             isLoading: false,
@@ -141,6 +143,7 @@ console.log(cat, filter);
         } else {
           // console.log("we have else")
           this.setState({
+            noneReturned: true,
             reviews: [],
             // headerTitle: cat,
             truthyReviews: false,
@@ -306,6 +309,7 @@ console.log(savedTests)
                   <p>Reviews</p>
                 </div>
                 {/* { ?  */}
+                {this.state.noneReturned && <p> Sorry, There are no tests starting with this letter! </p> }
                 <div className="cats">{items}</div> 
                 {/* :
                 <div className="catzs">{saved}</div>
