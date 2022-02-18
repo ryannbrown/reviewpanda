@@ -21,9 +21,9 @@ const handleUpdateReviewPost = (req, res, db, uuidv4) => {
       .update(
         {
         rating: rating,
-        reliable,
-        userFriendly,
-        costEffective,
+        reliable: reliable,
+        user_friendly: userFriendly,
+        cost_effective: costEffective,
         description: description,
         test_abbrev
       }
