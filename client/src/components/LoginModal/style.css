@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: center;
     flex-direction:column;
-    top:-50px;
+    top:-25px;
 }
 
 .modal-box .actual-form {
