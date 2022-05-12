@@ -276,7 +276,7 @@ if (this.state.overflowHidden) {
        
               </form>
               <div>
-  <h3>Or</h3>
+  <h5>Or</h5>
   <LinkedIn text="Login with LinkedIn"></LinkedIn>
 </div>
               </div>

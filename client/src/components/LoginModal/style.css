@@ -27,6 +27,7 @@
     align-items: center;
     justify-content: center;
     flex-direction:column;
+    top:-50px;
 }
 
 .modal-box .actual-form {
@@ -81,6 +82,10 @@
   font-weight:500;
 }
 
+.actual-form h5 {
+  margin-top:5px;
+}
+
     
 .actual-form input {
     width: 253px;
@@ -112,7 +117,7 @@
   } */
 
   .first-time-block {
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 .first-time-block p{
