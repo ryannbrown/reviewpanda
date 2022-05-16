@@ -7,7 +7,8 @@ class MostPopular extends Component {
     super(props);
     this.state = {
       posts: [],
-      isLoading: true
+      isLoading: true,
+      isEmpty: false
     };
   }
 
@@ -22,10 +23,17 @@ class MostPopular extends Component {
       .then((res) => res.json())
       .then((json) => {
         console.log("pop tests", json);
-        this.setState({
-          posts: json,
-          isLoading: false
-        });
+        if (json.length > 0) {
+          this.setState({
+            posts: json,
+            isLoading: false
+          });
+        } else {
+            this.setState({
+              isEmpty: true,
+              isLoading:false
+            })
+        }
       });
   }
 
@@ -35,7 +43,7 @@ class MostPopular extends Component {
 
   render() {
     // console.log(this.state.posts)
-    const { isLoading } = this.state;
+    const { isLoading, isEmpty } = this.state;
 
     if (this.state.posts.length > 0) {
       var items = this.state.posts.slice(0, 6).map((item, i) => (
@@ -64,7 +72,7 @@ class MostPopular extends Component {
           </Link>
         </div>
       ));
-    }
+    } 
       return (
         <div
           className="most-pop-block"
@@ -83,6 +91,7 @@ class MostPopular extends Component {
             // loading={this.state.loading}
           />
           </div> }
+          {isEmpty &&  <p>No tests have been reviewed yet. Be the first!</p>}
     
         </div>
       );
