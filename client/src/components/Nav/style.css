@@ -286,7 +286,7 @@ nav ul#social-media > li {
 
 .user-nav-options {
     box-shadow:0 2px 4px 0 rgb(0 0 0 / 13%);
-    margin-top:-75px; /*TODO maybe fix*/
+    margin-top:-95px; /*TODO maybe fix*/
     width: 200px;
     background-color: #BEBCBC;
     visibility: hidden;
