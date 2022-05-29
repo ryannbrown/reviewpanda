@@ -278,6 +278,7 @@ if (this.state.overflowHidden) {
               <div>
   <h5>Or</h5>
   <LinkedIn text="Login with LinkedIn"></LinkedIn>
+  <p>By creating an account, you are opting in to receive emails. You can unsubscribe at any time.</p>
 </div>
               </div>
             ) :
@@ -323,14 +324,15 @@ if (this.state.overflowHidden) {
                 <div className="form-checkbox">
                 <button className="modal-btn btn" type="submit">Register</button>
                 <div className="subscribe-block">
-                <label id="modal-label">Subscribe?</label>
-                <input ref={this.isSubscribed} type="checkbox"></input>
+                {/* <label id="modal-label">Subscribe?</label>
+                <input ref={this.isSubscribed} type="checkbox"></input> */}
                 </div>
   
                 </div>
                 <div>
   <h3>Or</h3>
   <LinkedIn text="Register with Linked In"></LinkedIn>
+  <p>By creating an account, you are opting in to receive emails. You can unsubscribe at any time.</p>
 </div>
          
               </form>

@@ -1,5 +1,8 @@
 const uuid = require('uuid').v4
 
+
+  // addContact();
+
 const handleRegister = (req, res, db, bcrypt) => {
     const { email, first_name, last_name, password, subscribed, prof_title, license } = req.body;
     let title = prof_title
@@ -23,7 +26,7 @@ const handleRegister = (req, res, db, bcrypt) => {
               email: loginEmail[0],
               first_name: first_name,
               last_name: last_name,
-              subscribed: subscribed,
+              // subscribed: subscribed,
               title,
               avatar: defaultImg,
               uuid: uuid(),
