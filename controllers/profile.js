@@ -30,7 +30,7 @@ const handleProfileGet = (req, res, db) => {
       .then(user => {
         if (user.length) {
           // console.log("li user", user)
-           addContact(user.email, user.first_name, user.last_name)
+           addContact(user[0].email, user[0].first_name, user[0].last_name)
           res.json(user[0])
         } else {
           res.status(400).json('Not found')
