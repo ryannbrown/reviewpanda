@@ -9,8 +9,9 @@ mailchimp.setConfig({
 });
 
 const addContact =  async (email, first_name, last_name) => {
+  console.log('data going into mc', email, first_name, last_name )
   const listId = process.env.LIST_ID
-  const response = await mailchimp.lists.updateListMember(
+  const response = await mailchimp.lists.setListMember(
     listId,
     email,
     {first_name: first_name, last_name: last_name }
