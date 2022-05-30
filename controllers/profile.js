@@ -18,8 +18,8 @@ const addContact =  async (email, first_name, last_name) => {
     // {merge_fields: {
     //   "INTTOUSE":optionSelected
     // }}
-  )
-  console.log(response);
+  ) .catch(err => console.log(err))
+  console.log("Response", response);
 }
 
 
