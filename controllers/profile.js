@@ -14,7 +14,7 @@ const addContact =  async (email, first_name, last_name) => {
   const response = await mailchimp.lists.setListMember(
     listId,
     email,
-    {first_name: first_name, last_name: last_name }
+    {email_address: email_address, first_name: first_name, last_name: last_name }
     // {merge_fields: {
     //   "INTTOUSE":optionSelected
     // }}
