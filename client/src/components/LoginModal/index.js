@@ -50,7 +50,7 @@ class LoginModal extends Component {
     this.email = React.createRef();
     this.password = React.createRef();
     this.verPassword = React.createRef();
-    this.isSubscribed = React.createRef();
+    // this.isSubscribed = React.createRef();
     this.prof_title = React.createRef();
     this.license = React.createRef();
   }
@@ -167,7 +167,7 @@ if (this.state.overflowHidden) {
         let email = this.email.current.value
         let password = this.password.current.value
         let verPassword = this.verPassword.current.value
-        let isSubscribed = this.isSubscribed.current.checked
+        // let isSubscribed = this.isSubscribed.current.checked
         let prof_title = this.prof_title.current.value
         let license = this.license.current.value
 
@@ -192,7 +192,7 @@ if (this.state.overflowHidden) {
           last_name: last_name,
           email: email,
           password: password,
-          subscribed: isSubscribed,
+          // subscribed: isSubscribed,
           prof_title: prof_title,
           license: license
         }),

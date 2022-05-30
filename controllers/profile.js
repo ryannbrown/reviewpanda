@@ -16,8 +16,8 @@ const addContact =  async (email, first_name, last_name) => {
     email,
     {email_address: email, first_name: first_name, last_name: last_name, status_if_new: "subscribed" },
     {merge_fields: {
-      FNAME:first_name,
-      LNAME: last_name
+      "MERGE1":first_name,
+      "MERGE2": last_name
     }}
   ) .catch(err => console.log(err))
   console.log("Response", response);
