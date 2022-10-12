@@ -45,7 +45,7 @@ export default class Footer extends Component {
         </div>
         <div>
             <p>Stay in touch!</p>
-            <form><input placeholder="Enter Email"></input><button>Subscribe</button></form>
+            {/* <form><input placeholder="Enter Email"></input><button>Subscribe</button></form> */}
             <div className="social-wrapper">
                 <a href="/"><img src={instaLogo}></img>
                     </a>

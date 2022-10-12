@@ -95,7 +95,7 @@
     color: black;
     border: 0.5px solid #cccccc;
     padding: 5px;
-    margin:5px 0px;
+    margin:5px auto;
   }
   
   .actual-form input[type="text"] {
@@ -118,6 +118,11 @@
 
   .first-time-block {
     margin-top: 15px;
+}
+
+.actual-form button {
+  width:265px;
+  margin:0px auto;
 }
 
 .first-time-block p{
