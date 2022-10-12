@@ -5,7 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import HttpsRedirect from 'react-https-redirect';
 import { ThemeContextProvider } from "./utils/themeContext";
-ReactDOM.render(
+import { createRoot } from 'react-dom/client'
+createRoot.render(
   <React.StrictMode>
     <HttpsRedirect>
     <ThemeContextProvider>

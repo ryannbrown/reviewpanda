@@ -172,6 +172,8 @@ this.setState({reviewCount:number})
   componentDidMount() {
     this.fetchPosts();
 
+    console.log("it happened")
+
 
     // console.log(ourContext)
 
