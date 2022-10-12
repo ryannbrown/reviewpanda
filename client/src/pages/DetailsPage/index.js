@@ -172,7 +172,7 @@ this.setState({reviewCount:number})
   componentDidMount() {
     this.fetchPosts();
 
-
+console.log("mexico");
     // console.log(ourContext)
 
   
