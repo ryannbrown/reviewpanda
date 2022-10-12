@@ -172,9 +172,13 @@ this.setState({reviewCount:number})
   componentDidMount() {
     this.fetchPosts();
 
+<<<<<<< HEAD
     console.log("it happened")
 
 
+=======
+console.log("mexico");
+>>>>>>> 51d9cdc41d35c9fc192f694f3f494e6509df307d
     // console.log(ourContext)
 
   
